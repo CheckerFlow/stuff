@@ -5,7 +5,8 @@ tasks:
   - init: >
       gem install bundler &&
       bundle install --without production &&
-      rails db:migrate
+      rails db:migrate &&
+      yarn install --check-files
     command: >
       rails server
 github:
