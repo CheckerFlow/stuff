@@ -16,7 +16,9 @@ For me, it would be best if I can :
 2. lend unused stuff (that I don't want to sell) to others (friends, family)
 3. get rid of stuff I actually don't need any more
 
-## Steps to get the application up and running: 
+## Steps to get the application up and running:
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/CheckerFlow/stuffapp)
 
 The app is developed based on Ruby on Rails V6.0.1.
 
