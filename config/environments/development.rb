@@ -61,4 +61,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.web_console.whiny_requests = false
+
+  config.action_controller.forgery_protection_origin_check = false
 end
