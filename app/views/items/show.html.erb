@@ -1,4 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% if notice != nil %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>    
+</div>
+<% end %>
+
+<h3><%= @item.name %></h3>
+<p><%= @item.description %></p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
