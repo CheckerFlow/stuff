@@ -10,8 +10,10 @@
   </head>
 
   <body class="container">
-    <div class="">
+
+    <%= link_to "Rooms", rooms_url %> | <%= link_to "Items", items_url %> 
+    
     <%= yield %>
-    </div>
+    
   </body>
 </html>
