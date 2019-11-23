@@ -9,7 +9,9 @@
 
 <h1>Items</h1>
 
-<%= link_to 'New Item', new_item_path, :class => "btn btn-sm btn-primary float-left" %>
+<%= link_to new_item_path, :class => "btn btn-sm btn-primary float-left" do %>
+    <%= fa_icon "plus" %> New Item
+<% end %>
 
 <br/><br/>
 
@@ -27,9 +29,9 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to item do %><%= fa_icon "eye" %> Show <% end %></td>
+        <td><%= link_to edit_item_path(item) do %><%= fa_icon "pencil" %> Edit<% end %></td>
+        <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %></td>
       </tr>
     <% end %>
   </tbody>

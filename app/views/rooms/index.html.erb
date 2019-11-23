@@ -9,7 +9,9 @@
 
 <h1>Rooms</h1>
 
-<%= link_to 'New Room', new_room_path, :class => "btn btn-sm btn-primary float-left" %>
+<%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>
+    <%= fa_icon "plus" %> New Room
+<% end %>
 
 <br/><br/>
 
@@ -27,9 +29,9 @@
     <% @rooms.each do |room| %>
       <tr>
         <td><%= room.name %></td>
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to room do %><%= fa_icon "eye" %> Show <% end %></td>
+        <td><%= link_to edit_room_path(room) do %><%= fa_icon "pencil" %> Edit<% end %></td>
+        <td><%= link_to room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %></td>
       </tr>
     <% end %>
   </tbody>
