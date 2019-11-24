@@ -1,6 +1,6 @@
 <h1>Editing Storage</h1>
 
-<%= render 'form', storage: @storage %>
+<%= render 'form_edit', storage: @storage, room: @storage.room %>
 
 <%= link_to 'Show', @storage %> |
-<%= link_to 'Back', storages_path %>
+<%= link_to 'Back', room_storages_path(@room) %>

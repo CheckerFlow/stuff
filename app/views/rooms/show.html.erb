@@ -9,5 +9,18 @@
 
 <h3><%= @room.name %></h3>
 
+<%= link_to new_room_storage_path(@room), :class => "btn btn-sm btn-primary float-left" do %>
+    <%= fa_icon "plus" %> New Storage
+<% end %>
+
+<br/><br/>
+
+<div class="list-group">
+  <% @storages.each do |storage| %>
+  <%= link_to storage.name, storage, :class=>"list-group-item list-group-item-action" %>
+  <% end %>
+</div>
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %> |
 <%= link_to 'Back', rooms_path %>

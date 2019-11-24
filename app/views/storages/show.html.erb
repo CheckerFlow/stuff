@@ -7,7 +7,8 @@
 </div>
 <% end %>
 
-<h3><%= @storage.name %></h3>
+<h3><%= link_to @storage.room.name, @storage.room %> - <%= @storage.name %></h3>
 
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
-<%= link_to 'Back', storages_path %>
+<%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %> |
+<%= link_to 'Back', room_path(@storage.room) %> 
