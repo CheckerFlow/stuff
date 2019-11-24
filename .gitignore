@@ -22,13 +22,13 @@
 /storage/*
 !/storage/.keep
 
-# /public/assets # Keep pre-compiled assets
+/public/assets # Keep pre-compiled assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# /public/packs # Keep pre-compiled assets
+/public/packs # Keep pre-compiled assets
 /public/packs-test
 /node_modules
 /yarn-error.log
