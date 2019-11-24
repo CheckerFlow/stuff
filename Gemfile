@@ -43,6 +43,10 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+
+  # Added SolarGraph gem for better GitPod support. Background: When launching GitPod, a problem is reported on the Output tab for Ruby Language Server
+  # IDE tools for code completion, inline documentation, and static analysis
+  gem 'solargraph', '~> 0.38.0'  
 end
 
 group :production do 
