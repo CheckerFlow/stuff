@@ -40,9 +40,9 @@ class RoomsController < ApplicationController
 
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
-  def update
+  def update    
     respond_to do |format|
-      if @room.update(room_params)
+      if @room.update(room_params) && @room.images.attach(params[:images])
         format.html { redirect_to rooms_url, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -70,6 +70,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name)
+      params.require(:room).permit(:name, images: [])
     end
 end
