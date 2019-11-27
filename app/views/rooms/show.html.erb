@@ -8,6 +8,19 @@
 <% end %>
 
 <h3><%= @room.name %></h3>
+<hr/>
+
+<h4>Images
+  <small>
+    <span class="badge badge-pill badge-info"><%= @room.images.count.to_s %></span>
+  </small>
+</h4>
+
+<ul>
+  <% @room.images.each do |image| %>
+  <li><img src="<%= url_for(image) %></li>
+  <% end %>
+</ul>
 
 <%= link_to new_room_storage_path(@room), :class => "btn btn-sm btn-primary float-left" do %>
     <%= fa_icon "plus" %> New Storage

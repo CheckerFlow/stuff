@@ -1,34 +1,34 @@
 {
-  "application.js": "/packs/js/application-e46fe0adaad732103f09.js",
-  "application.js.map": "/packs/js/application-e46fe0adaad732103f09.js.map",
+  "application.js": "/packs/js/application-2f445b8815af870ea2d9.js",
+  "application.js.map": "/packs/js/application-2f445b8815af870ea2d9.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-e46fe0adaad732103f09.js"
+        "/packs/js/application-2f445b8815af870ea2d9.js"
       ],
       "js.map": [
-        "/packs/js/application-e46fe0adaad732103f09.js.map"
+        "/packs/js/application-2f445b8815af870ea2d9.js.map"
       ]
     },
     "src/application": {
       "js": [
-        "/packs/js/src/application-a6d46a85eef01ede1ec2.js"
+        "/packs/js/src/application-43c360dc18cb82dbda9b.js"
       ],
       "js.map": [
-        "/packs/js/src/application-a6d46a85eef01ede1ec2.js.map"
+        "/packs/js/src/application-43c360dc18cb82dbda9b.js.map"
       ]
     },
     "src/simple-sidebar": {
       "js": [
-        "/packs/js/src/simple-sidebar-be90e954c949cc4977bf.js"
+        "/packs/js/src/simple-sidebar-da5f37af62b004daef64.js"
       ],
       "js.map": [
-        "/packs/js/src/simple-sidebar-be90e954c949cc4977bf.js.map"
+        "/packs/js/src/simple-sidebar-da5f37af62b004daef64.js.map"
       ]
     }
   },
-  "src/application.js": "/packs/js/src/application-a6d46a85eef01ede1ec2.js",
-  "src/application.js.map": "/packs/js/src/application-a6d46a85eef01ede1ec2.js.map",
-  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-be90e954c949cc4977bf.js",
-  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-be90e954c949cc4977bf.js.map"
+  "src/application.js": "/packs/js/src/application-43c360dc18cb82dbda9b.js",
+  "src/application.js.map": "/packs/js/src/application-43c360dc18cb82dbda9b.js.map",
+  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-da5f37af62b004daef64.js",
+  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-da5f37af62b004daef64.js.map"
 }
