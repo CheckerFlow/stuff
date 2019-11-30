@@ -31,7 +31,7 @@ class StoragesController < ApplicationController
 
     respond_to do |format|
       if @storage.save
-        format.html { redirect_to room_url(@room), notice: 'Storage was successfully created.' }
+        format.html { redirect_to @storage, notice: 'Storage was successfully created.' }
         format.json { render :show, status: :created, location: @storage }
       else
         format.html { render :new }

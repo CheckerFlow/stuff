@@ -15,23 +15,37 @@
 <br/><br/>
 
 <div class="row">
+  <div class="col-lg-8">
   <% @storage.images.each do |image| %>
-  <div class="col-sm-3">
-    <img src="<%= url_for(image) %>" class="card-img-top img-thumbnail" alt="...">
+    <img src="<%= url_for(image) %>" class="card-img-top img-thumbnail" alt="...">  
+  <% end %>
+  <% if @storage.images.size == 0 %>
+    <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+  <% end %>
   </div>
-  <% end %>
+
+  <div class="col-lg-4">
+    
+    <div class="list-group">
+
+      <%= form_with(model: [@storage, Item.new], local: true) do |form| %>
+
+        <div class="input-group mb-3">          
+          <%= form.text_field(:name, :class => "form-control")  %>
+          <div class="input-group-append">
+            <%= form.submit :class => "btn btn-primary" %>
+          </div>
+        </div>        
+
+      <% end %>      
+    
+      <% @storage.items.each do |item| %>
+        <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
+      <% end %>
+    </div>  
+    
+  </div>
+
 </div>
 
-<br/>
 
-<%= link_to new_storage_item_path(@storage), :class => "btn btn-sm btn-primary float-left" do %>
-  <%= fa_icon "plus" %> New Item
-<% end %>
-
-<br/><br/>
-
-<div class="list-group">
-  <% @storage.items.each do |item| %>
-  <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
-  <% end %>
-</div>
