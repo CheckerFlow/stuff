@@ -7,50 +7,31 @@
 </div>
 <% end %>
 
-<h3><%= link_to @storage.room.name, @storage.room %> - <%= @storage.name %></h3>
-
-<br/>
+<h3><%= link_to @storage.room.name, @storage.room %> -> <%= @storage.name %></h3>
 
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
 
-<br/>
-<br/>
+<br/><br/>
 
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">    
-    <a class="nav-item nav-link active" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-home" aria-selected="true">Images</a>
-    <a class="nav-item nav-link" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab" aria-controls="nav-profile" aria-selected="false">Items <%= @storage.items.count.to_s %></a>        
+<div class="row">
+  <% @storage.images.each do |image| %>
+  <div class="col-sm-3">
+    <img src="<%= url_for(image) %>" class="card-img-top img-thumbnail" alt="...">
   </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">
+  <% end %>
+</div>
 
-    <div class="row">
-    <% @storage.images.each do |image| %>
-      <div class="col-sm-3">
-        <img src="<%= url_for(image) %>" class="card-img-top img-thumbnail" alt="...">
-      </div>
-    <% end %>
-    </div>
+<br/>
 
-  </div>  
+<%= link_to new_storage_item_path(@storage), :class => "btn btn-sm btn-primary float-left" do %>
+  <%= fa_icon "plus" %> New Item
+<% end %>
 
-  <div class="tab-pane fade" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
+<br/><br/>
 
-    <br/>
-
-    <%= link_to new_storage_item_path(@storage), :class => "btn btn-sm btn-primary float-left" do %>
-        <%= fa_icon "plus" %> New Item
-    <% end %>
-
-    <br/><br/>
-
-    <div class="list-group">
-      <% @storage.items.each do |item| %>
-      <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
-      <% end %>
-    </div>
-  </div>
-
+<div class="list-group">
+  <% @storage.items.each do |item| %>
+  <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
+  <% end %>
 </div>
