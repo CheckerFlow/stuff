@@ -7,14 +7,65 @@
 </div>
 <% end %>
 
-<h3><%= @room.name %></h3>
-<hr/>
+<h3>
+  <%= @room.name %>
+</h3>
 
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
+
+<br/>
+<br/>
+
+<!--
+<%= link_to 'Back', rooms_path %>
+-->
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-home" aria-selected="true">Images <%= @room.images.count.to_s %></a>
+    <a class="nav-item nav-link" id="nav-storages-tab" data-toggle="tab" href="#nav-storages" role="tab" aria-controls="nav-profile" aria-selected="false">Storages <%= @room.storages.count.to_s %></a>    
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">
+
+    <div class="row">
+    <% @room.images.each do |image| %>
+      <div class="col-sm-2">
+        <img src="<%= url_for(image) %>" class="card-img-top" alt="...">
+      </div>
+    <% end %>
+    </div>
+
+  </div>
+
+  <div class="tab-pane fade" id="nav-storages" role="tabpanel" aria-labelledby="nav-storages-tab">
+
+    <br/>
+
+    <%= link_to new_room_storage_path(@room), :class => "btn btn-sm btn-primary float-left" do %>
+        <%= fa_icon "plus" %> New Storage
+    <% end %>
+
+    <br/><br/>
+
+    <div class="list-group">
+      <% @storages.each do |storage| %>
+      <%= link_to storage.name, storage, :class=>"list-group-item list-group-item-action" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<!--
 <h4>Images
   <small>
     <span class="badge badge-pill badge-info"><%= @room.images.count.to_s %></span>
   </small>
 </h4>
+-->
 
 <!--
 <ul>
@@ -27,13 +78,6 @@
 </ul>
 -->
 
-<div class="row">
-<% @room.images.each do |image| %>
-  <div class="col-sm-2">
-    <img src="<%= url_for(image) %>" class="card-img-top" alt="...">
-  </div>
-<% end %>
-</div>
 
 <!--
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -61,18 +105,4 @@
 -->
 
 
-<%= link_to new_room_storage_path(@room), :class => "btn btn-sm btn-primary float-left" do %>
-    <%= fa_icon "plus" %> New Storage
-<% end %>
 
-<br/><br/>
-
-<div class="list-group">
-  <% @storages.each do |storage| %>
-  <%= link_to storage.name, storage, :class=>"list-group-item list-group-item-action" %>
-  <% end %>
-</div>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %> |
-<%= link_to 'Back', rooms_path %>
