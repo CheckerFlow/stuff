@@ -16,11 +16,50 @@
   </small>
 </h4>
 
+<!--
 <ul>
   <% @room.images.each do |image| %>
-  <li><img src="<%= url_for(image) %></li>
+  <li>
+    <img src="<%= url_for(image) %>"> | 
+    <a href="<%= rails_blob_path(image, disposition: 'attachment') %>">Download</a>
+  </li>
   <% end %>
 </ul>
+-->
+
+<div class="row">
+<% @room.images.each do |image| %>
+  <div class="col-sm-2">
+    <img src="<%= url_for(image) %>" class="card-img-top" alt="...">
+  </div>
+<% end %>
+</div>
+
+<!--
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% @room.images.each_with_index  do |image, index| %>
+    <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= (index == 0) ? 'active' : '' %>"></li>
+    <% end %>
+  </ol>
+  <div class="carousel-inner">
+    <% @room.images.each do |image| %>
+    <div class="carousel-item active">
+      <img src="<%= url_for(image) %>" class="d-block w-100 h-20" alt="...">
+    </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+-->
+
 
 <%= link_to new_room_storage_path(@room), :class => "btn btn-sm btn-primary float-left" do %>
     <%= fa_icon "plus" %> New Storage

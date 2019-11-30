@@ -42,7 +42,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update    
     respond_to do |format|
-      if @room.update(room_params) && @room.images.attach(params[:images])
+      if @room.update(room_params)
         format.html { redirect_to rooms_url, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
