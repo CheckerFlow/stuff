@@ -9,17 +9,13 @@
 
 <h1>Storages</h1>
 
-<%= link_to new_room_storage_path, :class => "btn btn-sm btn-primary float-left" do %>
-    <%= fa_icon "plus" %> New Storage
-<% end %>
-
-<br/><br/>
-
-<div class="list-group">
+<ul class="list-group">
   <% @storages.each do |storage| %>
-  <%= link_to storage.name, storage, :class=>"list-group-item list-group-item-action" %>
+    <li class="list-group-item list-group-item-action">
+      <%= link_to storage.name, storage %> im <%= link_to storage.room.name, storage.room %>
+    </li>
   <% end %>
-</div>
+</ul>
 
 <!--
 <table class="table table-bordered  table-sm">

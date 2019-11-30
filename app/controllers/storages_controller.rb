@@ -1,6 +1,6 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
-  before_action :set_room, only: [:new, :create, :index]
+  before_action :set_room, only: [:new, :create]
 
   # GET /storages
   # GET /storages.json
