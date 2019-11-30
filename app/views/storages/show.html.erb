@@ -19,11 +19,23 @@
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">    
-    <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab" aria-controls="nav-profile" aria-selected="false">Items <%= @storage.items.count.to_s %></a>    
-    <a class="nav-item nav-link" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-home" aria-selected="true">Images</a>
+    <a class="nav-item nav-link active" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-home" aria-selected="true">Images</a>
+    <a class="nav-item nav-link" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab" aria-controls="nav-profile" aria-selected="false">Items <%= @storage.items.count.to_s %></a>        
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">
+
+    <div class="row">
+    <% @storage.images.each do |image| %>
+      <div class="col-sm-3">
+        <img src="<%= url_for(image) %>" class="card-img-top" alt="...">
+      </div>
+    <% end %>
+    </div>
+
+  </div>  
+
   <div class="tab-pane fade" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
 
     <br/>
@@ -40,9 +52,5 @@
       <% end %>
     </div>
   </div>
-
-  <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">
-
-  </div>  
 
 </div>
