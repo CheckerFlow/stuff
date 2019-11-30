@@ -9,12 +9,6 @@
 
 <h1>Items</h1>
 
-<%= link_to new_item_path, :class => "btn btn-sm btn-primary float-left" do %>
-    <%= fa_icon "plus" %> New Item
-<% end %>
-
-<br/><br/>
-
 <div class="list-group">
   <% @items.each do |item| %>
   <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>

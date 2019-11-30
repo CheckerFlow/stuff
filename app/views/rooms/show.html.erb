@@ -7,9 +7,7 @@
 </div>
 <% end %>
 
-<h3>
-  <%= @room.name %>
-</h3>
+<h3><%= @room.name %></h3>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>

@@ -1,10 +1,15 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_storage, only: [:new, :create, :index]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if @storage
+      @items = @storage.items
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1
@@ -24,11 +29,11 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = @storage.items.new(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to items_url, notice: 'Item was successfully created.' }
+        format.html { redirect_back(fallback_location: items_path, notice: 'Item was successfully created.')  }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -67,9 +72,17 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+    def set_storage 
+      if params[:storage_id]
+        @storage = Storage.find(params[:storage_id])
+      else
+        @storage = nil
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.fetch(:item, {})
-      params.require(:item).permit(:name, :description)
+      params.require(:item).permit(:name, :description, :storage_id)
     end
 end
