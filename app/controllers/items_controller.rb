@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_storage, only: [:new, :create, :index]
+  before_action :set_storage, only: [:new, :create, :edit, :index]
 
   # GET /items
   # GET /items.json
