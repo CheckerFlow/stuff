@@ -5,5 +5,5 @@ class ApplicationController < ActionController::Base
     else  
       {}
     end
-  end    
+  end
 end

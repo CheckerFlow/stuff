@@ -5,6 +5,17 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    @storage = Storage.first    
+
+    Item.all.each do |item|
+      if item.storage == nil
+        item.storage = @storage
+        item.save
+      else 
+        #Do nothing
+      end
+    end
+
     if @storage
       @items = @storage.items
     else
