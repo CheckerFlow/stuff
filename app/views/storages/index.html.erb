@@ -9,34 +9,23 @@
 
 <h1>Storages</h1>
 
-<ul class="list-group">
-  <% @storages.each do |storage| %>
-    <li class="list-group-item list-group-item-action">
-      <%= link_to storage.name, storage %> im <%= link_to storage.room.name, storage.room %>
-    </li>
-  <% end %>
-</ul>
-
-<!--
-<table class="table table-bordered  table-sm">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @storages.each do |storage| %>
-      <tr>
-        <td><%= storage.name %></td>
-        <td><%= link_to storage do %><%= fa_icon "eye" %> Show <% end %></td>
-        <td><%= link_to edit_storage_path(storage) do %><%= fa_icon "pencil" %> Edit<% end %></td>
-        <td><%= link_to storage, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
--->
+<% @storages.each do |storage| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-inline-flex">
+        <% if storage.images.first %>
+        <img src="<%= url_for(storage.images.first) %>" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% else %>
+        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% end %>
+      </div>
+      <div class="d-inline-flex align-top">
+        <h5 class="mt-0">
+          <%= link_to storage.name, storage%>
+          <br/>
+          <small>im <%= link_to storage.room.name, storage.room %></small>
+        </h5>        
+      </div>
+    </div>
+  </div>
+<% end %>

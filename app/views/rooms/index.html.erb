@@ -15,32 +15,25 @@
 
 <br/><br/>
 
-<div class="list-group">
-  <% @rooms.each do |room| %>
-  <%= link_to room.name, room, :class=>"list-group-item list-group-item-action" %>
-  <% end %>
-</div>
-
-<!--
-<table class="table table-bordered  table-sm">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>      
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.name %></td>
-        <td><%= link_to room do %><%= fa_icon "eye" %> Show <% end %></td>
-        <td><%= link_to edit_room_path(room) do %><%= fa_icon "pencil" %> Edit<% end %></td>
-        <td><%= link_to room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
--->
+<% @rooms.each do |room| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-inline-flex">
+        <% if room.images.first %>
+        <img src="<%= url_for(room.images.first) %>" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% else %>
+        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% end %>
+      </div>
+      <div class="d-inline-flex align-top">
+        <h5 class="mt-0">
+          <%= link_to room.name, room%>
+          <!--
+          <br/>
+          <small><%= link_to room.storages.count, room %> storages with </small>
+          -->
+        </h5>        
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -9,34 +9,23 @@
 
 <h1>Items</h1>
 
-<ul class="list-group">
-  <% @items.each do |item| %>
-    <li class="list-group-item list-group-item-action">
-      <%= link_to item.name, item%> im <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
-    </li>
-  <% end %>
-</ul>
-
-<!--
-<table class="table table-bordered  table-sm">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= link_to item do %><%= fa_icon "eye" %> Show <% end %></td>
-        <td><%= link_to edit_item_path(item) do %><%= fa_icon "pencil" %> Edit<% end %></td>
-        <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
--->
+<% @items.each do |item| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-inline-flex">
+        <% if item.images.first %>
+        <img src="<%= url_for(item.images.first) %>" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% else %>
+        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <% end %>
+      </div>
+      <div class="d-inline-flex align-top">
+        <h5 class="mt-0">
+          <%= link_to item.name, item%>
+          <br/>
+          <small><%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %></small>
+        </h5>        
+      </div>
+    </div>
+  </div>
+<% end %>
