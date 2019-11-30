@@ -26,7 +26,7 @@
 
   <div class="col-lg-4">
     
-    <div class="list-group">
+    <div class="list-group sticky-top">
 
       <%= form_with(model: [@storage, Item.new], local: true) do |form| %>
 
@@ -43,7 +43,7 @@
         <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
       <% end %>
     </div>  
-    
+
   </div>
 
 </div>
