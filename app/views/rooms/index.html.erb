@@ -30,7 +30,7 @@
         <h5 class="mt-0">
           <%= link_to room.name, room%>
           <br/>
-          <small><%= link_to room.storages.count.to_s + " storages", room %>  with <%= room.storages.sum(&:items).count %> items in total</small>
+          <small><%= link_to room.storages.count.to_s + " storages", room %>  with <%= items_count(room) %> items in total</small>
         </h5>        
       </div>
     </div>
