@@ -64,7 +64,9 @@
         <% end %>      
       
         <% @room.storages.each do |storage| %>
-          <%= link_to storage.name, storage, :class=>"list-group-item list-group-item-action" %>
+          <%= link_to storage, :class=>"list-group-item list-group-item-action" do %> 
+            <%= storage.name %> <span class="badge badge-pill badge-info float-right"><%= storage.items.count.to_s %></span>
+          <% end %>
         <% end %>
       </div>  
       
