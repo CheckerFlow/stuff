@@ -17,7 +17,7 @@
 <div class="row">
   <div class="col-lg-8">
   <% @storage.images.each do |image| %>
-    <img src="<%= url_for(image) %>" class="card-img-top img-thumbnail" alt="...">  
+    <img src="<%= url_for(image.variant(auto_orient: true)) %>" class="card-img-top img-thumbnail" alt="...">  
   <% end %>
   <% if @storage.images.size == 0 %>
     <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  

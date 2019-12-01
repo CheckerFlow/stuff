@@ -14,9 +14,9 @@
     <div class="card-body">
       <div class="d-inline-flex">
         <% if item.images.first %>
-        <img src="<%= url_for(item.images.first) %>" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <img src="<%= url_for(item.images.first.variant(resize_to_limit: [125, 125], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
         <% else %>
-        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="..." width="125px" height="125px">
+        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="...">
         <% end %>
       </div>
       <div class="d-inline-flex align-top">
