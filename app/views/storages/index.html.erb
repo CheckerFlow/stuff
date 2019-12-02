@@ -9,6 +9,19 @@
 
 <h1>Storages</h1>
 
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+  <%= form_tag(storages_path, method: :get, :class=>"form-group") do %>
+    <div class="input-group">
+      <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search storages" %>
+      <div class="input-group-append">
+        <%= submit_tag 'Search', :class => "btn btn-outline-secondary"  %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <% @storages.each do |storage| %>
   <div class="card">
     <div class="card-body">
