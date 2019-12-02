@@ -8,7 +8,11 @@ class ItemsController < ApplicationController
     if @storage
       @items = @storage.items
     else
-      @items = Item.all
+      if params[:search]
+        @items = Item.where('name LIKE ?', "%#{params[:search]}%")
+      else
+        @items = Item.all
+      end
     end
   end
 
@@ -83,6 +87,6 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.fetch(:item, {})
-      params.require(:item).permit(:name, :description, :storage_id, images: [])
+      params.require(:item).permit(:name, :description, :storage_id, :search, images: [])
     end
 end

@@ -5,7 +5,11 @@ class StoragesController < ApplicationController
   # GET /storages
   # GET /storages.json
   def index
-    @storages = Storage.all
+    if params[:search]
+      @storages = Storage.where('name LIKE ?', "%#{params[:search]}%")
+    else
+      @storages = Storage.all
+    end
   end
 
   # GET /storages/1
@@ -77,6 +81,6 @@ class StoragesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def storage_params
-      params.require(:storage).permit(:name, :room_id, images: [])
+      params.require(:storage).permit(:name, :search, :room_id, images: [])
     end
 end

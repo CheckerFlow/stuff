@@ -9,6 +9,19 @@
 
 <h1>Rooms</h1>
 
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+  <%= form_tag(rooms_path, method: :get, :class=>"form-group") do %>
+    <div class="input-group">
+      <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search rooms" %>
+      <div class="input-group-append">
+        <%= submit_tag 'Search', :class => "btn btn-outline-secondary"  %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>
     <%= fa_icon "plus" %> New Room
 <% end %>
@@ -18,21 +31,19 @@
 <div class="row">
 <% @rooms.each do |room| %>
   <div class="col-lg-3 col-md-4 col-sm-12 col-12">
-    <div class="card-body">
-      <div class="d-inline-flex">
-        <% if room.images.first %>
-        <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
-        <% else %>
-        <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
-        <% end %>
-      </div>
-      <div class="d-inline-flex align-top">
-        <h5 class="mt-0">
-          <%= link_to room.name, room%>
-          <br/>
-          <small><%= link_to room.storages.count.to_s + " storages", room %>  with <%= items_count(room) %> items in total</small>
-        </h5>        
-      </div>
+    <div class="d-inline-flex">
+      <% if room.images.first %>
+      <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
+      <% else %>
+      <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+      <% end %>
+    </div>
+    <div class="d-inline-flex align-top mb-4">
+      <h5 class="mt-0">
+        <%= link_to room.name, room%>
+        <br/>
+        <small><%= link_to room.storages.count.to_s + " storages", room %>  with <%= items_count(room) %> items in total</small>
+      </h5>        
     </div>
   </div>
 <% end %>

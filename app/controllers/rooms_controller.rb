@@ -4,7 +4,11 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    if params[:search]
+      @rooms = Room.where('name LIKE ?', "%#{params[:search]}%")
+    else
+      @rooms = Room.all
+    end    
   end
 
   # GET /rooms/1
@@ -76,6 +80,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, images: [])
+      params.require(:room).permit(:name, :search, images: [])
     end
 end
