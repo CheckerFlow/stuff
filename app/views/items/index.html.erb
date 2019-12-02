@@ -9,14 +9,15 @@
 
 <h1>Items</h1>
 
+<div class="row">
 <% @items.each do |item| %>
-  <div class="card">
+  <div class="col-lg-3 col-md-4 col-sm-12 col-12">
     <div class="card-body">
       <div class="d-inline-flex">
         <% if item.images.first %>
-        <img src="<%= url_for(item.images.first.variant(resize_to_limit: [125, 125], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
+        <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
         <% else %>
-        <img src="https://via.placeholder.com/125" class="mr-3 img-thumbnail" alt="...">
+        <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
         <% end %>
       </div>
       <div class="d-inline-flex align-top">
@@ -29,3 +30,4 @@
     </div>
   </div>
 <% end %>
+</div>
