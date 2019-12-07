@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  devise_for :users
   resources :rooms do
     resources :storages, shallow: true
   end
