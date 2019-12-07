@@ -6,9 +6,9 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     if params[:search]
-      @rooms = Room.where('name LIKE ?', "%#{params[:search]}%")
+      @rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%")
     else
-      @rooms = Room.all
+      @rooms = current_user.rooms.all
     end    
   end
 
@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.user_id = current_user.id
   end
 
   # GET /rooms/1/edit
@@ -31,6 +32,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user_id = current_user.id
 
     respond_to do |format|
       if @room.save
@@ -76,11 +78,11 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = current_user.rooms.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :search, images: [])
+      params.require(:room).permit(:user_id, :name, :search, images: [])
     end
 end

@@ -11,9 +11,9 @@ class ItemsController < ApplicationController
       @items = @storage.items
     else
       if params[:search]
-        @items = Item.where('name LIKE ?', "%#{params[:search]}%")
+        @items = current_user.items.where('name LIKE ?', "%#{params[:search]}%")
       else
-        @items = Item.all
+        @items = current_user.items.all
       end
     end
   end
@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @item.user_id = current_user.id
   end
 
   # GET /items/1/edit
@@ -36,6 +37,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = @storage.items.new(item_params)
+    @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.save
@@ -75,12 +77,12 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = current_user.items.find(params[:id])
     end
 
     def set_storage 
       if params[:storage_id]
-        @storage = Storage.find(params[:storage_id])
+        @storage = current_user.storages.find(params[:storage_id])
       else
         @storage = nil
       end
@@ -89,6 +91,6 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.fetch(:item, {})
-      params.require(:item).permit(:name, :description, :storage_id, :search, images: [])
+      params.require(:item).permit(:user_id, :name, :description, :storage_id, :search, images: [])
     end
 end
