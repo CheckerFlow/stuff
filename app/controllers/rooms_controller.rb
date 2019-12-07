@@ -2,32 +2,6 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
-  def cleanup
-    @rooms = current_user.rooms.all
-
-    rooms = Room.where(user_id: nil).each do 
-      |room| 
-      room.user_id = current_user.id
-      room.save
-    end
-
-    storages = Storage.where(user_id: nil).each do 
-      |storage| 
-      storage.user_id = current_user.id
-      storage.save
-    end    
-
-    items = Item.where(user_id: nil).each do 
-      |item| 
-      item.user_id = current_user.id
-      item.save
-    end        
-
-    respond_to do |format|
-      format.html { redirect_to rooms_url, notice: items.count.to_s + ' orphaned items successfully cleaned up.' }
-    end
-  end
-
   # GET /rooms
   # GET /rooms.json
   def index
