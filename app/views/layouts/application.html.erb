@@ -25,9 +25,9 @@
       <div class="sidebar-heading ">StuffApp </div>
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
-          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Rooms <span class="badge badge-pill badge-info"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
-          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Storages <span class="badge badge-pill badge-info"><%= current_user.storages.all.count %> / <%= Storage.all.count %></span><% end %>
-          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Items <span class="badge badge-pill badge-info"><%= current_user.items.all.count %> / <%= Item.all.count %></span><% end %>
+          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Rooms <span class="badge badge-pill badge-secondary"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
+          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Storages <span class="badge badge-pill badge-secondary"><%= current_user.storages.all.count %> / <%= Storage.all.count %></span><% end %>
+          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Items <span class="badge badge-pill badge-secondary"><%= current_user.items.all.count %> / <%= Item.all.count %></span><% end %>
         <% end %>
       </div>
     </div>

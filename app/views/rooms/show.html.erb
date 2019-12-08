@@ -15,7 +15,7 @@
   <br/><br/>
 
   <div class="row">
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-8 col-md-6">
 
       <% if @room.images.size > 0 %>
 
@@ -48,7 +48,9 @@
 
     </div>  
   
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-4 col-md-6">
+
+      <h4>Storages</h4>
       
       <div class="list-group sticky-top">
   
@@ -65,7 +67,9 @@
       
         <% @room.storages.each do |storage| %>
           <%= link_to storage, :class=>"list-group-item list-group-item-action" do %> 
-            <%= storage.name %> <span class="badge badge-pill badge-info float-right"><%= storage.items.count.to_s %></span>
+            <%= storage.name %> 
+            <span class="badge badge-pill badge-light float-right"><%= storage.images.count.to_s %> images </span>            
+            <span class="badge badge-pill badge-light float-right"><%= storage.items.count.to_s %> items </span>            
           <% end %>
         <% end %>
       </div>  
