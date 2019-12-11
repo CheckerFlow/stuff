@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
     
   get 'pages/home'
+  get 'pages/landing'
 
   devise_for :users
 
@@ -18,5 +19,5 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root :to => "pages#home"
+  root :to => "pages#landing"
 end

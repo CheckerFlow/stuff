@@ -54,9 +54,11 @@
               <%= link_to "Home", root_path, :class => "nav-link" %>
             </li>                  
             <% if !user_signed_in? %>
+            <!--
             <li class="nav-item">              
               <%= link_to "Register", new_user_registration_path, :class => "btn btn-primary" %>
-            </li>            
+            </li>     
+            -->       
             <li class="nav-item">
               <%= link_to "Login", new_user_session_path, :class => "nav-link" %>              
             </li>
