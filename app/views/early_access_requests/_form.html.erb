@@ -1,0 +1,22 @@
+<%= form_with(model: early_access_request, local: true) do |form| %>
+  <% if early_access_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(early_access_request.errors.count, "error") %> prohibited this early_access_request from being saved:</h2>
+
+      <ul>
+        <% early_access_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

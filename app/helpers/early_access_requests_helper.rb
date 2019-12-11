@@ -1,0 +1,2 @@
+module EarlyAccessRequestsHelper
+end

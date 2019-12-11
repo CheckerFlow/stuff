@@ -1,0 +1,2 @@
+class EarlyAccessRequest < ApplicationRecord
+end

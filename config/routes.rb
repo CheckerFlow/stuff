@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
     
   get 'pages/home'
+
   devise_for :users
+
   resources :rooms do
     resources :storages, shallow: true
   end
@@ -9,7 +11,10 @@ Rails.application.routes.draw do
   resources :storages do
     resources :items, shallow: true
   end
+
   resources :items
+
+  resources :early_access_requests
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

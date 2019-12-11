@@ -11,10 +11,10 @@
     
     <div class="col-lg-6">
 
-        <h4>Warum <span class="text-info">Klar Schiff</span>?</h4>
+        <h2>Warum <span class="text-info">Klar Schiff</span>?</h2>
 
         <p class="lead">
-            Viele Dinge sind an unterschiedlichen Stellen verstaut und somit weit verstreut. 
+            Viele Dinge sind im Haus, im Büro, in der Werkstatt etc. an unterschiedlichen Stellen verstaut und somit weit verstreut. 
         </p>
         <p class="lead">
             Selten genutzte Dinge sind manchmal schwer zu finden. Dann kommt es vor, dass man es doppelt kauft. 
@@ -25,9 +25,18 @@
         <p class="lead">            
             Beim Ausmisten stellt sich dann die Frage: Wo anfangen? Was soll ich behalten, was kann weg? Und was weg kann: Verkaufen, verschenken oder entsorgen?
         </p>
+    </div>
+
+    <div class="col-lg-12">
+    
+        <h2>Was sind die Vorteile durch <span class="text-info">Klar Schiff</span>?</h2>
 
         <p class="lead">
-            Mit <b class="text-info">Klar Schiff</b> kannst du 
+            Mit <span class="text-info">Klar Schiff</span> kannst du ein digitales Abbild von Dingen erstellen, die an allen möglichen Stellen aufbewahrt sind. 
+        </p>
+
+        <p class="lead">
+            Durch <b class="text-info">Klar Schiff</b> kannst du 
             <ol class="lead">
                 <li class="lead"><b>Zeit sparen:</b> Behalte den Überblick über deine Dinge und finde sie schneller, wenn du sie brauchst.</li>
                 <li class="lead"><b>Geld sparen:</b> Vermeide doppelte und dreifache Anschaffungen einfach dadurch, dass du weißt welche Dinge du schon hast und wo sie sind. </li>
@@ -39,7 +48,7 @@
         
 <div class="row mt-5">
     <div class="col-lg-6">        
-        <h4>Was kannst du in <span class="text-info">Klar Schiff</span> machen?</h4>
+        <h2>Wie funktioniert <span class="text-info">Klar Schiff</span>?</h2>
 
         <ol class="lead">
             <li>
@@ -51,14 +60,10 @@
             <li>
                 Nutze die <b>Suche</b>, um Dinge in Räumen und Ablagen schneller zu finden. 
             </li>
+            <li>
+                Erstelle <b>Listen</b> von Dingen, mit denen du etwas machen willst (umräumen, verkaufen, verschenken, entsorgen, etc.)
+            </li>
         </ol>       
-
-        <h4>Wozu kannst du <span class="text-info">Klar Schiff</span> nutzen?</h4>
-        <ol class="lead">
-            <li><b>Überblick erhalten:</b> Erstelle ein digitales Abbild von deinem Keller, deiner Garage oder deinem Dachgeschoss. </li>
-            <li><b>Finden:</b> Mit der Suche kannst du alle Dinge schnell finden.</li>
-            <li><b>Ausmisten:</b> Entscheide dich anhand von Listen, was du behalten möchtest und was weg kann.</li>
-        </ol>
 
     </div>
     <div class="col-lg-6">  
@@ -72,14 +77,31 @@
     <div class="col-lg-12">
 
         <div class="jumbotron">
-            <h1 class="display-4">Mach <span class="text-info">Klar Schiff</span>!</h1>
-            <p>
-            <form>
-                <div class="form-group">                
-                    <input class="form-control form-control-lg" type="text" placeholder="Deine email-Adresse">
+            <h1 class="display-4">Leg los und mach <span class="text-info">Klar Schiff</span>!</h1>
+
+            <%= form_with(model: @early_access_request, local: true) do |form| %>
+                <div class="form-group">
+                    <% if @early_access_request.errors.any? %>
+                        <div id="error_explanation">
+                            <h2><%= pluralize(@early_access_request.errors.count, "error") %> prohibited this early_access_request from being saved:</h2>
+                    
+                            <ul>
+                            <% @early_access_request.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                            </ul>
+                        </div>
+                    <% end %>
+              
+                    <div class="form-group">              
+                        <%= form.text_field :email, :class=>"form-control form-control-lg" %>
+                    </div>
+                
+                    <div class="actions">
+                        <%= form.submit "Bitte an Board zu kommen", :class=>"btn btn-primary btn-lg" %>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Bitte an Board zu kommen</button>
-            </form>
+            <% end %>            
         </div>    
 
     </div>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Early Access Requests</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @early_access_requests.each do |early_access_request| %>
+      <tr>
+        <td><%= early_access_request.email %></td>
+        <td><%= link_to 'Show', early_access_request %></td>
+        <td><%= link_to 'Edit', edit_early_access_request_path(early_access_request) %></td>
+        <td><%= link_to 'Destroy', early_access_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Early Access Request', new_early_access_request_path %>
