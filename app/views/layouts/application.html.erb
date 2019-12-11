@@ -22,7 +22,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading ">Klar Schiff </div>
+      <div class="sidebar-heading "><span class="text-info">Klar Schiff</span>Klar Schiff</div>
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
           <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Rooms <span class="badge badge-pill badge-secondary"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
