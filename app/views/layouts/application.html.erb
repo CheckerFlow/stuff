@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  <div class="background-image">
 
   <div class="d-flex" id="wrapper">
 
@@ -63,6 +64,9 @@
               <%= link_to "Login", new_user_session_path, :class => "nav-link" %>              
             </li>
             <% else %>
+              <li class="nav-item">              
+                <%= link_to "App", pages_home_path, :class => "nav-link" %>
+              </li>   
               <%= link_to "Logout", destroy_user_session_path, :class => "nav-link", :method => :delete %>              
                         
               <li class="nav-item dropdown">
@@ -93,6 +97,9 @@
 
   </div>
   <!-- /#wrapper -->
+
+  </div>
+  <!-- /.background-image -->
 
 
 
