@@ -22,7 +22,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading "><span class="text-info">Klar Schiff</span>Klar Schiff</div>
+      <div class="sidebar-heading "><span class="text-info">Klar Schiff</span></div>
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
           <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Rooms <span class="badge badge-pill badge-secondary"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
@@ -37,7 +37,7 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+        <button class="btn btn-primary" id="menu-toggle">Menu</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -50,6 +50,9 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             -->
+            <li class="nav-item">              
+              <%= link_to "Home", root_path, :class => "nav-link" %>
+            </li>                  
             <% if !user_signed_in? %>
             <li class="nav-item">              
               <%= link_to "Register", new_user_registration_path, :class => "btn btn-primary" %>
