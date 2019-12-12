@@ -1,34 +1,44 @@
 {
-  "application.js": "/packs/js/application-e9f1b1f2f4ab47070be9.js",
-  "application.js.map": "/packs/js/application-e9f1b1f2f4ab47070be9.js.map",
+  "application.js": "/packs/js/application-49a0d04d2deb3b41f545.js",
+  "application.js.map": "/packs/js/application-49a0d04d2deb3b41f545.js.map",
+  "bootstrap-custom.js": "/packs/js/bootstrap-custom-082ba1e0c26c84a2aaba.js",
+  "bootstrap-custom.js.map": "/packs/js/bootstrap-custom-082ba1e0c26c84a2aaba.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-e9f1b1f2f4ab47070be9.js"
+        "/packs/js/application-49a0d04d2deb3b41f545.js"
       ],
       "js.map": [
-        "/packs/js/application-e9f1b1f2f4ab47070be9.js.map"
+        "/packs/js/application-49a0d04d2deb3b41f545.js.map"
+      ]
+    },
+    "bootstrap-custom": {
+      "js": [
+        "/packs/js/bootstrap-custom-082ba1e0c26c84a2aaba.js"
+      ],
+      "js.map": [
+        "/packs/js/bootstrap-custom-082ba1e0c26c84a2aaba.js.map"
       ]
     },
     "src\\application": {
       "js": [
-        "/packs/js/src/application-4776674fab3ef201459c.js"
+        "/packs/js/src/application-b1ca169eeb27d4e217db.js"
       ],
       "js.map": [
-        "/packs/js/src/application-4776674fab3ef201459c.js.map"
+        "/packs/js/src/application-b1ca169eeb27d4e217db.js.map"
       ]
     },
     "src\\simple-sidebar": {
       "js": [
-        "/packs/js/src/simple-sidebar-241a3d0e67b3a52152ae.js"
+        "/packs/js/src/simple-sidebar-d4291fa93d0fcfab1b4b.js"
       ],
       "js.map": [
-        "/packs/js/src/simple-sidebar-241a3d0e67b3a52152ae.js.map"
+        "/packs/js/src/simple-sidebar-d4291fa93d0fcfab1b4b.js.map"
       ]
     }
   },
-  "src/application.js": "/packs/js/src/application-4776674fab3ef201459c.js",
-  "src/application.js.map": "/packs/js/src/application-4776674fab3ef201459c.js.map",
-  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-241a3d0e67b3a52152ae.js",
-  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-241a3d0e67b3a52152ae.js.map"
+  "src/application.js": "/packs/js/src/application-b1ca169eeb27d4e217db.js",
+  "src/application.js.map": "/packs/js/src/application-b1ca169eeb27d4e217db.js.map",
+  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-d4291fa93d0fcfab1b4b.js",
+  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-d4291fa93d0fcfab1b4b.js.map"
 }

@@ -15,15 +15,17 @@
     <div class="input-group">
       <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search rooms" %>
       <div class="input-group-append">
-        <%= submit_tag 'Search', :class => "btn btn-outline-secondary"  %>
+        <button class="btn btn-outline-secondary">
+          <%= fa_icon "search" %> Search
+        </button>
       </div>
     </div>
   <% end %>
   </div>
 </div>
 
-<%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>
-    <%= fa_icon "plus" %> New Room
+<%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>  
+  <%= fa_icon "plus" %> New Room
 <% end %>
 
 <br/><br/>
