@@ -34,10 +34,12 @@
 <% @rooms.each do |room| %>
   <div class="col-lg-3 col-md-4 col-sm-12 col-12">
     <div class="d-inline-flex">
-      <% if room.images.first %>
-      <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
-      <% else %>
-      <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+      <%= link_to room do %>
+        <% if room.images.first %>
+        <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
+        <% else %>
+        <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+        <% end %>
       <% end %>
     </div>
     <div class="d-inline-flex align-top mb-4">
