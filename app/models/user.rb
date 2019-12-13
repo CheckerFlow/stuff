@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :storages, dependent: :destroy
   has_many :items, dependent: :destroy
+
+  has_many :lists, dependent: :destroy
 end

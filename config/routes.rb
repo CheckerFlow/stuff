@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  
   get 'pages/home'
   get 'pages/landing'
 
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :items
+
+  resources :lists
 
   resources :early_access_requests
 

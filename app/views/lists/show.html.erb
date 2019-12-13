@@ -1,0 +1,24 @@
+<% if notice != nil %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>    
+</div>
+<% end %>
+
+<h3><%= @list.name %></h3>
+
+<%= link_to edit_list_path(@list) do %><%= fa_icon "edit" %> Edit <% end %> |
+<%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
+
+<br/><br/>
+
+<h4>Items</h4>
+
+<div class="list-group sticky-top">
+
+  <% Item.all.each do |item| %>
+    <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
+  <% end %>
+</div>
