@@ -15,15 +15,17 @@
     <div class="input-group">
       <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search rooms" %>
       <div class="input-group-append">
-        <%= submit_tag 'Search', :class => "btn btn-outline-secondary"  %>
+        <button class="btn btn-outline-secondary">
+          <%= fa_icon "search" %> Search
+        </button>
       </div>
     </div>
   <% end %>
   </div>
 </div>
 
-<%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>
-    <%= fa_icon "plus" %> New Room
+<%= link_to new_room_path, :class => "btn btn-sm btn-primary float-left" do %>  
+  <%= fa_icon "plus" %> New Room
 <% end %>
 
 <br/><br/>
@@ -32,10 +34,12 @@
 <% @rooms.each do |room| %>
   <div class="col-lg-3 col-md-4 col-sm-12 col-12">
     <div class="d-inline-flex">
-      <% if room.images.first %>
-      <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
-      <% else %>
-      <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+      <%= link_to room do %>
+        <% if room.images.first %>
+        <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300, 200], auto_orient: true)) %>" class="mr-3 img-thumbnail" alt="...">
+        <% else %>
+        <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+        <% end %>
       <% end %>
     </div>
     <div class="d-inline-flex align-top mb-4">
