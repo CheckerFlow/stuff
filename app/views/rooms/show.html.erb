@@ -9,7 +9,7 @@
 
 <h3><%= @room.name %></h3>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to edit_room_path(@room) do %><%= fa_icon "edit" %> Edit <% end %> |
 <%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
 
   <br/><br/>
@@ -59,7 +59,9 @@
           <div class="input-group mb-3">          
             <%= form.text_field(:name, :class => "form-control")  %>
             <div class="input-group-append">
-              <%= form.submit :class => "btn btn-primary" %>
+              <button class="btn btn-primary">
+                <%= fa_icon "plus" %> Add
+              </button>
             </div>
           </div>        
   

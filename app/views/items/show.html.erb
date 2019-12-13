@@ -9,7 +9,7 @@
 
 <h3><%= link_to @item.storage.room.name, @item.storage.room %> -> <%= link_to @item.storage.name, @item.storage %> -> <%= @item.name %></h3>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to edit_item_path(@item) do %><%= fa_icon "edit" %> Edit <% end %> |
 <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
 
 <br/><br/>
