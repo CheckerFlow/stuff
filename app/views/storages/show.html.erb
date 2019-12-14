@@ -70,10 +70,23 @@
       <% end %>      
     
       <% @storage.items.each do |item| %>
-        <%= link_to item, :class=>"list-group-item list-group-item-action" do %>
-          <%= item.name %>
-          <span class="badge badge-pill badge-light float-right"><%= item.images.count.to_s %> Bilder </span>
-        <% end %>
+        <div class="list-group-item">
+          <%= link_to item.name, item %>   
+                    
+          <%= form_with(model: @list_item, class: "form-inline float-right") do |form| %>            
+            <div class="form-group">              
+              <div class="input-group">                  
+                <%= form.select :list_id, options_from_collection_for_select(List.all, 'id', 'name') %>
+                <%= form.hidden_field :item_id, value: item.id %>                
+                <button type="submit" class="btn btn-sm btn-outline-primary input-group-append"><%= fa_icon "plus" %></button>
+              </div>
+            </div>                        
+          <% end %>           
+
+          <br/>
+          <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>
+          
+        </div>
       <% end %>
     </div>  
 

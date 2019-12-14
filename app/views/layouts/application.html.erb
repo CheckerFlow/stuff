@@ -27,13 +27,13 @@
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "boxes" %> Orte & Dinge</b>
-          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
-          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= current_user.storages.all.count %> / <%= Storage.all.count %></span><% end %>
-          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary float-right"><%= current_user.items.all.count %> / <%= Item.all.count %></span><% end %>
+          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= current_user.rooms.all.count %></span><% end %>
+          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= current_user.storages.all.count %></span><% end %>
+          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary float-right"><%= current_user.items.all.count %></span><% end %>
           
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "list" %> Listen</b>
           <% current_user.lists.each do |list| %>
-            <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %><%= list.name %><% end %>
+            <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %><%= list.name %>  <span class="badge badge-pill badge-secondary float-right"><%= list.list_items.count %></span><% end %>
           <% end %>
           <div class="list-group-item bg-light" href="#">
             <%= link_to new_list_path, :class => "btn btn-primary float-right" do %><%= fa_icon "plus" %></i> Neue Liste<% end %>
