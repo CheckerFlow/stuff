@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   resources :items
 
-  resources :lists
+  resources :lists do 
+    member do
+      get 'selectitems'
+    end    
+  end
 
   resources :early_access_requests
 

@@ -10,7 +10,8 @@
 <h3><%= @list.name %></h3>
 
 <%= link_to edit_list_path(@list) do %><%= fa_icon "edit" %> Edit <% end %> |
-<%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
+<%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %> |
+<%= link_to selectitems_list_path(@list) do %><%= fa_icon "list" %> Auswählen <% end %>
 
 <br/><br/>
 
