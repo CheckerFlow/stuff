@@ -36,7 +36,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
+        format.html { redirect_to @list, notice: 'Liste wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @list }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+        format.html { redirect_to @list, notice: 'Liste wurde erfolgreich geändert.' }
         format.json { render :show, status: :ok, location: @list }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to pages_home_path, notice: 'List was successfully destroyed.' }
+      format.html { redirect_to pages_home_path, notice: 'Liste wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end
@@ -76,7 +76,7 @@ class ListsController < ApplicationController
 
     if (list_items.size > 0)
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Item already added to list.' }
+        format.html { redirect_to @list, notice: 'Gegenstand wurde der Liste schon hinzugefügt.' }
         format.json { head :no_content }
       end      
     elsif (item != nil)
@@ -86,12 +86,12 @@ class ListsController < ApplicationController
       list_item.save
 
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Item was successfully added to list.' }
+        format.html { redirect_to @list, notice: 'Gegenstand wurde erfolgreich zur Liste hinzugefügt.' }
         format.json { head :no_content }
       end
     else 
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'No item specified. No item added to list.' }
+        format.html { redirect_to @list, notice: 'Kein Gegenstand selektiert. Kein Eintrag in die Liste erstellt.' }
         format.json { head :no_content }
       end
     end
@@ -107,12 +107,12 @@ class ListsController < ApplicationController
       end
 
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Item was successfully removed from list.' }
+        format.html { redirect_to @list, notice: 'Gegenstand wurde erfolgreich von der Liste gelöscht.' }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Item not found. No item was removed from list.' }
+        format.html { redirect_to @list, notice: 'Gegenstand nicht gefunden. Kein Gegenstand wurde von der Liste gelöscht.' }
         format.json { head :no_content }
       end
     end

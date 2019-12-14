@@ -27,9 +27,9 @@
       <div class="sidebar-heading "><span class="text-info">Klar Schiff</span></div>
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
-          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Rooms <span class="badge badge-pill badge-secondary"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
-          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Storages <span class="badge badge-pill badge-secondary"><%= current_user.storages.all.count %> / <%= Storage.all.count %></span><% end %>
-          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Items <span class="badge badge-pill badge-secondary"><%= current_user.items.all.count %> / <%= Item.all.count %></span><% end %>
+          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary"><%= current_user.rooms.all.count %> / <%= Room.all.count %></span><% end %>
+          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary"><%= current_user.storages.all.count %> / <%= Storage.all.count %></span><% end %>
+          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary"><%= current_user.items.all.count %> / <%= Item.all.count %></span><% end %>
         <% end %>
       </div>
     </div>
@@ -57,19 +57,19 @@
                 <%= link_to "Home", pages_landing_path, :class => "nav-link" %>
               </li>                             
               <li class="nav-item">
-                <%= link_to "Login", new_user_session_path, :class => "nav-link nav-link-primary" %>              
+                <%= link_to "Einloggen", new_user_session_path, :class => "nav-link nav-link-primary" %>              
               </li>
             <% else %>
               <li class="nav-item">              
-                <%= link_to "App", pages_home_path, :class => "nav-link" %>
+                <%= link_to "Zur App", pages_home_path, :class => "nav-link" %>
               </li>                             
-              <%= link_to "Logout", destroy_user_session_path, :class => "nav-link", :method => :delete %>                        
+              <%= link_to "Ausloggen", destroy_user_session_path, :class => "nav-link", :method => :delete %>                        
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  User Account
+                  Mein Account
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <%= link_to "Change settings", edit_user_registration_path, :class => "dropdown-item" %>
+                  <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
                 </div>
               </li>
             <% end %>

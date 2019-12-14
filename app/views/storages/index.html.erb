@@ -7,16 +7,16 @@
 </div>
 <% end %>
 
-<h1>Storages</h1>
+<h1>Ablagen</h1>
 
 <div class="row">
   <div class="col-lg-6 col-md-12">
     <%= form_tag(storages_path, method: :get, :class=>"form-group") do %>
       <div class="input-group">
-        <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search storages" %>
+        <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"" %>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary">
-            <%= fa_icon "search" %> Search
+            <%= fa_icon "search" %> Suchen
           </button>
         </div>
       </div>
@@ -40,7 +40,7 @@
       <h5 class="mt-0">
         <%= link_to storage.name, storage%>
         <br/>
-        <small>in <%= link_to storage.room.name, storage.room %> with <%= storage.items.count %> items in total</small>          
+        <small>in <%= link_to storage.room.name, storage.room %> mit <%= storage.items.count %> Dingen</small>          
       </h5>        
     </div>
   </div>

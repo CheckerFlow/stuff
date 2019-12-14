@@ -42,7 +42,7 @@ class EarlyAccessRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @early_access_request.update(early_access_request_params)
-        format.html { redirect_to @early_access_request, notice: 'Early access request was successfully updated.' }
+        format.html { redirect_to @early_access_request, notice: 'Anfrage wurde erfolgreich geändert.' }
         format.json { render :show, status: :ok, location: @early_access_request }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EarlyAccessRequestsController < ApplicationController
   def destroy
     @early_access_request.destroy
     respond_to do |format|
-      format.html { redirect_to early_access_requests_url, notice: 'Early access request was successfully destroyed.' }
+      format.html { redirect_to early_access_requests_url, notice: 'Anfrage wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end

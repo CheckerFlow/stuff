@@ -10,8 +10,8 @@
 <h3><%= link_to @storage.room.name, @storage.room %> -> <%= @storage.name %></h3>
 
 <div class="btn-group" role="group" aria-label="Basic example">
-  <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Edit <% end %>
-  <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Destroy<% end %>
+  <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
+  <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
 </div>
 
 <br/><br/>
@@ -52,7 +52,7 @@
 
   <div class="col-lg-4 col-md-6">
 
-    <h4>Items</h4>
+    <h4>Dinge</h4>
     
     <div class="list-group sticky-top">
 
@@ -62,7 +62,7 @@
           <%= form.text_field(:name, :class => "form-control")  %>
           <div class="input-group-append">            
             <button class="btn btn-primary">
-              <%= fa_icon "plus" %> Add
+              <%= fa_icon "plus" %> Hinzufügen
             </button>            
           </div>
         </div>        
@@ -70,7 +70,10 @@
       <% end %>      
     
       <% @storage.items.each do |item| %>
-        <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
+        <%= link_to item, :class=>"list-group-item list-group-item-action" do %>
+          <%= item.name %>
+          <span class="badge badge-pill badge-light float-right"><%= item.images.count.to_s %> Bilder </span>
+        <% end %>
       <% end %>
     </div>  
 

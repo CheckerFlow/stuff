@@ -7,16 +7,16 @@
 </div>
 <% end %>
 
-<h1>Items</h1>
+<h1>Dinge</h1>
 
 <div class="row">
   <div class="col-lg-6 col-md-12">
   <%= form_tag(items_path, method: :get, :class=>"form-group") do %>
     <div class="input-group">
-      <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"Search items" %>
+      <%= text_field_tag :search, "",:class=>"form-control", :placeholder=>"" %>
       <div class="input-group-append">
         <button class="btn btn-outline-secondary">
-          <%= fa_icon "search" %> Search
+          <%= fa_icon "search" %> Suchen
         </button>
       </div>
     </div>

@@ -38,7 +38,7 @@ class StoragesController < ApplicationController
 
     respond_to do |format|
       if @storage.save
-        format.html { redirect_to @storage, notice: 'Storage was successfully created.' }
+        format.html { redirect_to @storage, notice: 'Ablage wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @storage }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class StoragesController < ApplicationController
   def update
     respond_to do |format|
       if @storage.update(storage_params)
-        format.html { redirect_to room_url(@storage.room), notice: 'Storage was successfully updated.' }
+        format.html { redirect_to room_url(@storage.room), notice: 'Ablage wurde erfolgreich geändert.' }
         format.json { render :show, status: :ok, location: @storage }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class StoragesController < ApplicationController
     @room = @storage.room
     @storage.destroy
     respond_to do |format|
-      format.html { redirect_to room_url(@room), notice: 'Storage was successfully destroyed.' }
+      format.html { redirect_to room_url(@room), notice: 'Ablage wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end

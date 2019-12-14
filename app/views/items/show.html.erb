@@ -10,8 +10,8 @@
 <h3><%= link_to @item.storage.room.name, @item.storage.room %> -> <%= link_to @item.storage.name, @item.storage %> -> <%= @item.name %></h3>
 
 <div class="btn-group" role="group" aria-label="Basic example">
-  <%= link_to edit_item_path(@item), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Edit <% end %>
-  <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Destroy<% end %>
+  <%= link_to edit_item_path(@item), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
+  <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
 </div>
 
 <br/><br/>
