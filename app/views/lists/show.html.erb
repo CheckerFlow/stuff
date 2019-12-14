@@ -9,17 +9,31 @@
 
 <h3><%= @list.name %></h3>
 
-<%= link_to edit_list_path(@list) do %><%= fa_icon "edit" %> Edit <% end %> |
-<%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %> |
-<%= link_to selectitems_list_path(@list) do %><%= fa_icon "list" %> Auswählen <% end %>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to selectitems_list_path(@list), :class=>"btn btn-sm btn-outline-primary" do %><%= fa_icon "list" %> Auswählen <% end %>
+  <%= link_to edit_list_path(@list), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Edit <% end %>
+  <%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Destroy<% end %>
+</div>
+
+
 
 <br/><br/>
 
-<h4>Items</h4>
-
 <div class="list-group sticky-top">
-
-  <% Item.all.each do |item| %>
-    <%= link_to item.name, item, :class=>"list-group-item list-group-item-action" %>
+  <% list_items = ListItem.where(list_id: @list.id) %>
+  <% if list_items.size == 0 %>
+    Die Liste ist leer.
+  <% else %>
+    <%= list_items.each do |list_item| %>
+      <% item = current_user.items.find(list_item.item_id) %>
+      <div class="list-group-item">
+        <b><%= link_to item.name, item %>
+        <small>
+        </b> im <%= item.storage.name %> im <%= item.storage.room.name %>
+        </small>      
+        <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
+

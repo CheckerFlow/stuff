@@ -30,8 +30,9 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <ul>
+                        <div class="list-group">
                         <% storage.items.each do |item| %>
+                            <!--
                             <div class="form-control-lg">
                                 <div class="form-check">
                                     <input class="form-check-input custom-checkbox-size" type="checkbox" value="" id="check-item-<%= item.id %>">
@@ -39,9 +40,13 @@
                                         <%= item.name %>
                                     </label>
                                 </div>
-                                </div>
+                            </div>
+                            -->
+                            <div class="list-group-item">
+                                <%= item.name %><%= link_to addItem_list_path({ :item_id => item.id }), :method => :post, :remote => :true, :class => "btn btn-sm btn-outline-primary float-right" do %><%= fa_icon "plus" %><% end %>
+                            </div>
                         <% end %>                        
-                        </ul>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>

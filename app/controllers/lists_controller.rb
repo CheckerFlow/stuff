@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :selectitems]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :selectitems, :addItem, :removeItem]
 
   # GET /lists
   # GET /lists.json
@@ -66,6 +66,55 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pages_home_path, notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def addItem
+    item = current_user.items.find(params[:item_id])
+
+    list_items = ListItem.where({item_id: params[:item_id], list_id: params[:id]})
+
+    if (list_items.size > 0)
+      respond_to do |format|
+        format.html { redirect_to @list, notice: 'Item already added to list.' }
+        format.json { head :no_content }
+      end      
+    elsif (item != nil)
+      list_item = ListItem.new
+      list_item.list_id = params[:id]
+      list_item.item_id = item.id
+      list_item.save
+
+      respond_to do |format|
+        format.html { redirect_to @list, notice: 'Item was successfully added to list.' }
+        format.json { head :no_content }
+      end
+    else 
+      respond_to do |format|
+        format.html { redirect_to @list, notice: 'No item specified. No item added to list.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def removeItem    
+    list_items = ListItem.where({item_id: params[:item_id], list_id: params[:id]})
+
+    if (list_items != nil)
+      list_items.each do 
+        |list_item|
+        list_item.destroy
+      end
+
+      respond_to do |format|
+        format.html { redirect_to @list, notice: 'Item was successfully removed from list.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @list, notice: 'Item not found. No item was removed from list.' }
+        format.json { head :no_content }
+      end
     end
   end
 

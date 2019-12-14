@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :lists do 
     member do
       get 'selectitems'
+      post 'addItem'
+      delete 'removeItem'
     end    
   end
 

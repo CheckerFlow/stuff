@@ -9,8 +9,10 @@
 
 <h3><%= link_to @storage.room.name, @storage.room %> -> <%= @storage.name %></h3>
 
-<%= link_to edit_storage_path(@storage) do %><%= fa_icon "edit" %> Edit <% end %> |
-<%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon "trash" %> Destroy<% end %>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Edit <% end %>
+  <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Destroy<% end %>
+</div>
 
 <br/><br/>
 
