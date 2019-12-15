@@ -26,7 +26,7 @@
 
     <% if (@rooms && @storages && @items && @lists) %>
         <p>
-            <i><%= @rooms.size %> Treffer</i>
+            <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer</i>
         </p>
     <% end %>
     
