@@ -9,13 +9,27 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :storages, shallow: true
+    member do 
+      get 'edit_images'
+      delete 'delete_image_attachment'
+    end
   end
 
   resources :storages do
     resources :items, shallow: true
+
+    member do 
+      get 'edit_images'
+      delete 'delete_image_attachment'
+    end
   end
 
-  resources :items
+  resources :items do 
+    member do 
+      get 'edit_images'
+      delete 'delete_image_attachment'
+    end    
+  end    
 
   resources :lists do 
     member do

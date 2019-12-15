@@ -1,0 +1,32 @@
+<% if notice != nil %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>    
+</div>
+<% end %>
+
+<h3><%= @storage.name %></h3>
+
+<div class="row">
+<% @storage.images.each_with_index do |image, index| %>    
+  <div class="card col-lg-2 col-md-3 col-sm-4 m-3 p-0">
+    <img src="<%= url_for(image.variant(auto_orient: true)) %>" class="card-img-top" alt="...">
+    <div class="card-body p-2">
+      <!--
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      -->
+      <small>
+        Datum: <%= image.created_at.strftime("%d.%m.%Y, %k:%M") %>
+      </small>
+      <%= link_to delete_image_attachment_storage_path(image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn btn-sm btn-outline-danger float-right" do %>
+        <%= fa_icon "trash" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'Zurück', @storage %>

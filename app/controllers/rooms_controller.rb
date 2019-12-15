@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images]
 
   # GET /rooms
   # GET /rooms.json
@@ -28,6 +28,15 @@ class RoomsController < ApplicationController
   def edit
   end
 
+  def edit_images
+  end
+
+  def delete_image_attachment
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_back(fallback_location: rooms_path)
+  end
+
   # POST /rooms
   # POST /rooms.json
   def create
@@ -50,7 +59,7 @@ class RoomsController < ApplicationController
   def update    
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to rooms_url, notice: 'Raum wurde erfolgreich geändert.' }
+        format.html { redirect_to room_url(@room), notice: 'Raum wurde erfolgreich geändert.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }

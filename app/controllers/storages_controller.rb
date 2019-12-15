@@ -1,7 +1,7 @@
 class StoragesController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_storage, only: [:show, :edit, :update, :destroy]
+  before_action :set_storage, only: [:show, :edit, :update, :destroy, :edit_images]
   before_action :set_room, only: [:new, :create]
 
   # GET /storages
@@ -30,6 +30,15 @@ class StoragesController < ApplicationController
   def edit
     @room = @storage.room    
   end
+
+  def edit_images
+  end
+
+  def delete_image_attachment
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_back(fallback_location: rooms_path)
+  end  
 
   # POST /storages
   # POST /storages.json

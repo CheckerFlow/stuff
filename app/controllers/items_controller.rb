@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_images]
   before_action :set_storage, only: [:new, :create, :edit, :index]
 
   # GET /items
@@ -32,6 +32,15 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
   end
+
+  def edit_images
+  end
+
+  def delete_image_attachment
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_back(fallback_location: rooms_path)
+  end    
 
   # POST /items
   # POST /items.json
