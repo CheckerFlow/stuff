@@ -55,14 +55,20 @@
             <% if !user_signed_in? %>
               <li class="nav-item">              
                 <%= link_to "Home", pages_landing_path, :class => "nav-link" %>
-              </li>                             
+              </li>
+              <li class="nav-item">              
+                <%= link_to "Über", pages_about_path, :class => "nav-link" %>
+              </li>                                        
               <li class="nav-item">
                 <%= link_to "Einloggen", new_user_session_path, :class => "nav-link nav-link-primary" %>              
               </li>
             <% else %>
               <li class="nav-item">              
                 <%= link_to "Zur App", pages_home_path, :class => "nav-link" %>
-              </li>                                   
+              </li>
+              <li class="nav-item">              
+                <%= link_to "Über", pages_about_path, :class => "nav-link" %>
+              </li>                                             
               <%= link_to "Ausloggen", destroy_user_session_path, :class => "nav-link", :method => :delete %>                        
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -64,7 +64,7 @@
             -->
             <li class="nav-item">              
               <%= link_to "Home", root_path, :class => "nav-link" %>
-            </li>                  
+            </li>                          
             <% if !user_signed_in? %>
             <!--
             <li class="nav-item">              
@@ -78,6 +78,9 @@
               <li class="nav-item">              
                 <%= link_to "Zur App", pages_home_path, :class => "nav-link" %>
               </li>
+              <li class="nav-item">              
+                <%= link_to "Über", pages_about_path, :class => "nav-link" %>
+              </li>                              
               <li class="nav-item">              
                 <%= link_to search_search_path, :class => "nav-link" do %><%= fa_icon "search" %> Suchen<% end %>
               </li>              

@@ -73,36 +73,4 @@
     </div>
 </div> 
 
-<div class="row mt-5">
-    <div class="col-lg-12">
-
-        <div class="jumbotron">
-            <h1 class="display-4">Leg los und mach <span class="text-info">Klar Schiff</span>!</h1>
-
-            <%= form_with(model: @early_access_request, local: true) do |form| %>
-                <div class="form-group">
-                    <% if @early_access_request.errors.any? %>
-                        <div id="error_explanation">
-                            <h2><%= pluralize(@early_access_request.errors.count, "error") %> prohibited this early_access_request from being saved:</h2>
-                    
-                            <ul>
-                            <% @early_access_request.errors.full_messages.each do |message| %>
-                                <li><%= message %></li>
-                            <% end %>
-                            </ul>
-                        </div>
-                    <% end %>
-              
-                    <div class="form-group">              
-                        <%= form.text_field :email, :placeholder=>"Deine email Adresse", :class=>"form-control form-control-lg" %>
-                    </div>
-                
-                    <div class="actions">
-                        <%= form.submit "Bitte an Board zu kommen", :class=>"btn btn-primary btn-lg" %>
-                    </div>
-                </div>
-            <% end %>            
-        </div>    
-
-    </div>
-</div> 
+<%= render partial: "early_access_request" %>
