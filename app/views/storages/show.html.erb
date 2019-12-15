@@ -7,7 +7,7 @@
 </div>
 <% end %>
 
-<h3><%= link_to @storage.room.name, @storage.room %> -> <%= @storage.name %></h3>
+<h3><%= link_to @storage.room.name, @storage.room %> <%= fa_icon "arrow-right" %> <%= @storage.name %></h3>
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
