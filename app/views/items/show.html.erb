@@ -24,7 +24,27 @@
   <% end %>
 </div>
 
-
 <p>
+  <% if @item.description %>
     <%= @item.description %>
+  <% else %>
+    <i>Keine Beschreibung</i>
+  <% end %>
 </p>
+
+
+<h5><%= fa_icon "list"%> Listen</h5>
+
+<% if @item.lists.size > 0 %>
+<div class="list-group sticky-top col-lg-4 col-md-6">  
+  <% @item.lists.each do |list| %>
+    
+    <div class="list-group-item">
+      <%= link_to list.name, list %>
+    </div>
+
+  <% end %>
+</div>
+<% else %>
+<%= @item.name %> ist auf keiner Liste. 
+<% end %>
