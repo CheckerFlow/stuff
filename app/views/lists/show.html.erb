@@ -26,9 +26,10 @@
       <% item = current_user.items.find(list_item.item_id) %>
       <div class="list-group-item">
         <b><%= link_to item.name, item %>
+        <br/>
         <small>
-        </b> im <%= item.storage.name %> im <%= item.storage.room.name %>
-        </small>      
+          </b> Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+        </small>
         <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
       </div>
     <% end %>

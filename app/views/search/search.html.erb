@@ -34,7 +34,13 @@
     <h5>Räume</h5>
     <ul class="list-group">
         <% @rooms.each do |room| %>
-            <li class="list-group-item"><%= link_to room.name, room %></li>
+            <li class="list-group-item">                
+                <%= link_to room.name, room %>
+                <br/>
+                <small>
+                    </b> Ablagen: <%= link_to room.storages.size, room %>
+                </small>
+            </li>
         <% end %>
     </ul>
     <% end %>
@@ -43,7 +49,13 @@
     <h5>Ablagen</h5>
     <ul class="list-group">
         <% @storages.each do |storage| %>
-            <li class="list-group-item"><%= link_to storage.name, storage %></li>
+            <li class="list-group-item">                
+                <%= link_to storage.name, storage %>
+                <br/>
+                <small>
+                    </b> Raum: <%= link_to storage.room.name, storage.room %>
+                </small>
+            </li>
         <% end %>
     </ul>
     <% end %>
@@ -52,7 +64,13 @@
     <h5>Dinge</h5>
     <ul class="list-group">
         <% @items.each do |item| %>
-            <li class="list-group-item"><%= link_to item.name, item %></li>
+            <li class="list-group-item">                
+                <%= link_to item.name, item %>
+                <br/>
+                <small>
+                    </b> Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+                </small>
+            </li>
         <% end %>
     </ul>
     <% end %>
@@ -61,7 +79,13 @@
     <h5>Listen</h5>
     <ul class="list-group">
         <% @lists.each do |list| %>
-            <li class="list-group-item"><%= link_to list.name, list %></li>
+            <li class="list-group-item">                
+                <%= link_to list.name, list %>
+                <br/>
+                <small>
+                    </b> <%= list.list_items.size %> Dinge
+                </small>
+            </li>
         <% end %>
     </ul>
     <% end %>    
