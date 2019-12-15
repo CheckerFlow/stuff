@@ -3,6 +3,7 @@
         <h1><span class="text-info">Klar Schiff</span></h1>            
         <hr/>
         <h2>Erste Schritte</h2>
+        <h5>Räume, Ablagen, Dinge</h5>
         <p>
             In <b class="text-info">Klar Schiff</b> sind alle Dinge nach Räumen und Ablagen organisiert. 
         </p>
@@ -21,12 +22,34 @@
           <%= fa_icon "plus" %> Neuen Raum erstellen
         <% end %>
     </div>
+
     <div class="col-lg-12 mt-3">
+        <h5>Listen</h5>
         <p>
             Sobald du ein paar Dinge erfasst hast kannst du diese in Listen organisieren. 
         </p>
         <p>
             Mit Listen kannst du organisieren, wenn du etwas mit den Dingen machen willst. Zum Beispiel diese Dinge Verkaufen, Verschenken, Entsorgen, Umräumen, etc. 
         </p>
-    </div>        
+    </div>
+    <div class="col-lg-12">
+        <%= link_to new_list_path, :class => "btn btn-outline-secondary float-left" do %>  
+          <%= fa_icon "plus" %> Neue Liste erstellen
+        <% end %>
+    </div>
+
+    <div class="col-lg-12 mt-3">
+        <h5>Suche</h5>
+        <p>
+            Alle Dinge, Ablagen, Räume und Listen sind durchsuchbar. 
+        </p>
+        <p>
+            So findest du schnell etwas wieder oder kannst dir einen Überblick verschaffen, wo beispielsweise gleiche Dinge an unterschiedlichen Orten verstaut sind.
+        </p>
+    </div>
+    <div class="col-lg-12">
+        <%= link_to search_search_path, :class => "btn btn-outline-secondary float-left" do %>  
+          <%= fa_icon "search" %> Suchen
+        <% end %>
+    </div>    
 </div>    
