@@ -13,8 +13,8 @@
                     <div class="input-group">
                         <%= form.text_field :search_string, :class=>"form-control form-control-lg" %>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit"><%= fa_icon "search" %> Suchen</button>
-                        </div>                        
+                            <button class="btn btn-outline-secondary" type="submit"><%= fa_icon "search" %> <span class="d-none d-sm-inline">Suchen</span></button>
+                        </b>                        
                     </div>
                 <% end %>
             </div>
@@ -27,6 +27,10 @@
     <% if (@rooms && @storages && @items && @lists) %>
         <p>
             <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer</i>
+        </p>
+    <% elsif (params[:search_string]) %>
+        <p>
+            <i>Keine Treffer</i>
         </p>
     <% end %>
     
