@@ -26,6 +26,8 @@
       <div class="sidebar-heading "><span class="text-info">Klar Schiff</span></div>
       <div class="list-group list-group-flush sticky-top">
         <% if current_user != nil %>
+
+          <%= link_to search_search_path, :class => "list-group-item list-group-item-action bg-light" do %><%= fa_icon "search" %> Suchen<% end %>
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "boxes" %> Orte & Dinge</b>
           <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= current_user.rooms.all.count %></span><% end %>
           <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= current_user.storages.all.count %></span><% end %>
@@ -75,7 +77,10 @@
             <% else %>
               <li class="nav-item">              
                 <%= link_to "Zur App", pages_home_path, :class => "nav-link" %>
-              </li>   
+              </li>
+              <li class="nav-item">              
+                <%= link_to search_search_path, :class => "nav-link" do %><%= fa_icon "search" %> Suchen<% end %>
+              </li>              
               <%= link_to "Ausloggen", destroy_user_session_path, :class => "nav-link", :method => :delete %>              
                         
               <li class="nav-item dropdown">

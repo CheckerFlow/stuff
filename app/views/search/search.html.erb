@@ -1,0 +1,69 @@
+
+<div class="container-fluid">
+    <div class="row align-items-center mt-5">    
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <p class="h1 align-middle text-info">Klar Schiff</p>
+            <p class="text-secondary">Suche in <%= current_user.rooms.size %> Räumen, <%= current_user.storages.size %> Ablagen, <%= current_user.items.size %> Dinge, <%= current_user.lists.size %> Listen</p>
+        </div>
+    </div>
+    <div class="row align-items-center mt-3 mb-5">    
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <div class="">
+                <%= form_with(url: search_search_path, method: :get, local: true) do |form| %>
+                    <div class="input-group">
+                        <%= form.text_field :search_string, :class=>"form-control form-control-lg" %>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><%= fa_icon "search" %> Suchen</button>
+                        </div>                        
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <% if (@rooms && @storages && @items && @lists) %>
+        <p>
+            <i><%= @rooms.size %> Treffer</i>
+        </p>
+    <% end %>
+    
+    <% if @rooms != nil && @rooms.size > 0 %>
+    <h5>Räume</h5>
+    <ul class="list-group">
+        <% @rooms.each do |room| %>
+            <li class="list-group-item"><%= link_to room.name, room %></li>
+        <% end %>
+    </ul>
+    <% end %>
+
+    <% if @storages && @storages.size > 0 %>
+    <h5>Ablagen</h5>
+    <ul class="list-group">
+        <% @storages.each do |storage| %>
+            <li class="list-group-item"><%= link_to storage.name, storage %></li>
+        <% end %>
+    </ul>
+    <% end %>
+
+    <% if @items && @items.size > 0 %>
+    <h5>Dinge</h5>
+    <ul class="list-group">
+        <% @items.each do |item| %>
+            <li class="list-group-item"><%= link_to item.name, item %></li>
+        <% end %>
+    </ul>
+    <% end %>
+    
+    <% if @lists && @lists.size > 0 %>
+    <h5>Listen</h5>
+    <ul class="list-group">
+        <% @lists.each do |list| %>
+            <li class="list-group-item"><%= link_to list.name, list %></li>
+        <% end %>
+    </ul>
+    <% end %>    
+
+</div>
