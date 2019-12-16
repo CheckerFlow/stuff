@@ -18,12 +18,20 @@
 <br/><br/>
 
 <div class="row">
-  <% @item.images.each do |image| %>
-  <div class="col-sm-3">
-    <img src="<%= url_for(image.variant(auto_orient: true)) %>" class="card-img-top img-thumbnail" alt="...">
-  </div>
-  <% end %>
+  <% if @item.images.size > 0 %>
+    <% @item.images.each do |image| %>
+    <div class="col-sm-3">
+      <img src="<%= url_for(image.variant(auto_orient: true)) %>" class="card-img-top img-thumbnail" alt="...">
+    </div>
+    <% end %>
+  <% else %>
+    <div class="col-sm-3">
+      <%= @item.name %> hat keine Bilder.
+    </div>
+  <% end %>    
 </div>
+
+<hr/>
 
 <p>
   <% if @item.description %>
@@ -33,6 +41,20 @@
   <% end %>
 </p>
 
+<hr/>
+
+<h5>Tags</h5>
+
+<% if @item.tags.size > 0 %>
+<% @item.tags.each do |tag| %>
+  <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
+<% end %>
+<% else %>
+  <%= @item.name %> hat keine Tags.
+<% end %>
+
+<br/>
+<hr/>
 
 <h5><%= fa_icon "list"%> Listen</h5>
 

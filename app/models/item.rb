@@ -7,4 +7,6 @@ class Item < ApplicationRecord
   has_many :lists, through: :list_items
 
   has_many_attached :images, dependent: :destroy
+
+  acts_as_taggable
 end

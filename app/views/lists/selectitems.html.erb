@@ -43,7 +43,13 @@
                             </div>
                             -->
                             <div class="list-group-item">
-                                <%= item.name %><%= link_to addItem_list_path({ :item_id => item.id }), :method => :post, :remote => :true, :class => "btn btn-sm btn-outline-primary float-right" do %><%= fa_icon "plus" %><% end %>
+                                <%= item.name %>
+                                <br/>
+                                <% item.tags.each do |tag| %>
+                                    <span class="badge badge-pill badge-secondary"><i>#<%= tag.name %></i></span>
+                                <% end %>
+                                
+                                <%= link_to addItem_list_path({ :item_id => item.id }), :method => :post, :remote => :true, :class => "btn btn-sm btn-outline-primary float-right" do %><%= fa_icon "plus" %><% end %>
                             </div>
                         <% end %>                        
                         </div>

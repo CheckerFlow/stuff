@@ -36,6 +36,8 @@ gem 'image_processing', '~> 1.9', '>= 1.9.3'
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
+gem 'acts-as-taggable-on', '~> 6.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

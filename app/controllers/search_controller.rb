@@ -7,11 +7,21 @@ class SearchController < ApplicationController
       @storages = current_user.storages.where('name LIKE ?', "%#{params[:search_string]}%")
       @items = current_user.items.where('name LIKE ?', "%#{params[:search_string]}%")
       @lists = current_user.lists.where('name LIKE ?', "%#{params[:search_string]}%")
+
+      puts "*" * 50
+      puts params[:search_string]
+      puts "*" * 50
+
+      @items_tagged = Item.tagged_with(params[:search_string])
+      puts @items_tagged.size
+      puts "*" * 50
     else
       @rooms = nil
       @storages = nil
       @items = nil
       @lists = nil
+
+      @items_tagged = nil
     end
   end
 

@@ -40,8 +40,16 @@
       <h5 class="mt-0">
         <%= link_to item.name, item%>
         <br/>
-        <small><%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %></small>
-      </h5>        
+        <small>
+          <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
+        </small>
+        <br/>
+        <small>
+          <% item.tags.each do |tag| %>
+            <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
+          <% end %>        
+        </small>
+      </h5>
     </div>
   </div>
 <% end %>

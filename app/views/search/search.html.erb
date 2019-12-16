@@ -68,11 +68,15 @@
     <h5>Dinge</h5>
     <ul class="list-group">
         <% @items.each do |item| %>
-            <li class="list-group-item">                
+            <li class="list-group-item">                            
                 <%= link_to item.name, item %>
                 <br/>
+                <% item.tags.each do |tag| %>
+                    <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
+                <% end %>
+                <br/>
                 <small>
-                    </b> Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+                    Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
                 </small>
             </li>
         <% end %>
@@ -88,6 +92,25 @@
                 <br/>
                 <small>
                     </b> <%= list.list_items.size %> Dinge
+                </small>
+            </li>
+        <% end %>
+    </ul>
+    <% end %>  
+    
+    <% if @items_tagged && @items_tagged.size > 0 %>
+    <h5>Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
+    <ul class="list-group">
+        <% @items_tagged.each do |item| %>
+            <li class="list-group-item">          
+                <%= link_to item.name, item %>
+                <br/>
+                <% item.tags.each do |tag| %>
+                    <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
+                <% end %>
+                <br/>
+                <small>
+                    Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
                 </small>
             </li>
         <% end %>
