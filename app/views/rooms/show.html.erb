@@ -7,7 +7,9 @@
 </div>
 <% end %>
 
-<h3><%= @room.name %></h3>
+<h1>
+  <%= @room.name %>
+</h1>
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_room_path(@room), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>

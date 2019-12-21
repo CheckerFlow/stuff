@@ -7,7 +7,9 @@
 </div>
 <% end %>
 
-<h3><%= @list.name %></h3>
+<h1>
+  <%= @list.name %>
+</h1>
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to selectitems_list_path(@list), :class=>"btn btn-sm btn-outline-primary" do %><%= fa_icon "list" %> Auswählen <% end %>
@@ -24,18 +26,33 @@
   <% else %>
     <% list_items.each do |list_item| %>
       <% item = current_user.items.find(list_item.item_id) %>
-      <div class="list-group-item">
-        <b><%= link_to item.name, item %></b>
+      <div class="list-group-item">        
+        <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+        
+        <b>
+          <%= klarschiff_auto_link(item.name) %>
+        </b>
+
         <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
         <br/>
+        <!--
+        <% if item.tags.size > 0 %>
+        Tags: 
         <% item.tags.each do |tag| %>
           <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
         <% end %>
         <br/>
+        <% end %>
+        Owners: 
+        <% item.owner_list.each do |owner| %>
+          <span class="badge badge-pill badge-light"><span>@<%= owner %></span></span>
+        <% end %>
+        <br/>        
+        -->
+
         <small>
           Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
         </small>
-        
       </div>
     <% end %>
   <% end %>

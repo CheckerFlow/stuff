@@ -26,11 +26,11 @@
 
     <% if (@rooms && @storages && @items && @lists) %>
         <p>
-            <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer</i>
+            <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
         </p>
     <% elsif (params[:search_string]) %>
         <p>
-            <i>Keine Treffer</i>
+            <i>Keine Treffer für <b><%= params[:search_string] %></b></i>
         </p>
     <% end %>
     
@@ -39,7 +39,10 @@
     <ul class="list-group">
         <% @rooms.each do |room| %>
             <li class="list-group-item">                
-                <%= link_to room.name, room %>
+                <%= link_to room, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+
+                <%= room.name %>
+            
                 <br/>
                 <small>
                     </b> Ablagen: <%= link_to room.storages.size, room %>
@@ -53,8 +56,11 @@
     <h5>Ablagen</h5>
     <ul class="list-group">
         <% @storages.each do |storage| %>
-            <li class="list-group-item">                
-                <%= link_to storage.name, storage %>
+            <li class="list-group-item">
+                <%= link_to storage, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+
+                <%= storage.name %>
+
                 <br/>
                 <small>
                     </b> Raum: <%= link_to storage.room.name, storage.room %>
@@ -69,11 +75,10 @@
     <ul class="list-group">
         <% @items.each do |item| %>
             <li class="list-group-item">                            
-                <%= link_to item.name, item %>
-                <br/>
-                <% item.tags.each do |tag| %>
-                    <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
-                <% end %>
+                <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+                
+                <%= klarschiff_auto_link(item.name) %>
+
                 <br/>
                 <small>
                     Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
@@ -87,8 +92,11 @@
     <h5>Listen</h5>
     <ul class="list-group">
         <% @lists.each do |list| %>
-            <li class="list-group-item">                
-                <%= link_to list.name, list %>
+            <li class="list-group-item">      
+                <%= link_to list, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+
+                <%= list.name %>                        
+            
                 <br/>
                 <small>
                     </b> <%= list.list_items.size %> Dinge
@@ -102,13 +110,12 @@
     <h5>Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
     <ul class="list-group">
         <% @items_tagged.each do |item| %>
-            <li class="list-group-item">          
-                <%= link_to item.name, item %>
-                <br/>
-                <% item.tags.each do |tag| %>
-                    <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
-                <% end %>
-                <br/>
+            <li class="list-group-item">                          
+                <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+
+                <%= klarschiff_auto_link(item.name) %>
+
+                <br/>                    
                 <small>
                     Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
                 </small>

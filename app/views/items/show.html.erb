@@ -7,7 +7,13 @@
 </div>
 <% end %>
 
-<h3><%= link_to @item.storage.room.name, @item.storage.room %> <%= fa_icon "arrow-right" %> <%= link_to @item.storage.name, @item.storage %> <%= fa_icon "arrow-right" %> <%= @item.name %></h3>
+<h3>
+  <%= klarschiff_auto_link(@item.name) %><br/>
+</h3>  
+<h6>
+  <%= link_to @item.storage.room.name, @item.storage.room %> <%= fa_icon "arrow-right" %> <%= link_to @item.storage.name, @item.storage %>
+</h6>  
+
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_item_path(@item), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
@@ -15,7 +21,9 @@
   <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
 </div>
 
-<br/><br/>
+<hr/>
+
+<h5>Bilder</h5>
 
 <div class="row">
   <% if @item.images.size > 0 %>
@@ -26,15 +34,17 @@
     <% end %>
   <% else %>
     <div class="col-sm-3">
-      <%= @item.name %> hat keine Bilder.
+      <i>Keine Bilder</i>
     </div>
   <% end %>    
 </div>
 
 <hr/>
 
+<h5>Beschreibung</h5>
+
 <p>
-  <% if @item.description %>
+  <% if @item.description != nil && @item.description != "" %>
     <%= @item.description %>
   <% else %>
     <i>Keine Beschreibung</i>
@@ -64,10 +74,26 @@
     
     <div class="list-group-item">
       <%= link_to list.name, list %>
+
+      <%= link_to removeItem_list_path({ :id => list.id,  :item_id => @item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
     </div>
 
   <% end %>
 </div>
 <% else %>
-<%= @item.name %> ist auf keiner Liste. 
+  <i>Auf keiner Liste.</i>
 <% end %>
+
+<div class="list-group sticky-top col-lg-4 col-md-6">  
+  <div class="list-group-item">
+    <%= form_with(model: @list_item, class: "form-inline") do |form| %>            
+      <div class="form-group">              
+        <div class="input-group">                  
+          <%= form.select :list_id, options_from_collection_for_select(List.all, 'id', 'name'), {}, { :class => "form-control" } %>
+          <%= form.hidden_field :item_id, value: @item.id %>                
+          <button type="submit" class="btn btn-outline-primary input-group-append"><%= fa_icon "plus" %></button>
+        </div>
+      </div>                        
+    <% end %>     
+  </div>
+</div>

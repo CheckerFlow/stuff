@@ -107,7 +107,7 @@ class ListsController < ApplicationController
       end
 
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Gegenstand wurde erfolgreich von der Liste gelöscht.' }
+        format.html { redirect_back(fallback_location: list_path(@list), notice: 'Gegenstand wurde erfolgreich von der Liste gelöscht.') }
         format.json { head :no_content }
       end
     else

@@ -37,18 +37,21 @@
       <% end %>
     </div>
     <div class="d-inline-flex align-top mb-4">
-      <h5 class="mt-0">
-        <%= link_to item.name, item%>
+      <h5 class="my-3">        
+        <%= klarschiff_auto_link(item.name) %>
+        
         <br/>
         <small>
           <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
         </small>
         <br/>
+        <!--
         <small>
           <% item.tags.each do |tag| %>
             <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
           <% end %>        
         </small>
+        -->
       </h5>
     </div>
   </div>

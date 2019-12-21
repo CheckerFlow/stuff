@@ -16,11 +16,34 @@ class ItemsController < ApplicationController
         @items = current_user.items.all
       end
     end
+
+    puts "#" *100
+    puts "Hash Tags:"
+    #<li><%= link_to search_search_path(:search_string => tag ) do %><%= tag.to_s %><% end %></li>
+    Item.all.each do 
+      |item|
+      Twitter::TwitterText::Extractor.extract_hashtags(item.name).each do 
+        |tag|
+        puts tag
+      end
+    end
+
+    puts ""
+    puts "Mentions:"
+    Item.all.each do 
+      |item|
+      Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item.name).each do 
+        |mentioned_name|
+        puts mentioned_name
+      end
+    end
+    puts "#" *100
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @list_item = ListItem.new    
   end
 
   # GET /items/new
@@ -48,6 +71,12 @@ class ItemsController < ApplicationController
     @item = @storage.items.new(item_params)
     @item.user_id = current_user.id
 
+    @item.tag_list = ""
+    @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
+
+    @item.owner_list = ""
+    @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
+    
     respond_to do |format|
       if @item.save
         format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich erstellt.')  }
@@ -62,6 +91,13 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+
+    @item.tag_list = ""
+    @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
+
+    @item.owner_list = ""
+    @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
+
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich geändert.') }

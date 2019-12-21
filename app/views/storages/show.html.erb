@@ -7,7 +7,12 @@
 </div>
 <% end %>
 
-<h3><%= link_to @storage.room.name, @storage.room %> <%= fa_icon "arrow-right" %> <%= @storage.name %></h3>
+<h1>
+  <%= @storage.name %>
+</h1>
+<h6>
+  <%= link_to @storage.room.name, @storage.room %>
+</h6>
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
@@ -72,21 +77,17 @@
     
       <% @storage.items.each do |item| %>
         <div class="list-group-item">
-          <%= link_to item.name, item %>   
+          <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+          
+          <%= klarschiff_auto_link(item.name) %>
+
           <br/>
+          <!--
           <% item.tags.each do |tag| %>
               <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
           <% end %>
           <br/>                    
-          <%= form_with(model: @list_item, class: "form-inline float-right") do |form| %>            
-            <div class="form-group">              
-              <div class="input-group">                  
-                <%= form.select :list_id, options_from_collection_for_select(List.all, 'id', 'name') %>
-                <%= form.hidden_field :item_id, value: item.id %>                
-                <button type="submit" class="btn btn-sm btn-outline-primary input-group-append"><%= fa_icon "plus" %></button>
-              </div>
-            </div>                        
-          <% end %>           
+          -->      
 
           <br/>
           <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>

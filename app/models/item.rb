@@ -9,4 +9,6 @@ class Item < ApplicationRecord
   has_many_attached :images, dependent: :destroy
 
   acts_as_taggable
+
+  acts_as_taggable_on :owner
 end
