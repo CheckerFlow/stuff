@@ -1,9 +1,8 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="text-info">Klar Schiff</h1>            
+        <h1 class="text-info">Hilfe</h1>        
         <hr/>
-        <h2>Hilfe</h2>
-        <h5>Räume, Ablagen, Dinge</h5>
+        <h5 id="topic-1">Räume, Ablagen, Dinge</h5>
         <p>
             In <b class="text-info">Klar Schiff</b> sind alle Dinge nach Räumen und Ablagen organisiert. 
         </p>
@@ -15,8 +14,8 @@
         </p>
         <p>
             Im zweiten Schritt fügst du zu den Ablagen Dinge hinzu, die darin aufbewahrt sind. 
-        </p>
-    </div>
+        </p>        
+    </div>    
 
     <div class="col-lg-12">
         <%= link_to new_room_path, :class => "btn btn-primary float-left" do %>  
@@ -25,7 +24,8 @@
     </div>
 
     <div class="col-lg-12 mt-3">
-        <h5>Listen</h5>
+        <hr/>
+        <h5 id="topic-2">Listen</h5>
         <p>
             Sobald du ein paar Dinge erfasst hast kannst du diese in Listen organisieren. 
         </p>
@@ -33,6 +33,7 @@
             Mit Listen kannst du organisieren, wenn du etwas mit den Dingen machen willst. Zum Beispiel diese Dinge Verkaufen, Verschenken, Entsorgen, Umräumen, etc. 
         </p>
     </div>
+
     <div class="col-lg-12">
         <%= link_to new_list_path, :class => "btn btn-outline-secondary float-left" do %>  
           <%= fa_icon "plus" %> Neue Liste erstellen
@@ -40,7 +41,8 @@
     </div>
 
     <div class="col-lg-12 mt-3">  
-        <h5>Tags und Erwähnungen</h5>      
+        <hr/>
+        <h5 id="topic-3">Tags und Erwähnungen</h5>      
         <p>
             Um Dinge zu gruppierem kannst du sie durch Tags markieren. Füge einfach ein oder mehrere Tags mittels 
             <code>#MeinTag</code> hinzu.
@@ -55,7 +57,8 @@
     </div>
 
     <div class="col-lg-12 mt-3">
-        <h5>Suche</h5>
+        <hr/>
+        <h5 id="topic-4">Suche</h5>
         <p>
             Alle Dinge, Ablagen, Räume und Listen sind durchsuchbar. 
         </p>
@@ -63,6 +66,7 @@
             So findest du schnell etwas wieder oder kannst dir einen Überblick verschaffen, wo beispielsweise gleiche Dinge an unterschiedlichen Orten verstaut sind.
         </p>
     </div>
+
     <div class="col-lg-12 mb-5">
         <%= link_to search_search_path, :class => "btn btn-outline-secondary float-left" do %>  
           <%= fa_icon "search" %> Suchen

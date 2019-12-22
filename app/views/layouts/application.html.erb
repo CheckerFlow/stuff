@@ -98,14 +98,14 @@
             </li>
             <% else %>
               <li class="nav-item">              
+                <%= link_to search_search_path, :class => "nav-link" do %><%= fa_icon "search" %> Suchen<% end %>
+              </li>
+              <li class="nav-item">              
                 <%= link_to "Hilfe", pages_help_path, :class => "nav-link" %>
               </li>            
               <li class="nav-item">              
                 <%= link_to "Über", pages_about_path, :class => "nav-link" %>
-              </li>
-              <li class="nav-item">              
-                <%= link_to search_search_path, :class => "nav-link" do %><%= fa_icon "search" %> Suchen<% end %>
-              </li>              
+              </li>                         
               <%= link_to "Ausloggen", destroy_user_session_path, :class => "nav-link", :method => :delete %>              
                         
               <li class="nav-item dropdown">
