@@ -42,12 +42,19 @@
         <% end %>
       <% end %>
     </div>
-    <div class="d-inline-flex align-top mb-4">
-      <h5 class="mt-0">
-        <%= link_to room.name, room%>
-        <br/>
-        <small><%= link_to room.storages.count.to_s + " Ablagen", room %>  mit <%= items_count(room) %> Dingen</small>
-      </h5>        
+    <div class="d-flex d-flex-row mb-4">
+      <div class="flex-fill bd-highlight">
+        <h5 class="mt-0">
+          <%= klarschiff_auto_link(room.name) %>                 
+          <br/>        
+          <small>        
+            mit <%= room.storages.count %> Ablagen
+          </small>
+        </h5>              
+      </div>
+      <div class="flex-fill bd-highlight">
+        <span class="badge badge-pill badge-light"><%= room.images.count.to_s %> Bilder </span>
+      </div>      
     </div>
   </div>
 <% end %>

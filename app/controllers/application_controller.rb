@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || pages_home_path
+    if (current_user.rooms.count == 0)
+      stored_location_for(resource) || pages_home_path
+    else 
+      search_search_path
+    end    
   end  
 end
