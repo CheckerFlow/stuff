@@ -19,5 +19,6 @@ require('jquery')
 
 import 'bootstrap'
 import './bootstrap-custom.js'
+import './google_analytics.js'
 import './src/application.scss'
 import "@fortawesome/fontawesome-free/js/all";
