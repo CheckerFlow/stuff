@@ -7,7 +7,7 @@
 </div>
 <% end %>
 
-<h1>
+<h1 class="text-info">
   <%= @storage.name %>
 </h1>
 <h6>
@@ -79,7 +79,15 @@
         <div class="list-group-item">
           <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
           
-          <%= klarschiff_auto_link(item.name) %>
+          <b>
+            <%= klarschiff_auto_link(item.name) %>
+          </b>
+
+          <% if item.images.first %>
+              <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+          <% else %>
+              <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+          <% end %>               
 
           <br/>
           <!--
@@ -89,7 +97,6 @@
           <br/>                    
           -->      
 
-          <br/>
           <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>
           
         </div>

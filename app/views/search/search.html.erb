@@ -33,7 +33,7 @@
             <i>Keine Treffer für <b><%= params[:search_string] %></b></i>
         </p>
     <% end %>
-    
+
     <% if @rooms != nil && @rooms.size > 0 %>
     <h5>Räume</h5>
     <ul class="list-group">
@@ -41,8 +41,16 @@
             <li class="list-group-item">                
                 <%= link_to room, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
 
-                <%= room.name %>
-            
+                <b>
+                    <%= room.name %>
+                </b>            
+
+                <% if room.images.first %>
+                    <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                <% else %>
+                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <% end %>                 
+
                 <br/>
                 <small>
                     </b> Ablagen: <%= link_to room.storages.size, room %>
@@ -59,7 +67,15 @@
             <li class="list-group-item">
                 <%= link_to storage, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
 
-                <%= storage.name %>
+                <b>
+                    <%= storage.name %>
+                </b>
+
+                <% if storage.images.first %>
+                    <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                <% else %>
+                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <% end %>                
 
                 <br/>
                 <small>
@@ -74,10 +90,19 @@
     <h5>Dinge</h5>
     <ul class="list-group">
         <% @items.each do |item| %>
-            <li class="list-group-item">                            
+            <li class="list-group-item">     
+            
                 <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-                
-                <%= klarschiff_auto_link(item.name) %>
+                                    
+                <b>
+                    <%= klarschiff_auto_link(item.name) %>
+                </b>
+
+                <% if item.images.first %>
+                    <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                <% else %>
+                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <% end %>
 
                 <br/>
                 <small>
@@ -86,7 +111,7 @@
             </li>
         <% end %>
     </ul>
-    <% end %>
+    <% end %> 
     
     <% if @lists && @lists.size > 0 %>
     <h5>Listen</h5>
@@ -95,7 +120,15 @@
             <li class="list-group-item">      
                 <%= link_to list, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
 
-                <%= list.name %>                        
+                <b>
+                    <%= list.name %>                        
+                </b>
+
+                <% if list.items.first.images.first %>
+                    <img src="<%= url_for(list.items.first.images.first.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                <% else %>
+                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <% end %>
             
                 <br/>
                 <small>
@@ -113,7 +146,16 @@
             <li class="list-group-item">                          
                 <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
 
-                <%= klarschiff_auto_link(item.name) %>
+                <b>
+                    <%= klarschiff_auto_link(item.name) %>
+                </b>   
+
+                <% if item.images.first %>
+                    <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                <% else %>
+                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <% end %>                
+                
 
                 <br/>                    
                 <small>

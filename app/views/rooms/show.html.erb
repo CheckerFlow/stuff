@@ -7,7 +7,7 @@
 </div>
 <% end %>
 
-<h1>
+<h1 class="text-info">
   <%= @room.name %>
 </h1>
 
@@ -72,12 +72,23 @@
   
         <% end %>      
       
-        <% @room.storages.each do |storage| %>
-          <%= link_to storage, :class=>"list-group-item list-group-item-action" do %> 
-            <%= storage.name %> 
-            <span class="badge badge-pill badge-light float-right"><%= storage.images.count.to_s %> Bilder </span>
-            <span class="badge badge-pill badge-light float-right"><%= storage.items.count.to_s %> Dinge </span>            
-          <% end %>
+        <% @room.storages.each do |storage| %>          
+          <div class="list-group-item">
+            <%= link_to storage, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+            <b>
+              <%= storage.name %> 
+            </b>
+
+            <% if storage.images.first %>
+                <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+            <% else %>
+                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+            <% end %>               
+
+            <br/>
+            <span class="badge badge-pill badge-light"><%= storage.images.count.to_s %> Bilder </span>
+            <span class="badge badge-pill badge-light"><%= storage.items.count.to_s %> Dinge </span>            
+          </div>
         <% end %>
       </div>  
       

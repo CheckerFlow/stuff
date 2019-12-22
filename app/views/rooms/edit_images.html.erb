@@ -7,7 +7,9 @@
 </div>
 <% end %>
 
-<h3><%= @room.name %></h3>
+<h1 class="text-info">
+  <%= @room.name %>
+</h1>
 
 <div class="row">
 <% @room.images.each_with_index do |image, index| %>    
