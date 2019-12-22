@@ -12,7 +12,7 @@
 <div class="row">
 <% @item.images.each_with_index do |image, index| %>    
   <div class="card col-lg-2 col-md-3 col-sm-4 m-3 p-0">
-    <img src="<%= url_for(image.variant(auto_orient: true)) %>" class="card-img-top" alt="...">
+    <img src="<%= url_for(image.variant(auto_orient: true, resize: '800x600^')) %>" class="card-img-top" alt="...">
     <div class="card-body p-2">
       <!--
       <h5 class="card-title">Card title</h5>
