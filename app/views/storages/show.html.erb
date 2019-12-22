@@ -98,6 +98,13 @@
           -->      
 
           <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>
+
+          <% ListItem.where(:item_id => item.id).each do |list_item| %>
+            <% list = current_user.lists.where(:id => list_item.list_id).first %>
+            <%= link_to list_path(list) do %>
+              <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
+            <% end %>
+          <% end %>          
           
         </div>
       <% end %>

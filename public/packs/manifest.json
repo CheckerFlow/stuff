@@ -1,15 +1,15 @@
 {
-  "application.js": "/packs/js/application-319c78a5b60e5065a8e5.js",
-  "application.js.map": "/packs/js/application-319c78a5b60e5065a8e5.js.map",
+  "application.js": "/packs/js/application-a109d4359f0eb2870c81.js",
+  "application.js.map": "/packs/js/application-a109d4359f0eb2870c81.js.map",
   "bootstrap-custom.js": "/packs/js/bootstrap-custom-fbad01a5a15af6bb62d5.js",
   "bootstrap-custom.js.map": "/packs/js/bootstrap-custom-fbad01a5a15af6bb62d5.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-319c78a5b60e5065a8e5.js"
+        "/packs/js/application-a109d4359f0eb2870c81.js"
       ],
       "js.map": [
-        "/packs/js/application-319c78a5b60e5065a8e5.js.map"
+        "/packs/js/application-a109d4359f0eb2870c81.js.map"
       ]
     },
     "bootstrap-custom": {
@@ -18,6 +18,14 @@
       ],
       "js.map": [
         "/packs/js/bootstrap-custom-fbad01a5a15af6bb62d5.js.map"
+      ]
+    },
+    "google_analytics": {
+      "js": [
+        "/packs/js/google_analytics-d622f483a4b4326bd3e3.js"
+      ],
+      "js.map": [
+        "/packs/js/google_analytics-d622f483a4b4326bd3e3.js.map"
       ]
     },
     "src\\application": {
@@ -37,6 +45,8 @@
       ]
     }
   },
+  "google_analytics.js": "/packs/js/google_analytics-d622f483a4b4326bd3e3.js",
+  "google_analytics.js.map": "/packs/js/google_analytics-d622f483a4b4326bd3e3.js.map",
   "src/application.js": "/packs/js/src/application-d9c6716162c4842e1cfa.js",
   "src/application.js.map": "/packs/js/src/application-d9c6716162c4842e1cfa.js.map",
   "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-a5890b716fc76bd76a93.js",

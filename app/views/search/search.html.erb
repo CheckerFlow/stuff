@@ -98,6 +98,13 @@
                     <%= klarschiff_auto_link(item.name) %>
                 </b>
 
+                <% ListItem.where(:item_id => item.id).each do |list_item| %>
+                    <% list = current_user.lists.where(:id => list_item.list_id).first %>
+                    <%= link_to list_path(list) do %>
+                      <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
+                    <% end %>
+                  <% end %>                
+
                 <% if item.images.first %>
                     <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
                 <% else %>
@@ -124,11 +131,7 @@
                     <%= list.name %>                        
                 </b>
 
-                <% if list.items.first.images.first %>
-                    <img src="<%= url_for(list.items.first.images.first.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                <% end %>
+
             
                 <br/>
                 <small>
