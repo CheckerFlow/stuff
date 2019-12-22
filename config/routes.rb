@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     
   get 'search/search'
   get 'pages/home'
+  get 'pages/help'
   get 'pages/landing'
   get 'pages/about'
 

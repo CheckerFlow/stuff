@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
-  layout "landing", except: [:home]
+  layout "landing", except: [:home, :help]
 
   def home
+  end
+
+  def help
   end
 
   def about
