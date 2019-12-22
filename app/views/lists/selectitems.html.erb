@@ -17,7 +17,7 @@
         <br/>
         <a data-toggle="modal" data-target="#modal-storage-<%= storage.id %>">        
             <% storage.images.each do |image| %>
-                <img src="<%= url_for(image.variant(auto_orient: true, resize: '100x100^')) %>">
+                <img src="<%= url_for(image.variant(auto_orient: true, resize: '100x100^').processed) %>">
             <% end %>
         </a>   
         <div class="modal fade" id="modal-storage-<%= storage.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,11 +43,14 @@
                             </div>
                             -->
                             <div class="list-group-item">
-                                <%= item.name %>
+                                <%= klarschiff_auto_link(item.name) %>
                                 <br/>
+
+                                <!--
                                 <% item.tags.each do |tag| %>
                                     <span class="badge badge-pill badge-secondary"><i>#<%= tag.name %></i></span>
                                 <% end %>
+                                -->
                                 
                                 <%= link_to addItem_list_path({ :item_id => item.id }), :method => :post, :remote => :true, :class => "btn btn-sm btn-outline-primary float-right" do %><%= fa_icon "plus" %><% end %>
                             </div>
@@ -56,7 +59,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                        <!--
                         <button type="button" class="btn btn-primary">Auswählen</button>
+                        -->
                     </div>
                 </div>
             </div>
