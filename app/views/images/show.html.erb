@@ -1,0 +1,115 @@
+<% if notice != nil %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>    
+</div>
+<% end %>
+
+<h1 class="text-info">
+  <%= @storage.name %>
+</h1>
+<h6>
+  <%= link_to @storage.room.name, @storage.room %>
+</h6>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
+  <%= link_to edit_images_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "image" %> Bilder <% end %>
+  <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
+</div>
+
+<br/><br/>
+
+<div class="row">
+  <div class="col-lg-8 col-md-6">
+
+    <% if @storage.images.size > 0 %>    
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <ol class="carousel-indicators">
+        <% @storage.images.each_with_index do |image, index| %>
+          <%= link_to storage_image_path(@storage, image) do %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" ></li>
+          <% end %>
+        <% end %>
+      </ol>
+      <div class="carousel-inner">        
+        <div class="carousel-item active ">
+          <img class="d-block w-100" src="<%= url_for(@image.variant(auto_orient: true, resize: '1200x800^').processed) %>">          
+        </div>        
+      </div>
+      <a class="carousel-control-prev" href="<%= @previous_image != nil ? storage_image_path(@storage, @previous_image) : storage_image_path(@storage, @last_image) %>" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="<%= @next_image != nil ? storage_image_path(@storage, @next_image) : storage_image_path(@storage, @first_image) %>" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>  
+
+    <% else %>
+      <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+    <% end %>
+    
+  </div>
+
+  <div class="col-lg-4 col-md-6">
+
+  <h4>Dinge</h4>
+  
+  <div class="list-group sticky-top">
+
+    <%= form_with(model: [@storage, Item.new], local: true) do |form| %>
+
+      <div class="input-group mb-3">          
+        <%= form.text_field(:name, :class => "form-control")  %>
+        <%= hidden_field_tag(:image_id, @image.id) %>
+        <div class="input-group-append">            
+          <button class="btn btn-primary">
+            <%= fa_icon "plus" %> Hinzufügen
+          </button>            
+        </div>
+      </div>        
+
+    <% end %>      
+  
+    <% @storage.items.each do |item| %>
+      <div class="list-group-item">
+        <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+        
+        <b>
+          <%= klarschiff_auto_link(item.name) %>
+        </b>
+
+        <% if item.images.first %>
+            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+        <% else %>
+            <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+        <% end %>               
+
+        <br/>
+        <!--
+        <% item.tags.each do |tag| %>
+            <span class="badge badge-pill badge-light"><i>#<%= tag.name %></i></span>
+        <% end %>
+        <br/>                    
+        -->      
+
+        <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>
+
+        <% ListItem.where(:item_id => item.id).each do |list_item| %>
+          <% list = current_user.lists.where(:id => list_item.list_id).first %>
+          <%= link_to list_path(list) do %>
+            <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
+          <% end %>
+        <% end %>          
+        
+      </div>
+    <% end %>
+  </div>  
+
+</div>
+
+</div>

@@ -71,6 +71,12 @@ class ItemsController < ApplicationController
     @item = @storage.items.new(item_params)
     @item.user_id = current_user.id
 
+    # Attach image from storage to item (if image_id is passed)
+    if (params[:image_id] != nil && params[:image_id] != "")
+      image = @storage.images.find(params[:image_id])
+      @item.images.attach(image.blob)
+    end
+
     @item.tag_list = ""
     @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
 
@@ -135,7 +141,11 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
+      puts "*" * 50
+      puts params
+      puts "*" * 50
+
       params.fetch(:item, {})
-      params.require(:item).permit(:user_id, :name, :description, :storage_id, :search, images: [])
+      params.require(:item).permit(:user_id, :name, :description, :storage_id, :search, :image, images: [])
     end
 end

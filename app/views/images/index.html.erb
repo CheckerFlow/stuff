@@ -1,0 +1,11 @@
+<h1 class="text-info"><%= @storage.name %></h1>
+
+<ul>
+<% @images.each do |image| %>
+    <li>
+        <%= link_to storage_image_path(@storage, image) do %>
+            <img src="<%= url_for(image.variant(auto_orient: true, resize: '300x225^').processed) %>">
+        <% end %>
+    </li>
+<% end %>
+</ul>

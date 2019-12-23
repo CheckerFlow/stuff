@@ -17,6 +17,9 @@ class StoragesController < ApplicationController
   # GET /storages/1
   # GET /storages/1.json
   def show
+    if @storage.images.size > 0
+      redirect_to storage_image_path(@storage, @storage.images.first)
+    end
   end
 
   # GET /storages/new

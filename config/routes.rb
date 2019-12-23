@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :storages do
     resources :items, shallow: true
 
+    resources :images
+
     member do 
       get 'edit_images'
       delete 'delete_image_attachment'
