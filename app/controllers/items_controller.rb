@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
     
     respond_to do |format|
       if @item.save
-        format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich erstellt.')  }
+        format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erstellt.')  }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich geändert.') }
+        format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde geändert.') }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich gelöscht.') }
+      format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde gelöscht.') }
       format.json { head :no_content }
     end
   end

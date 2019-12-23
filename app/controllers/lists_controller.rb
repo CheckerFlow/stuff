@@ -36,7 +36,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'Liste wurde erfolgreich erstellt.' }
+        format.html { redirect_to @list, notice: 'Liste wurde erstellt.' }
         format.json { render :show, status: :created, location: @list }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'Liste wurde erfolgreich geändert.' }
+        format.html { redirect_to @list, notice: 'Liste wurde geändert.' }
         format.json { render :show, status: :ok, location: @list }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to pages_home_path, notice: 'Liste wurde erfolgreich gelöscht.' }
+      format.html { redirect_to pages_home_path, notice: 'Liste wurde gelöscht.' }
       format.json { head :no_content }
     end
   end
@@ -86,7 +86,7 @@ class ListsController < ApplicationController
       list_item.save
 
       respond_to do |format|
-        format.html { redirect_to @list, notice: 'Gegenstand wurde erfolgreich zur Liste hinzugefügt.' }
+        format.html { redirect_to @list, notice: 'Gegenstand wurde zur Liste hinzugefügt.' }
         format.json { head :no_content }
       end
     else 
@@ -107,7 +107,7 @@ class ListsController < ApplicationController
       end
 
       respond_to do |format|
-        format.html { redirect_back(fallback_location: list_path(@list), notice: 'Gegenstand wurde erfolgreich von der Liste gelöscht.') }
+        format.html { redirect_back(fallback_location: list_path(@list), notice: 'Gegenstand wurde von der Liste gelöscht.') }
         format.json { head :no_content }
       end
     else

@@ -14,7 +14,7 @@ class ListItemsController < ApplicationController
 
         respond_to do |format|
             if @list_item.save
-                format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich der Liste hinzugefügt.')  }
+                format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde der Liste hinzugefügt.')  }
                 format.json { render :show, status: :created, location: @list_item }
             else
                 format.html { render :new }
