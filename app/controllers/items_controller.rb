@@ -16,28 +16,6 @@ class ItemsController < ApplicationController
         @items = current_user.items.all
       end
     end
-
-    puts "#" *100
-    puts "Hash Tags:"
-    #<li><%= link_to search_search_path(:search_string => tag ) do %><%= tag.to_s %><% end %></li>
-    Item.all.each do 
-      |item|
-      Twitter::TwitterText::Extractor.extract_hashtags(item.name).each do 
-        |tag|
-        puts tag
-      end
-    end
-
-    puts ""
-    puts "Mentions:"
-    Item.all.each do 
-      |item|
-      Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item.name).each do 
-        |mentioned_name|
-        puts mentioned_name
-      end
-    end
-    puts "#" *100
   end
 
   # GET /items/1
@@ -120,7 +98,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Gegenstand wurde erfolgreich gelöscht.' }
+      format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erfolgreich gelöscht.') }
       format.json { head :no_content }
     end
   end
