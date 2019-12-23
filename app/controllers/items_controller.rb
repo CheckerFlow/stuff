@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde gelöscht.') }
+      format.html { redirect_to items_url, notice: 'Gegenstand wurde gelöscht.' }
       format.json { head :no_content }
     end
   end

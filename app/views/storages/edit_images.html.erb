@@ -10,6 +10,34 @@
 <h1 class="text-info"><%= @storage.name %></h1>
 
 <div class="row">
+  <div class="col-lg-6 col-sm-12">
+    <%= form_with(model: @storage, local: true, url: storage_path) do |form| %>
+      <% if @storage.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@storage.errors.count, "error") %> prohibited this storage from being saved:</h2>
+    
+          <ul>
+            <% @storage.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group">
+        <label>Bilder</label>
+        <%= form.file_field :images, multiple: true, direct_upload: true, :class => "form-control" %>
+      </div>  
+    
+      <div class="actions">
+        <%= form.submit "Ändern", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  
+  </div>
+</div>  
+
+<div class="row">
 <% @storage.images.each_with_index do |image, index| %>    
   <div class="card col-lg-2 col-md-3 col-sm-4 m-3 p-0">
     <img src="<%= url_for(image.variant(auto_orient: true, resize: '300x225^').processed) %>" class="card-img-top" alt="...">

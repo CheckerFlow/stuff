@@ -12,6 +12,33 @@
 </h1>
 
 <div class="row">
+  <div class="col-lg-6 col-sm-12">
+    <%= form_with(model: @room, local: true) do |form| %>
+      <% if @room.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+          <ul>
+            <% room.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <label>Bilder</label>
+        <%= form.file_field :images, multiple: true, direct_upload: true, :class => "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Ändern", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
 <% @room.images.each_with_index do |image, index| %>    
   <div class="card col-lg-2 col-md-3 col-sm-4 m-3 p-0">
     <img src="<%= url_for(image.variant(auto_orient: true, resize: '800x600^').processed) %>" class="card-img-top" alt="...">
