@@ -34,6 +34,13 @@
         </b>
 
         <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+
+        <% if item.images.first %>
+            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+        <% else %>
+            <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+        <% end %>         
+        
         <br/>
         <!--
         <% if item.tags.size > 0 %>
