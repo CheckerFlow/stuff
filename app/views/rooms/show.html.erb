@@ -9,15 +9,25 @@
 
 <h1 class="text-info">
   <%= @room.name %>
+  <div class="dropleft float-right">
+    <a href="#" class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= fa_icon "edit" %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to edit_room_path(@room), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
+      <%= link_to edit_images_room_path(@room), :class=>"dropdown-item" do %><%= fa_icon "image" %> Bilder <% end %>
+      <%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
+    </div>
+  </div>    
 </h1>
 
+<!--
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_room_path(@room), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
   <%= link_to edit_images_room_path(@room), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "image" %> Bilder <% end %>
   <%= link_to @room, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
 </div>
-
-  <br/><br/>
+-->
 
   <div class="row">
     <div class="col-lg-8 col-md-6">

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do 
       get 'edit_images'
       delete 'delete_image_attachment'
+      delete 'delete_items'
     end
   end
 

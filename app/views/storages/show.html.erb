@@ -9,18 +9,33 @@
 
 <h1 class="text-info">
   <%= @storage.name %>
+
+  <div class="dropleft float-right">
+    <a href="#" class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= fa_icon "edit" %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to edit_storage_path(@storage), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
+      <%= link_to edit_images_storage_path(@storage), :class=>"dropdown-item" do %><%= fa_icon "image" %> Bilder <% end %>
+      <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
+      <%= link_to delete_items_storage_path(@storage), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Alle Dinge löschen<% end %>
+    </div>
+  </div>  
 </h1>
 <h6>
   <%= link_to @storage.room.name, @storage.room %>
 </h6>
 
+<!--
 <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to edit_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
   <%= link_to edit_images_storage_path(@storage), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "image" %> Bilder <% end %>
   <%= link_to @storage, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
+  <%= link_to delete_items_storage_path(@storage), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Alle Dinge löschen<% end %>
 </div>
+-->
 
-<br/><br/>
+
 
 <div class="row">
   <div class="col-lg-8 col-md-6">
