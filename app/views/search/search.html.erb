@@ -20,22 +20,55 @@
             </div>
         </div>
     </div>
-</div>
+</div>    
 
 <div class="container">
+
+    <div class="row align-items-center mt-3 mb-3">    
+        <div class="col-lg-12 col-sm-12 mx-auto">
+            <div class="">
+                <span class="h5">Tags</span>
+                <% Item.tag_counts.each do |tag| %>
+                    <% if tag.taggings_count >= 0 %>          
+                        <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
+                            #<%= tag.name %> (<%= tag.taggings_count %>)
+                        <% end %>
+                    <% end %>
+                <% end %>    
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-sm-12 mx-auto my-1">
+            <div class="">
+                <span class="h5">Erwähnungen</span>
+                <% Item.owner_counts.each do |tag| %>
+                    <% if tag.taggings_count >= 0 %>          
+                        <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
+                            @<%= tag.name %> (<%= tag.taggings_count %>)
+                        <% end %>
+                    <% end %>
+                <% end %>    
+            </div>
+        </div>
+    </div>      
+
 
     <% if (@rooms && @storages && @items && @lists) %>
         <p>
             <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
         </p>
-    <% elsif (params[:search_string]) %>
+    <% elsif (params[:search_string] != "") %>
         <p>
             <i>Keine Treffer für <b><%= params[:search_string] %></b></i>
         </p>
+    <% elsif (params[:search_string] == "") %>
+        <p>
+            <i>Keine Treffer</i>
+        </p>    
     <% end %>
 
     <% if @rooms != nil && @rooms.size > 0 %>
-    <h5>Räume</h5>
+    <h5 class="mt-4">Räume</h5>
     <ul class="list-group">
         <% @rooms.each do |room| %>
             <li class="list-group-item">                
@@ -61,7 +94,7 @@
     <% end %>
 
     <% if @storages && @storages.size > 0 %>
-    <h5>Ablagen</h5>
+    <h5 class="mt-4">Ablagen</h5>
     <ul class="list-group">
         <% @storages.each do |storage| %>
             <li class="list-group-item">
@@ -87,7 +120,7 @@
     <% end %>
 
     <% if @items && @items.size > 0 %>
-    <h5>Dinge</h5>
+    <h5 class="mt-4">Dinge</h5>
     <ul class="list-group">
         <% @items.each do |item| %>
             <li class="list-group-item">     
@@ -121,7 +154,7 @@
     <% end %> 
     
     <% if @lists && @lists.size > 0 %>
-    <h5>Listen</h5>
+    <h5 class="mt-4">Listen</h5>
     <ul class="list-group">
         <% @lists.each do |list| %>
             <li class="list-group-item">      
@@ -143,7 +176,7 @@
     <% end %>  
     
     <% if @items_tagged && @items_tagged.size > 0 %>
-    <h5>Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
+    <h5 class="mt-4">Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
     <ul class="list-group">
         <% @items_tagged.each do |item| %>
             <li class="list-group-item">                          
