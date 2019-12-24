@@ -28,7 +28,7 @@
         <div class="col-lg-12 col-sm-12 mx-auto">
             <div class="">
                 <span class="h5">Tags</span>
-                <% Item.tag_counts.each do |tag| %>
+                <% current_user.items.tag_counts.each do |tag| %>
                     <% if tag.taggings_count >= 0 %>          
                         <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
                             #<%= tag.name %> (<%= tag.taggings_count %>)
@@ -41,7 +41,7 @@
         <div class="col-lg-12 col-sm-12 mx-auto my-1">
             <div class="">
                 <span class="h5">Erwähnungen</span>
-                <% Item.owner_counts.each do |tag| %>
+                <% current_user.items.owner_counts.each do |tag| %>
                     <% if tag.taggings_count >= 0 %>          
                         <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
                             @<%= tag.name %> (<%= tag.taggings_count %>)

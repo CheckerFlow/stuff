@@ -46,7 +46,7 @@
           <!--
           <b class="list-group-item list-group-item-action bg-light" disabled># Tags</b>
 
-          <% Item.tag_counts.each do |tag| %>
+          <% current_user.items.tag_counts.each do |tag| %>
             <% if tag.taggings_count >= 0 %>          
               <%= link_to search_search_path(:search_string => tag.name), :class => "list-group-item list-group-item-action bg-light" do %>
                 #<%= tag.name %> <span class="badge badge-pill badge-secondary float-right"><%= tag.taggings_count %></span>
@@ -56,7 +56,7 @@
 
           <b class="list-group-item list-group-item-action bg-light" disabled>@ Erwähnungen</b>
 
-          <% Item.owner_counts.each do |tag| %>
+          <% current_user.items.owner_counts.each do |tag| %>
             <% if tag.taggings_count >= 0 %>          
               <%= link_to search_search_path(:search_string => tag.name), :class => "list-group-item list-group-item-action bg-light" do %>
                 @<%= tag.name %> <span class="badge badge-pill badge-secondary float-right"><%= tag.taggings_count %></span>
