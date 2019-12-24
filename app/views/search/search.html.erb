@@ -71,13 +71,16 @@
 
                 <b>
                     <%= room.name %>
-                </b>            
-
-                <% if room.images.first %>
-                    <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                <% end %>                 
+                </b>
+                
+                <!-- Modal buttons for image previews -->
+                <a class="" data-toggle="modal" data-target="#modal-<%= room.id %>">
+                    <% if room.images.first %>
+                        <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                    <% else %>
+                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                    <% end %>
+                </a>
 
                 <br/>
                 <small>
@@ -99,11 +102,14 @@
                     <%= storage.name %>
                 </b>
 
-                <% if storage.images.first %>
-                    <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                <% end %>                
+                <!-- Modal buttons for image previews -->
+                <a class="" data-toggle="modal" data-target="#modal-<%= storage.id %>">
+                    <% if storage.images.first %>
+                        <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                    <% else %>
+                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                    <% end %>       
+                </a>                
 
                 <br/>
                 <small>
@@ -131,13 +137,16 @@
                     <%= link_to list_path(list) do %>
                         <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
                     <% end %>
-                <% end %>                
-
-                <% if item.images.first %>
-                    <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
                 <% end %>
+
+                <!-- Modal buttons for image previews -->
+                <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
+                    <% if item.images.first %>
+                        <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                    <% else %>
+                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                    <% end %>    
+                </a>
 
                 <br/>
                 <small>
@@ -200,3 +209,22 @@
 -->    
 
 </div>
+
+<!-- Modal contents for image previews -->
+<% if @rooms %>
+    <% @rooms.each do |room| %>
+    <%= render partial: "modal_content", locals: {:model => room} %>
+    <% end %>
+<% end %>
+
+<% if @storages %>
+    <% @storages.each do |storage| %>
+    <%= render partial: "modal_content", locals: {:model => storage} %>
+    <% end %>
+<% end %>
+
+<% if @items %>
+    <% @items.each do |item| %>
+    <%= render partial: "modal_content", locals: {:model => item} %>
+    <% end %>
+<% end %>

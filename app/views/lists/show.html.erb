@@ -30,8 +30,9 @@
 </div>
 -->
 
+<% list_items = ListItem.where(list_id: @list.id) %>
+
 <div class="list-group sticky-top">
-  <% list_items = ListItem.where(list_id: @list.id) %>
   <% if list_items.size == 0 %>
     Die Liste ist leer.
   <% else %>
@@ -46,11 +47,14 @@
 
         <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
 
-        <% if item.images.first %>
-            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
-        <% else %>
-            <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-        <% end %>         
+        <!-- Modal buttons for image previews -->
+        <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
+          <% if item.images.first %>
+              <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+          <% else %>
+              <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+          <% end %>                 
+        </a>
         
         <br/>
         <!--
@@ -76,3 +80,28 @@
   <% end %>
 </div>
 
+<!-- Modal contents for image previews -->
+<% list_items.each do |list_item| %>
+  <% item = current_user.items.find(list_item.item_id) %>
+
+  <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="modal-<%= item.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= item.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if item.images.first %>
+          <img src="<%= url_for(item.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+        <% else %>
+            <img src="https://via.placeholder.com/400x300" class="mr-3 float-right" alt="...">
+        <% end %>          
+      </div>              
+    </div>
+  </div>
+</div>
+
+<% end %>

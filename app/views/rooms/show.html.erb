@@ -89,11 +89,14 @@
               <%= storage.name %> 
             </b>
 
-            <% if storage.images.first %>
-                <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-            <% else %>
-                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-            <% end %>               
+            <!-- Modal buttons for image previews -->
+            <a class="" data-toggle="modal" data-target="#modal-<%= storage.id %>">
+              <% if storage.images.first %>
+                  <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+              <% else %>
+                  <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+              <% end %>                 
+            </a>            
 
             <br/>
             <span class="badge badge-pill badge-light"><%= storage.images.count.to_s %> Bilder </span>
@@ -105,3 +108,28 @@
     </div>
   
   </div>
+
+<!-- Modal contents for image previews -->
+<% @room.storages.each do |storage| %>  
+
+  <div class="modal fade" id="modal-<%= storage.id %>" tabindex="-1" role="dialog" aria-labelledby="modal-<%= storage.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= storage.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if storage.images.first %>
+          <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+        <% else %>
+            <img src="https://via.placeholder.com/400x300" class="mr-3 float-right" alt="...">
+        <% end %>          
+      </div>              
+    </div>
+  </div>
+</div>
+
+<% end %>
