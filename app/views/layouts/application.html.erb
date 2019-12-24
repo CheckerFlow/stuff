@@ -38,9 +38,41 @@
           <% current_user.lists.each do |list| %>
             <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %><%= list.name %>  <span class="badge badge-pill badge-secondary float-right"><%= list.list_items.count %></span><% end %>
           <% end %>
+
           <div class="list-group-item bg-light" href="#">
             <%= link_to new_list_path, :class => "btn btn-primary float-right" do %><%= fa_icon "plus" %></i> Neue Liste<% end %>
-          </div>
+          </div>          
+
+          <b class="list-group-item list-group-item-action bg-light" disabled># Tags</b>
+
+          <% Item.tag_counts.each do |tag| %>
+            <% if tag.taggings_count >= 0 %>          
+              <%= link_to search_search_path(:search_string => tag.name), :class => "list-group-item list-group-item-action bg-light" do %>
+                #<%= tag.name %> <span class="badge badge-pill badge-secondary float-right"><%= tag.taggings_count %></span>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          <b class="list-group-item list-group-item-action bg-light" disabled>@ Erwähnungen</b>
+
+          <% Item.owner_counts.each do |tag| %>
+            <% if tag.taggings_count >= 0 %>          
+              <%= link_to search_search_path(:search_string => tag.name), :class => "list-group-item list-group-item-action bg-light" do %>
+                @<%= tag.name %> <span class="badge badge-pill badge-secondary float-right"><%= tag.taggings_count %></span>
+              <% end %>
+            <% end %>
+          <% end %>          
+
+          <!--
+          <% ActsAsTaggableOn::Tag.all.each do |tag| %>
+            <% if tag.taggings_count >= 0 %>          
+              <%= link_to search_search_path(:search_string => tag.name), :class => "list-group-item list-group-item-action bg-light" do %>
+                #<%= tag.inspect %> <span class="badge badge-pill badge-secondary float-right"><%= tag.taggings_count %></span>
+              <% end %>
+            <% end %>
+          <% end %>
+          -->          
+
         <% end %>
       </div>
     </div>
