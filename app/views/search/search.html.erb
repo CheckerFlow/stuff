@@ -52,19 +52,14 @@
         </div>
     </div>      
 
-
     <% if (@rooms && @storages && @items && @lists) %>
         <p>
             <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
         </p>
-    <% elsif (params[:search_string] != "") %>
-        <p>
-            <i>Keine Treffer für <b><%= params[:search_string] %></b></i>
-        </p>
-    <% elsif (params[:search_string] == "") %>
+    <% elsif (params[:search_string] == "" || params[:search_string] == nil ) %>
         <p>
             <i>Keine Treffer</i>
-        </p>    
+        </p>  
     <% end %>
 
     <% if @rooms != nil && @rooms.size > 0 %>
@@ -174,7 +169,8 @@
         <% end %>
     </ul>
     <% end %>  
-    
+
+<!--    
     <% if @items_tagged && @items_tagged.size > 0 %>
     <h5 class="mt-4">Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
     <ul class="list-group">
@@ -201,5 +197,6 @@
         <% end %>
     </ul>
     <% end %>    
+-->    
 
 </div>
