@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :storages, shallow: true
+
     member do 
       get 'edit_images'
       delete 'delete_image_attachment'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
 
     member do 
       get 'edit_images'
+      get :download_image_attachments
       delete 'delete_image_attachment'
       delete 'delete_items'
     end

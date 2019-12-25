@@ -1,7 +1,9 @@
 class StoragesController < ApplicationController
+  include ActiveStorage::SendZip
+
   before_action :authenticate_user!
 
-  before_action :set_storage, only: [:show, :edit, :update, :destroy, :edit_images, :delete_items]
+  before_action :set_storage, only: [:show, :edit, :update, :destroy, :edit_images, :delete_items, :download_image_attachments]
   before_action :set_room, only: [:new, :create]
 
   # GET /storages
@@ -21,6 +23,18 @@ class StoragesController < ApplicationController
     if @storage.images.size > 0
       redirect_to storage_image_path(@storage, @storage.images.first)
     end
+  end
+
+  def download_image_attachments
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: storage_path(@storage), notice: 'Als ZIP Format anfragen.') }
+      format.zip { send_zip @storage.images }
+    end
+
+#    if @storage.images.size > 0
+#      redirect_to storage_image_path(@storage, @storage.images.first), notice: 'Download gestartet.'
+#    end
   end
 
   # GET /storages/new
