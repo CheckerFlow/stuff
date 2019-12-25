@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
+  include ActiveStorage::SendZip
+
   before_action :authenticate_user!
-  before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images]
+  before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
 
   # GET /rooms
   # GET /rooms.json
@@ -17,6 +19,15 @@ class RoomsController < ApplicationController
   def show
     @storages = @room.storages.all
   end
+
+  def download_image_attachments
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: room_path(@room), notice: 'Als ZIP Format anfragen.') }
+      format.zip { send_zip @room.images }
+    end
+    
+  end  
 
   # GET /rooms/new
   def new

@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
+  include ActiveStorage::SendZip
+
   before_action :authenticate_user!
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_images]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
   before_action :set_storage, only: [:new, :create, :edit, :index]
 
   # GET /items
@@ -23,6 +25,16 @@ class ItemsController < ApplicationController
   def show
     @list_item = ListItem.new    
   end
+
+
+  def download_image_attachments
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: room_path(@room), notice: 'Als ZIP Format anfragen.') }
+      format.zip { send_zip @item.images }
+    end
+    
+  end  
 
   # GET /items/new
   def new

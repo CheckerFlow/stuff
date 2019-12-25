@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     member do 
       get 'edit_images'
+      get :download_image_attachments
       delete 'delete_image_attachment'
     end
   end
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   resources :items do 
     member do 
       get 'edit_images'
+      get :download_image_attachments
       delete 'delete_image_attachment'
     end    
   end    

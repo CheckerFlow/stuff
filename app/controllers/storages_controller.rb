@@ -31,10 +31,7 @@ class StoragesController < ApplicationController
       format.html { redirect_back(fallback_location: storage_path(@storage), notice: 'Als ZIP Format anfragen.') }
       format.zip { send_zip @storage.images }
     end
-
-#    if @storage.images.size > 0
-#      redirect_to storage_image_path(@storage, @storage.images.first), notice: 'Download gestartet.'
-#    end
+    
   end
 
   # GET /storages/new

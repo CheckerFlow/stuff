@@ -17,6 +17,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to edit_item_path(@item), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
       <%= link_to edit_images_item_path(@item), :class=>"dropdown-item" do %><%= fa_icon "image" %> Bilder <% end %>
+      <%= link_to download_image_attachments_item_path(@item, :format => "zip"), :class => "dropdown-item" do %><%= fa_icon "download" %></i> Bilder herunterladen<% end %>
       <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
     </div>
   </div>    
