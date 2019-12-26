@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="text-info">Klar Schiff</h1>
-
         <hr/>
     </div>        
     
@@ -61,16 +60,124 @@
                 Nutze die <b>Suche</b>, um Dinge in Räumen und Ablagen schneller zu finden. 
             </li>
             <li>
-                Erstelle <b>Listen</b> von Dingen, mit denen du etwas machen willst (umräumen, verkaufen, verschenken, entsorgen, etc.)
+                Erstelle <b>Listen</b> von Dingen, mit denen du etwas machen willst (umräumen, verkaufen, verschenken, entsorgen, etc.)                
             </li>
         </ol>       
 
     </div>
+
+
     <div class="col-lg-6">  
 
         <%= image_tag('keller_regal.jpg', :class => "img-fluid") %>
     
     </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-12">        
+        <h2>Wie sieht die <span class="text-info">Klar Schiff</span> App aus?</h2>    
+    </div>
+
+    <div class="col-lg-4 m-auto p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">Menü</h5>
+            
+            <p class="card-text">Alles Wichtige zur Navigation findest du im Menü</p>
+            <!--
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            -->
+        </div>        
+        <%= image_tag('Klarschiff_Menu.png', :class => "card-img-top border", :alt => "Menu") %>
+    </div>
+    <div class="col-lg-4 m-auto p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">Räume</h5>
+            
+            <p class="card-text">Räume und Ablagen helfen dir bei der Orientierung und geben deinen Dingen Struktur.</p>
+            <!--
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            -->
+        </div>          
+        <%= image_tag('Klarschiff_Rooms.png', :class => "card-img-top border", :alt => "Menu") %>
+    </div>
+    <div class="col-lg-4 m-auto p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">Ablagen</h5>
+            
+            <p class="card-text">Ablagen sparen Zeit beim Erfassen deiner Dinge und helfen dir beim wiederfinden.</p>
+            <!--
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            -->
+        </div>          
+        <%= image_tag('Klarschiff_Storages.png', :class => "card-img-top border", :alt => "Menu") %>
+    </div>
+    <div class="col-lg-4 m-auto p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">Listen</h5>
+            
+            <p class="card-text">Füge deine Dinge zu Listen hinzu. So kannst du </p>
+            <!--
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            -->
+        </div>          
+        <%= image_tag('Klarschiff_List.png', :class => "card-img-top border", :alt => "Menu") %>
+    </div>
+    <div class="col-lg-4 m-auto p-3">
+        
+        <div class="card-body">
+            <h5 class="card-title">Suche</h5>
+            
+            <p class="card-text">Mit Hilfe der Suche kannst du alle Dinge schnell finden. Quick-Links zu Tags, Erwähnungen und Listen helfen dir gleiche Dinge noch schneller zu finden. </p>
+            <!--
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            -->
+        </div>          
+        <%= image_tag('Klarschiff_Search.png', :class => "card-img-top border", :alt => "Menu") %>
+    </div>                
+
+    <!--
+    <div class="col-lg-4">  
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <%= image_tag('Klarschiff_Menu.png', :class => "d-block w-100", :alt => "Menu") %>
+                </div>
+                <div class="carousel-item">
+                    <%= image_tag('Klarschiff_Rooms.png', :class => "d-block w-100", :alt => "Rooms") %>
+                </div>
+                <div class="carousel-item">
+                    <%= image_tag('Klarschiff_Storages.png', :class => "d-block w-100", :alt => "Storages") %>
+                </div>
+                <div class="carousel-item">
+                    <%= image_tag('Klarschiff_List.png', :class => "d-block w-100", :alt => "List view") %>
+                </div>
+                <div class="carousel-item">
+                    <%= image_tag('Klarschiff_Search.png', :class => "d-block w-100", :alt => "Search") %>
+                </div>                
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    -->       
 </div> 
 
 <%= render partial: "early_access_request" %>
