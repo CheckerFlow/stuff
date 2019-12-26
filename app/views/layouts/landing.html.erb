@@ -60,9 +60,21 @@
               <li class="nav-item">              
                 <%= link_to "Über", pages_about_path, :class => "nav-link" %>
               </li>                                        
+
+              <li class="nav-item">
+                <%= form_for(User.new, as: @user, url: session_path(User), method: :post) do |f| %>          
+                  <%= f.hidden_field :email, :value => "demo@klarschiff.app" %>
+                  <%= f.hidden_field :password, :value => "Klarschiff" %>
+                
+                  <div class="actions">
+                      <%= f.submit "Demo Login", :class => "btn btn-outline-primary" %>
+                  </div>
+                <% end %>              
+              </li>
+
               <li class="nav-item">
                 <%= link_to "Einloggen", new_user_session_path, :class => "nav-link nav-link-primary" %>              
-              </li>
+              </li>              
             <% else %>
               <li class="nav-item">              
                 <%= link_to "Home", pages_landing_path, :class => "nav-link" %>

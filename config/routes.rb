@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  
   get 'search/search'
   get 'pages/home'
   get 'pages/help'
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   get 'pages/about'
 
   devise_for :users
+
+  get 'demo/sign_in'
 
   resources :rooms do
     resources :storages, shallow: true
