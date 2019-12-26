@@ -50,6 +50,19 @@
                 <% end %>    
             </div>
         </div>
+
+        <div class="col-lg-12 col-sm-12 mx-auto my-1">
+            <div class="">
+                <span class="h5">Listen</span>
+                <% current_user.lists.each do |list| %>
+                    <% if list.list_items.count >= 0 %>          
+                        <%= link_to list_path(list), :class => "badge badge-pill badge-light small" do %>
+                            @<%= list.name %> (<%= list.list_items.count %>)
+                        <% end %>
+                    <% end %>
+                <% end %>    
+            </div>
+        </div>        
     </div>      
 
     <% if (@rooms && @storages && @items && @lists) %>
