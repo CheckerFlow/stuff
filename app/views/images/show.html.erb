@@ -48,13 +48,17 @@
       <ol class="carousel-indicators">
         <% @storage.images.each_with_index do |image, index| %>
           <%= link_to storage_image_path(@storage, image) do %>
-            <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" ></li>
+            <li data-target="#carouselExampleIndicators" ></li>
           <% end %>
         <% end %>
       </ol>
       <div class="carousel-inner">        
         <div class="carousel-item active ">
-          <img class="d-block w-100" src="<%= url_for(@image.variant(auto_orient: true, resize: '1200x800^').processed) %>">          
+          <img class="d-block w-100" src="<%= url_for(@image.variant(auto_orient: true, resize: '1200x800^').processed) %>">
+          <br/>
+          <% @storage.images.each_with_index do |image, index| %>
+            <img class="d-inline" src="<%= url_for(image.variant(auto_orient: true, resize: '100x100^').processed) %>">
+          <% end %>
         </div>        
       </div>
       <a class="carousel-control-prev" href="<%= @previous_image != nil ? storage_image_path(@storage, @previous_image) : storage_image_path(@storage, @last_image) %>" role="button" data-slide="prev">

@@ -45,7 +45,7 @@
     <div id="carouselExampleIndicators" class="carousel slide">
       <ol class="carousel-indicators">
         <% @storage.images.each_with_index do |image, index| %>
-          <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" ></li>
+          <li data-target="#carouselExampleIndicators"></li>
         <% end %>
       </ol>
       <div class="carousel-inner">
