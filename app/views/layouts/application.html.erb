@@ -137,7 +137,11 @@
                   Mein Account
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
+                  <% if !current_user.email == "demo@klarschiff.app" %>
+                    <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
+                  <% else %>
+                    <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item disabled" %>
+                  <% end %>
                   <!--
                   <a class="dropdown-item" href="#">Another action</a>
                   <div class="dropdown-divider"></div>

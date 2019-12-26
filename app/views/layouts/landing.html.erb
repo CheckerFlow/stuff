@@ -67,7 +67,7 @@
                   <%= f.hidden_field :password, :value => "Klarschiff" %>
                 
                   <div class="actions">
-                      <%= f.submit "Demo Login", :class => "btn btn-outline-primary" %>
+                      <%= f.submit "Demo", :class => "btn btn-outline-primary" %>
                   </div>
                 <% end %>              
               </li>
@@ -91,7 +91,11 @@
                   Mein Account
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
+                  <% if !current_user.email == "demo@klarschiff.app" %>
+                    <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
+                  <% else %>
+                    <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item disabled" %>
+                  <% end %>                
                 </div>
               </li>
             <% end %>
