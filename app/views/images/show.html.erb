@@ -80,7 +80,10 @@
   </div>
 
   <div class="col-lg-4 col-md-12 mt-2">
-    <h4>Dinge</h4>
+    <h4>
+      <% items_count = @storage.items.count %>
+      <%= items_count %> <%= items_count == 1 ? "Ding" : "Dinge" %>
+    </h4>
     <div class="list-group sticky-top">
 
       <%= form_with(model: [@storage, Item.new], local: true) do |form| %>
