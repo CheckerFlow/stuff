@@ -1,6 +1,12 @@
 class EarlyAccessRequestsController < ApplicationController
   before_action :set_early_access_request, only: [:show, :edit, :update, :destroy]
 
+  include ApplicationHelper
+
+  before_action do 
+    title("Registrierung")
+  end    
+
   # GET /early_access_requests
   # GET /early_access_requests.json
   def index

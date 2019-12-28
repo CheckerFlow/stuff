@@ -1,5 +1,10 @@
 class StoragesController < ApplicationController
   include ActiveStorage::SendZip
+  include ApplicationHelper
+
+  before_action do 
+    title("Ablagen")
+  end
 
   before_action :authenticate_user!
 

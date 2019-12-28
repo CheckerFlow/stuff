@@ -1,5 +1,10 @@
 class ItemsController < ApplicationController
   include ActiveStorage::SendZip
+  include ApplicationHelper
+
+  before_action do 
+    title("Dinge")
+  end
 
   before_action :authenticate_user!
 

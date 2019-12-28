@@ -1,4 +1,10 @@
 class SearchController < ApplicationController
+  include ApplicationHelper
+
+  before_action do 
+    title("Suchen")
+  end    
+  
   before_action :authenticate_user!
 
   def search

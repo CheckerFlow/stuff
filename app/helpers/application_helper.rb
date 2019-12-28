@@ -15,4 +15,13 @@ module ApplicationHelper
     def klarschiff_link_text_block(entity, text) 
         return text.reverse
     end
+
+    # Return page-specific title text for <title>-tag in HTML <head> section
+    def title(text)
+        @title = text
+    end
+
+    def set_meta_description(text)
+        @meta_description = text
+    end
 end

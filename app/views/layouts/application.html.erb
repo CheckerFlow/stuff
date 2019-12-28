@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <title>Klar Schiff</title>
+  <title>Klar Schiff<%= if @title then ' | ' + @title end %></title>
+  <meta name="description" content="<%= if @meta_description then @meta_description end %>">
 
   <!-- Required meta tags for Bootstrap -->
   <meta charset="utf-8">

@@ -1,7 +1,13 @@
 class ListsController < ApplicationController
+  include ApplicationHelper
+
   before_action :authenticate_user!
 
   before_action :set_list, only: [:show, :edit, :update, :destroy, :selectitems, :addItem, :removeItem]
+
+  before_action do 
+    title("Listen")
+  end  
 
   # GET /lists
   # GET /lists.json

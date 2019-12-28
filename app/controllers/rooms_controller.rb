@@ -1,8 +1,13 @@
 class RoomsController < ApplicationController
   include ActiveStorage::SendZip
+  include ApplicationHelper
 
   before_action :authenticate_user!
   before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
+  
+  before_action do 
+    title("Räume")
+  end
 
   # GET /rooms
   # GET /rooms.json
