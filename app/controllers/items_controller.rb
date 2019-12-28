@@ -75,7 +75,7 @@ class ItemsController < ApplicationController
     
     respond_to do |format|
       if @item.save
-        format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde erstellt.')  }
+        format.html { redirect_back(fallback_location: items_path, notice: "Gegenstand #{helpers.link_to @item.name, item_path(@item.id)} wurde erstellt.".html_safe)  }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
