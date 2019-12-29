@@ -22,78 +22,93 @@
   </div>    
 </h1>
 
-<% list_items = ListItem.where(list_id: @list.id) %>
-
-<% if list_items.size == 0 %>
-  Die Liste ist leer.
-<% else %>  
-  <div class="card-columns">
-  <% list_items.each do |list_item| %>
-    <% item = current_user.items.find(list_item.item_id) %>
-    <div class="">
-      <div class="card ">
-
-        <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
-        <% if item.images.first %>
-            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
-        <% else %>
-            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
-        <% end %>                 
-        </a>
-
-        <div class="card-body">
-          <h5 class="card-title"><%= klarschiff_auto_link(item.name) %></h5>
-          <!--
-          <p class="card-text"></p>
-          -->
-          
-          <%= link_to item, :class => "btn btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-
-          <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-profile" aria-selected="false">Kacheln</a>
+    <a class="nav-item nav-link" id="nav-list-tab" data-toggle="tab" href="#nav-list" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>    
   </div>
-<% end %>
+</nav>
 
-<!-- List group view -->
-<!--
-<div class="list-group sticky-top">
-  <% if list_items.size == 0 %>
-    Die Liste ist leer.
-  <% else %>
-    <% list_items.each do |list_item| %>
-      <% item = current_user.items.find(list_item.item_id) %>
-      <div class="list-group-item">        
-        <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-        
-        <b>
-          <%= klarschiff_auto_link(item.name) %>
-        </b>
 
-        <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+<div class="tab-content" id="nav-tabContent">
+  <!-- Image masonry view -->
 
-        
-        <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
-          <% if item.images.first %>
-              <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
-          <% else %>
-              <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-          <% end %>                 
-        </a>
-        
-        <br/>
+  <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">  
+  
+    <% list_items = ListItem.where(list_id: @list.id) %>
 
-        <small>
-          Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
-        </small>
+    <% if list_items.size == 0 %>
+      Die Liste ist leer.
+    <% else %>  
+      <div class="card-columns">
+      <% list_items.each do |list_item| %>
+        <% item = current_user.items.find(list_item.item_id) %>
+        <div class="">
+          <div class="card ">
+
+            <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
+            <% if item.images.first %>
+                <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+            <% else %>
+                <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+            <% end %>                 
+            </a>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= klarschiff_auto_link(item.name) %></h5>
+              
+              <p class="card-text">Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %></p>              
+              
+              <%= link_to item, :class => "btn btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+
+              <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
--->
+  <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+
+    <!-- List group view -->
+    <div class="list-group sticky-top">
+      <% if list_items.size == 0 %>
+        Die Liste ist leer.
+      <% else %>
+        <% list_items.each do |list_item| %>
+          <% item = current_user.items.find(list_item.item_id) %>
+          <div class="list-group-item">        
+            <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+            
+            <b>
+              <%= klarschiff_auto_link(item.name) %>
+            </b>
+    
+            <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+    
+            
+            <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
+              <% if item.images.first %>
+                  <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+              <% else %>
+                  <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+              <% end %>                 
+            </a>
+            
+            <br/>
+    
+            <small>
+              Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+            </small>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+      
+  </div>
+</div>  
 
 <!-- Modal contents for image previews -->
 <% list_items.each do |list_item| %>
