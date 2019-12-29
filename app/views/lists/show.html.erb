@@ -27,17 +27,17 @@
 <% if list_items.size == 0 %>
   Die Liste ist leer.
 <% else %>  
-  <div class="card-deck">
+  <div class="card-columns">
   <% list_items.each do |list_item| %>
     <% item = current_user.items.find(list_item.item_id) %>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card m-0 p-0 mt-3">
+    <div class="">
+      <div class="card ">
 
         <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
         <% if item.images.first %>
-            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [200,200], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
         <% else %>
-            <img src="https://via.placeholder.com/50x50" class="card-img-top" alt="...">
+            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
         <% end %>                 
         </a>
 
