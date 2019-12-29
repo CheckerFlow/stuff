@@ -66,12 +66,16 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-
-    <% @storage.images.each_with_index do |image, index| %>
-      <%= link_to storage_image_path(@storage, image) do %>
-        <img class="d-inline px-1 my-2" src="<%= url_for(image.variant(auto_orient: true, resize: 'x100').processed) %>">
-      <% end %>
-    <% end %>    
+    
+    <div class="container">
+      <div class="row flex-row flex-nowrap " style="overflow-x: scroll;">       
+        <% @storage.images.each_with_index do |image, index| %>
+          <%= link_to storage_image_path(@storage, image) do %>
+            <img class="d-inline px-1 my-2" src="<%= url_for(image.variant(auto_orient: true, resize: 'x100').processed) %>">
+          <% end %>
+        <% end %>    
+      </div>
+    </div>
 
     <% else %>
       <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
