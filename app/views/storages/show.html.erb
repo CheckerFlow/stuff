@@ -90,7 +90,7 @@
 
       <% end %>      
     
-      <% @storage.items.each do |item| %>
+      <% @storage.items.order(updated_at: :desc).each do |item| %>
         <div class="list-group-item">
           <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
           
