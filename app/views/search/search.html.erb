@@ -101,19 +101,22 @@
             <h5 class="mt-4">Räume</h5>
             <div class="card-columns">
                 <% @rooms.each do |room| %>
-                    <div class="card ">                    
-                        <%= link_to room do %>
+                    <div class="card">                    
+                        
                         <% if room.images.first %>
                             <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
                             <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
                         <% end %>
-                        <% end %>
+                        
 
-                        <div class="card-body">
+                        <%= link_to room do %>
+                        <div class="card-img-overlay text-white">
                             <h5 class="card-title"><%= room.name %></h5>
-              
-                            <p class="card-text">Ablagen: <%= link_to room.storages.size, room %></p>
+                        </div>
+                        <% end %>
+                        <div class="card-body p-2">
+                            <small class="card-text"><b>Ablagen:</b> <%= link_to room.storages.size, room %></small>
                         </div>
                     </div>
                 <% end %>
@@ -124,19 +127,22 @@
             <h5 class="mt-4">Ablagen</h5>
             <div class="card-columns">
                 <% @storages.each do |storage| %>
-                    <div class="card ">                    
-                        <%= link_to storage do %>
+                    <div class="card">                    
+                        
                         <% if storage.images.first %>
                             <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
                             <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
                         <% end %>
-                        <% end %>
+                        
 
-                        <div class="card-body">
+                        <%= link_to storage do %>
+                        <div class="card-img-overlay text-white">
                             <h5 class="card-title"><%= storage.name %></h5>
-              
-                            <p class="card-text">Dinge: <%= link_to storage.items.size, storage %></p>                            
+                        </div>
+                        <% end %>
+                        <div class="card-body p-2">
+                            <small class="card-text"><b>Dinge:</b> <%= link_to storage.items.size, storage %></small>                            
                         </div>
                     </div>
                 <% end %>
@@ -145,22 +151,28 @@
 
 
             <% if @items && @items.size > 0 %>
-            <h5 class="mt-4">Ablagen</h5>
+            <h5 class="mt-4">Dinge</h5>
             <div class="card-columns">
                 <% @items.each do |item| %>
-                    <div class="card ">                    
-                        <%= link_to item do %>
+                    <div class="card">                    
+                        
                         <% if item.images.first %>
                             <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
                             <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
                         <% end %>                 
-                        <% end %>
+                        
 
-                        <div class="card-body">
-                            <h5 class="card-title"><%= klarschiff_auto_link(item.name) %></h5>
-              
-                            <p class="card-text">Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %></p>
+                        <%= link_to item do %>
+                        <div class="card-img-overlay text-white">
+                            <h5 class="card-title"><%= item.name %></h5>
+                        </div>
+                        <% end %>
+                        <div class="card-body p-2">
+                            <small class="card-text">
+                                <b>Ablage:</b> <%= link_to item.storage.name, item.storage %><br/>
+                                <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
+                            </small>
                         </div>
                     </div>
                 <% end %>
@@ -172,19 +184,22 @@
             <h5 class="mt-4">Listen</h5>
             <div class="card-columns">
                 <% @lists.each do |list| %>
-                    <div class="card ">
-                        <%= link_to list do %>
+                    <div class="card">
+                        
                         <% if list.list_items.first.item.images.first %>
                             <img src="<%= url_for(list.list_items.first.item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
                             <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
                         <% end %>                 
-                        <% end %>                                            
+                                                       
 
-                        <div class="card-body">
+                        <%= link_to list do %>
+                        <div class="card-img-overlay text-white">
                             <h5 class="card-title"><%= list.name %></h5>
-              
-                            <p class="card-text"></b> <%= list.list_items.size %> Dinge</p>
+                        </div>
+                        <% end %>             
+                        <div class="card-body p-2">
+                            <small class="card-text"><b>Dinge:</b> <%= list.list_items.size %> Dinge</small>
                         </div>
                     </div>
                 <% end %>
