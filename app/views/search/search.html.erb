@@ -73,161 +73,245 @@
 
     </div><!-- collapse -->
 
+
     <% if (@rooms && @storages && @items && @lists) %>
-        <p>
+        <p class="my-4">
             <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
         </p>
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-images-tab" data-toggle="tab" href="#nav-images" role="tab" aria-controls="nav-profile" aria-selected="false">Kacheln</a>
+                <a class="nav-item nav-link" id="nav-list-tab" data-toggle="tab" href="#nav-list" role="tab" aria-controls="nav-home" aria-selected="true">Liste</a>    
+            </div>
+        </nav>
+      
     <% elsif (params[:search_string] == "" || params[:search_string] == nil ) %>
-        <p>
+        <p class="my-4">
             <i>Keine Treffer</i>
         </p>  
     <% end %>
 
-    <% if @rooms != nil && @rooms.size > 0 %>
-    <h5 class="mt-4">Räume</h5>
-    <ul class="list-group">
-        <% @rooms.each do |room| %>
-            <li class="list-group-item">                
-                <%= link_to room, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
 
-                <b>
-                    <%= room.name %>
-                </b>
-                
-                <!-- Modal buttons for image previews -->
-                <a class="" data-toggle="modal" data-target="#modal-<%= room.id %>">
-                    <% if room.images.first %>
-                        <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                    <% else %>
-                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                    <% end %>
-                </a>
-
-                <br/>
-                <small>
-                    </b> Ablagen: <%= link_to room.storages.size, room %>
-                </small>
-            </li>
-        <% end %>
-    </ul>
-    <% end %>
-
-    <% if @storages && @storages.size > 0 %>
-    <h5 class="mt-4">Ablagen</h5>
-    <ul class="list-group">
-        <% @storages.each do |storage| %>
-            <li class="list-group-item">
-                <%= link_to storage, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-
-                <b>
-                    <%= storage.name %>
-                </b>
-
-                <!-- Modal buttons for image previews -->
-                <a class="" data-toggle="modal" data-target="#modal-<%= storage.id %>">
-                    <% if storage.images.first %>
-                        <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                    <% else %>
-                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                    <% end %>       
-                </a>                
-
-                <br/>
-                <small>
-                    </b> Raum: <%= link_to storage.room.name, storage.room %>
-                </small>
-            </li>
-        <% end %>
-    </ul>
-    <% end %>
-
-    <% if @items && @items.size > 0 %>
-    <h5 class="mt-4">Dinge</h5>
-    <ul class="list-group">
-        <% @items.each do |item| %>
-            <li class="list-group-item">     
+    <div class="tab-content" id="nav-tabContent">        
+        <!-- Image masonry view -->
+        <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">  
             
-                <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-                                    
-                <b>
-                    <%= klarschiff_auto_link(item.name) %>
-                </b>
+            <% if @rooms != nil && @rooms.size > 0 %>
+            <h5 class="mt-4">Räume</h5>
+            <div class="card-columns">
+                <% @rooms.each do |room| %>
+                    <div class="card ">                    
+                        <%= link_to room do %>
+                        <% if room.images.first %>
+                            <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+                        <% else %>
+                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                        <% end %>
+                        <% end %>
 
-                <% ListItem.where(:item_id => item.id).each do |list_item| %>
-                    <% list = current_user.lists.where(:id => list_item.list_id).first %>
-                    <%= link_to list_path(list) do %>
-                        <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
-                    <% end %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= room.name %></h5>
+              
+                            <p class="card-text">Ablagen: <%= link_to room.storages.size, room %></p>
+                        </div>
+                    </div>
                 <% end %>
+            </div>
+            <% end %>
 
-                <!-- Modal buttons for image previews -->
-                <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
-                    <% if item.images.first %>
-                        <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                    <% else %>
-                        <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                    <% end %>    
-                </a>
+            <% if @storages && @storages.size > 0 %>
+            <h5 class="mt-4">Ablagen</h5>
+            <div class="card-columns">
+                <% @storages.each do |storage| %>
+                    <div class="card ">                    
+                        <%= link_to storage do %>
+                        <% if storage.images.first %>
+                            <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+                        <% else %>
+                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                        <% end %>
+                        <% end %>
 
-                <br/>
-                <small>
-                    Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
-                </small>
-            </li>
-        <% end %>
-    </ul>
-    <% end %> 
-    
-    <% if @lists && @lists.size > 0 %>
-    <h5 class="mt-4">Listen</h5>
-    <ul class="list-group">
-        <% @lists.each do |list| %>
-            <li class="list-group-item">      
-                <%= link_to list, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-
-                <b>
-                    <%= list.name %>                        
-                </b>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= storage.name %></h5>
+              
+                            <p class="card-text">Dinge: <%= link_to storage.items.size, storage %></p>                            
+                        </div>
+                    </div>
+                <% end %>
+            </div>            
+            <% end %>
 
 
+            <% if @items && @items.size > 0 %>
+            <h5 class="mt-4">Ablagen</h5>
+            <div class="card-columns">
+                <% @items.each do |item| %>
+                    <div class="card ">                    
+                        <%= link_to item do %>
+                        <% if item.images.first %>
+                            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+                        <% else %>
+                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                        <% end %>                 
+                        <% end %>
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= klarschiff_auto_link(item.name) %></h5>
+              
+                            <p class="card-text">Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %></p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>            
+            <% end %>            
+
+
+            <% if @lists && @lists.size > 0 %>
+            <h5 class="mt-4">Listen</h5>
+            <div class="card-columns">
+                <% @lists.each do |list| %>
+                    <div class="card ">
+                        <%= link_to list do %>
+                        <% if list.list_items.first.item.images.first %>
+                            <img src="<%= url_for(list.list_items.first.item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+                        <% else %>
+                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                        <% end %>                 
+                        <% end %>                                            
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= list.name %></h5>
+              
+                            <p class="card-text"></b> <%= list.list_items.size %> Dinge</p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>            
+            <% end %>               
+        </div>
+
+        <!-- List view -->
+        <div class="tab-pane fade show" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">  
+
+            <% if @rooms != nil && @rooms.size > 0 %>
+            <h5 class="mt-4">Räume</h5>
+            <ul class="list-group">
+                <% @rooms.each do |room| %>
+                    <li class="list-group-item">                
+                        <%= link_to room, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+        
+                        <b>
+                            <%= room.name %>
+                        </b>
+                        
+                        <!-- Modal buttons for image previews -->
+                        <a class="" data-toggle="modal" data-target="#modal-<%= room.id %>">
+                            <% if room.images.first %>
+                                <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                            <% else %>
+                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                            <% end %>
+                        </a>
+        
+                        <br/>
+                        <small>
+                            </b>Ablagen: <%= link_to room.storages.size, room %>
+                        </small>
+                    </li>
+                <% end %>
+            </ul>
+            <% end %>
+        
+            <% if @storages && @storages.size > 0 %>
+            <h5 class="mt-4">Ablagen</h5>
+            <ul class="list-group">
+                <% @storages.each do |storage| %>
+                    <li class="list-group-item">
+                        <%= link_to storage, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+        
+                        <b>
+                            <%= storage.name %>
+                        </b>
+        
+                        <!-- Modal buttons for image previews -->
+                        <a class="" data-toggle="modal" data-target="#modal-<%= storage.id %>">
+                            <% if storage.images.first %>
+                                <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                            <% else %>
+                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                            <% end %>       
+                        </a>                
+        
+                        <br/>
+                        <small>
+                            </b> Raum: <%= link_to storage.room.name, storage.room %>
+                        </small>
+                    </li>
+                <% end %>
+            </ul>
+            <% end %>
+        
+            <% if @items && @items.size > 0 %>
+            <h5 class="mt-4">Dinge</h5>
+            <ul class="list-group">
+                <% @items.each do |item| %>
+                    <li class="list-group-item">     
+                    
+                        <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+                                            
+                        <b>
+                            <%= klarschiff_auto_link(item.name) %>
+                        </b>
+        
+                        <% ListItem.where(:item_id => item.id).each do |list_item| %>
+                            <% list = current_user.lists.where(:id => list_item.list_id).first %>
+                            <%= link_to list_path(list) do %>
+                                <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
+                            <% end %>
+                        <% end %>
+        
+                        <!-- Modal buttons for image previews -->
+                        <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
+                            <% if item.images.first %>
+                                <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+                            <% else %>
+                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                            <% end %>    
+                        </a>
+        
+                        <br/>
+                        <small>
+                            Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+                        </small>
+                    </li>
+                <% end %>
+            </ul>
+            <% end %> 
             
-                <br/>
-                <small>
-                    </b> <%= list.list_items.size %> Dinge
-                </small>
-            </li>
-        <% end %>
-    </ul>
-    <% end %>  
+            <% if @lists && @lists.size > 0 %>
+            <h5 class="mt-4">Listen</h5>
+            <ul class="list-group">
+                <% @lists.each do |list| %>
+                    <li class="list-group-item">      
+                        <%= link_to list, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+        
+                        <b>
+                            <%= list.name %>                        
+                        </b>
+        
+                        <br/>
+                        <small>
+                            </b> <%= list.list_items.size %> Dinge
+                        </small>
+                    </li>
+                <% end %>
+            </ul>
+            <% end %>  
 
-<!--    
-    <% if @items_tagged && @items_tagged.size > 0 %>
-    <h5 class="mt-4">Dinge mit Tag <span class="badge badge-pill badge-light"><i>#<%= params[:search_string] %></i></span></h5>
-    <ul class="list-group">
-        <% @items_tagged.each do |item| %>
-            <li class="list-group-item">                          
-                <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
-
-                <b>
-                    <%= klarschiff_auto_link(item.name) %>
-                </b>   
-
-                <% if item.images.first %>
-                    <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
-                <% end %>                
-                
-
-                <br/>                    
-                <small>
-                    Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
-                </small>
-            </li>
-        <% end %>
-    </ul>
-    <% end %>    
--->    
+        </div>        
+    </div>
 
 </div>
 
