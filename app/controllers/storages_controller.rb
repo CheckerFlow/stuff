@@ -26,7 +26,7 @@ class StoragesController < ApplicationController
   # GET /storages/1
   # GET /storages/1.json
   def show
-    process_images(@storage)
+    #process_images(@storage)
 
     # Redirect images#show if storage has images. 
     if @storage.images.size > 0
