@@ -23,6 +23,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @storages = @room.storages.all
+
+    process_images(@room)
   end
 
   def download_image_attachments
@@ -61,6 +63,9 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+
+        process_images(@room)
+
         format.html { redirect_to @room, notice: 'Raum wurde erstellt.' }
         format.json { render :show, status: :created, location: @room }
       else
@@ -75,6 +80,9 @@ class RoomsController < ApplicationController
   def update    
     respond_to do |format|
       if @room.update(room_params)
+
+        process_images(@room)
+
         format.html { redirect_to room_url(@room), notice: 'Raum wurde geändert.' }
         format.json { render :show, status: :ok, location: @room }
       else

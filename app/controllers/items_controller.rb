@@ -28,6 +28,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    process_images(@item)
+
     @list_item = ListItem.new    
   end
 
@@ -80,6 +82,9 @@ class ItemsController < ApplicationController
     
     respond_to do |format|
       if @item.save
+
+        process_images(@item)
+
         format.html { redirect_back(fallback_location: items_path, notice: "Gegenstand #{helpers.link_to @item.name, item_path(@item.id)} wurde erstellt.".html_safe)  }
         format.json { render :show, status: :created, location: @item }
       else
@@ -101,6 +106,9 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update(item_params)
+
+        process_images(@item)
+
         format.html { redirect_back(fallback_location: items_path, notice: 'Gegenstand wurde geändert.') }
         format.json { render :show, status: :ok, location: @item }
       else

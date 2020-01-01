@@ -42,7 +42,7 @@ module ApplicationHelper
             image_metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(image.blob).metadata
 
             if image_metadata[:width] > 1280
-              new_image.resize "1280x1024^"              
+              new_image.resize "1280"
             
               new_image.write attachment_path          
   

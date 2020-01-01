@@ -26,10 +26,12 @@ class StoragesController < ApplicationController
   # GET /storages/1
   # GET /storages/1.json
   def show
+    process_images(@storage)
+
     # Redirect images#show if storage has images. 
     if @storage.images.size > 0
       redirect_to storage_image_path(@storage, @storage.images.first)
-    end
+    end    
   end
 
   def download_image_attachments
@@ -78,6 +80,9 @@ class StoragesController < ApplicationController
 
     respond_to do |format|
       if @storage.save
+
+        process_images(@storage)
+
         format.html { redirect_to @storage, notice: 'Ablage wurde erstellt.' }
         format.json { render :show, status: :created, location: @storage }
       else
