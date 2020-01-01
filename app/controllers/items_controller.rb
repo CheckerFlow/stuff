@@ -136,10 +136,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      puts "*" * 50
-      puts params
-      puts "*" * 50
-
       params.fetch(:item, {})
       params.require(:item).permit(:user_id, :name, :description, :storage_id, :search, :image, images: [])
     end

@@ -1,4 +1,6 @@
 class StoragesController < ApplicationController
+  require 'mini_magick'
+
   include ActiveStorage::SendZip
   include ApplicationHelper
 
@@ -90,6 +92,9 @@ class StoragesController < ApplicationController
   def update
     respond_to do |format|
       if @storage.update(storage_params)
+        
+        process_images(@storage)
+
         format.html { redirect_to room_url(@storage.room), notice: 'Ablage wurde geändert.' }
         format.json { render :show, status: :ok, location: @storage }
       else

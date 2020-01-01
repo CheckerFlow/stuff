@@ -3,14 +3,10 @@ class ListItemsController < ApplicationController
 
     def create
         @list_item = ListItem.new
-        puts "*" *50
-        puts params[:list_item]
-        puts params[:list_item][:list_id]
-        puts params[:list_item][:item_id]
 
         @list_item.list_id = params[:list_item][:list_id]
         @list_item.item_id = params[:list_item][:item_id]
-        puts "*" *50
+
 
         respond_to do |format|
             if @list_item.save

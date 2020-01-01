@@ -24,4 +24,32 @@ module ApplicationHelper
     def set_meta_description(text)
         @meta_description = text
     end
+
+    # Resize images attached to a record
+    def process_images(record_with_images_attached)
+        record_with_images_attached.images.each do |image|
+            filename = image.filename.to_s
+
+            attachment_path = "#{Dir.tmpdir}/#{image.filename}"
+
+            File.open(attachment_path, 'wb') do |file|
+               file.write(image.blob.download)
+               file.close
+            end
+  
+            new_image = MiniMagick::Image.open(attachment_path)
+            # if image.width ..
+            image_metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(image.blob).metadata
+
+            if image_metadata[:width] > 1280
+              new_image.resize "1280x1024^"              
+            
+              new_image.write attachment_path          
+  
+              image.purge_later
+              #record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename, content_type: "image/jpg")
+              record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename)
+            end
+        end
+    end    
 end
