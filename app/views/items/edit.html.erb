@@ -27,6 +27,11 @@
     <div class="form-group">
       <label>Bilder</label>
       <%= form.file_field :images, multiple: true, direct_upload: true, :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Ablage</label>
+      <%= form.select :storage_id, options_from_collection_for_select(current_user.storages.all, 'id', 'name', @item.storage_id), {}, { :class => "form-control" } %>
     </div>    
   
     <div class="actions">

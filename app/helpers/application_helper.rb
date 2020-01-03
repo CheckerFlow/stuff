@@ -1,4 +1,5 @@
 module ApplicationHelper
+    require "mini_magick"
 
     def klarschiff_auto_link(string)
         options = {
