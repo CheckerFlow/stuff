@@ -31,7 +31,7 @@
 
     <div class="form-group">
       <label>Ablage</label>
-      <%= form.select :storage_id, options_from_collection_for_select(current_user.storages.all, 'id', 'name', @item.storage_id), {}, { :class => "form-control" } %>
+      <%= form.select :storage_id, options_from_collection_for_select(current_user.storages.all, 'id', proc{|storage| storage.room.building.name + " -> " + storage.room.name + " -> " + storage.name} , @item.storage_id), {}, { :class => "form-control" } %>
     </div>    
   
     <div class="actions">

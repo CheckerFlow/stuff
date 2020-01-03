@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <label>Gebäude</label>
-    <%= form.select :building_id, options_from_collection_for_select(current_user.buildings.all, 'id', 'name', room.building_id), {}, { :class => "form-control" } %>
+    <%= form.select :building_id, options_from_collection_for_select(current_user.buildings.all, 'id', proc{|building| building.name }, room.building_id), {}, { :class => "form-control" } %>
   </div>        
 
   <div class="actions">
