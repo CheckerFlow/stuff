@@ -31,6 +31,7 @@
 
           <%= link_to search_search_path, :class => "list-group-item list-group-item-action bg-light" do %><%= fa_icon "search" %> Suchen<% end %>
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "boxes" %> Orte & Dinge</b>
+          <%= link_to buildings_url, :class=>"list-group-item list-group-item-action bg-light" do %>Gebäude <span class="badge badge-pill badge-secondary float-right"><%= current_user.buildings.all.count %></span><% end %>
           <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= current_user.rooms.all.count %></span><% end %>
           <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= current_user.storages.all.count %></span><% end %>
           <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary float-right"><%= current_user.items.all.count %></span><% end %>

@@ -60,6 +60,13 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.user_id = current_user.id
+    
+    if (room_params[:building_id] == nil || room_params[:building_id] == "")
+      default_building = current_user.buildings.first
+      @room.building_id = default_building.id
+    else 
+      @room.building_id = room_params[:building_id]
+    end
 
     respond_to do |format|
       if @room.save
@@ -116,6 +123,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:user_id, :name, :search, images: [])
+      params.require(:room).permit(:user_id, :building_id, :name, :search, images: [])
     end
 end

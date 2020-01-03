@@ -1,0 +1,139 @@
+<% if notice != nil %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>    
+</div>
+<% end %>
+
+<h1 class="text-info">
+  <%= @building.name %>
+  <div class="dropleft float-right" style="z-index: 1021">
+    <a href="#" class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= fa_icon "edit" %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to edit_building_path(@building), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
+      <%= link_to edit_images_building_path(@building), :class=>"dropdown-item" do %><%= fa_icon "image" %> Bilder <% end %>
+      <%= link_to download_image_attachments_building_path(@building, :format => "zip"), :class => "dropdown-item" do %><%= fa_icon "download" %></i> Bilder herunterladen<% end %>
+      <%= link_to @building, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
+    </div>
+  </div>    
+</h1>
+
+<!--
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to edit_building_path(@building), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "edit" %> Ändern <% end %>
+  <%= link_to edit_images_building_path(@building), :class=>"btn btn-sm btn-outline-secondary" do %><%= fa_icon "image" %> Bilder <% end %>
+  <%= link_to @building, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-sm btn-outline-danger" do %><%= fa_icon "trash" %> Löschen<% end %>
+</div>
+-->
+
+  <div class="row">
+    <div class="col-lg-8 col-md-12">
+
+      <% if @building.images.size > 0 %>
+
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <ol class="carousel-indicators">
+          <% @building.images.each_with_index do |image, index| %>
+            <li data-target="#carouselExampleIndicators"></li>
+          <% end %>
+        </ol>
+        <div class="carousel-inner">
+          <% @building.images.each_with_index do |image, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : ''%> ">
+            <img class="d-block w-100" src="<%= url_for(image.variant(auto_orient: true, resize: '800x600^').processed) %>" alt="First slide">
+          </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>  
+
+      <% else %>
+        <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+      <% end %>    
+
+    </div>  
+  
+    <div class="col-lg-4 col-md-12">
+
+      <h4>
+        <% rooms_count = @building.rooms.count %>
+        <%= rooms_count %> <%= rooms_count == 1 ? "Raum" : "Räume" %>        
+      </h4>
+      
+      <div class="list-group sticky-top">
+  
+        <%= form_with(model: [@building, Room.new], local: true) do |form| %>
+  
+          <div class="input-group mb-3">          
+            <%= form.text_field(:name, :class => "form-control")  %>
+            <div class="input-group-append">
+              <button class="btn btn-primary">
+                <%= fa_icon "plus" %> Hinzufügen
+              </button>
+            </div>
+          </div>        
+  
+        <% end %>      
+      
+        <% @building.rooms.each do |room| %>          
+          <div class="list-group-item">
+            <%= link_to room, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
+            <b>
+              <%= room.name %> 
+            </b>
+
+            <!-- Modal buttons for image previews -->
+            <a class="" data-toggle="modal" data-target="#modal-<%= room.id %>">
+              <% if room.images.first %>
+                  <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
+              <% else %>
+                  <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+              <% end %>                 
+            </a>            
+
+            <br/>
+            <span class="badge badge-pill badge-light"><%= room.images.count.to_s %> Bilder </span>
+            <span class="badge badge-pill badge-light"><%= room.storages.count.to_s %> Ablagen </span>            
+          </div>
+        <% end %>
+      </div>  
+      
+    </div>
+  
+  </div>
+
+<!-- Modal contents for image previews -->
+<% @building.rooms.each do |room| %>  
+
+  <div class="modal fade" id="modal-<%= room.id %>" tabindex="-1" role="dialog" aria-labelledby="modal-<%= room.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%= room.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if room.images.first %>
+          <img src="<%= url_for(room.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+        <% else %>
+            <img src="https://via.placeholder.com/400x300" class="mr-3 float-right" alt="...">
+        <% end %>          
+      </div>              
+    </div>
+  </div>
+</div>
+
+<% end %>

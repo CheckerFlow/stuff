@@ -8,6 +8,17 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :buildings do 
+    resources :rooms, shallow: true
+
+    member do 
+      get 'edit_images'
+      get :download_image_attachments
+      delete 'delete_image_attachment'
+    end    
+  end
+
+
   resources :rooms do
     resources :storages, shallow: true
 
