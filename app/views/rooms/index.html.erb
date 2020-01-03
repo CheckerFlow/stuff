@@ -48,9 +48,9 @@
           <%= klarschiff_auto_link(room.name) %>                 
           <br/>        
           <small>        
-            in <%= room.inspect %>
+            in <%= room.building.name %>
             <br/>
-            mit <%= room.storages.count %> Ablagen
+            hat <%= room.storages.count %> Ablagen
           </small>
         </h5>              
       </div>

@@ -74,9 +74,9 @@
     </div><!-- collapse -->
 
 
-    <% if (@rooms && @storages && @items && @lists) %>
+    <% if (@buildings && @rooms && @storages && @items && @lists) %>
         <p class="my-4">
-            <i><%= @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
+            <i><%= @buildings.size + @rooms.size  + @storages.size + @items.size + @lists.size %> Treffer für <b><%= params[:search_string] %></b></i>
         </p>
 
         <nav>
@@ -96,7 +96,35 @@
     <div class="tab-content" id="nav-tabContent">        
         <!-- Image masonry view -->
         <div class="tab-pane fade show active" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab">  
-            
+
+            <% if @buildings != nil && @buildings.size > 0 %>
+            <h5 class="mt-4">Gebäude</h5>
+            <div class="card-columns">
+                <% @buildings.each do |building| %>
+                    <div class="card">                    
+                        
+                        <% if building.images.first %>
+                            <img src="<%= url_for(building.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
+                        <% else %>
+                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                        <% end %>
+                        
+
+                        <%= link_to building do %>
+                        <div class="card-img-overlay text-white">
+                            <h5 class="card-title"><%= building.name %></h5>
+                        </div>
+                        <% end %>
+                        <div class="card-body p-2">
+                            <small class="card-text">
+                                <b>Räume:</b> <%= link_to building.rooms.size, building %>
+                            </small>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <% end %>        
+
             <% if @rooms != nil && @rooms.size > 0 %>
             <h5 class="mt-4">Räume</h5>
             <div class="card-columns">
@@ -174,8 +202,9 @@
                         <% end %>
                         <div class="card-body p-2">
                             <small class="card-text">
-                                <b>Ablage:</b> <%= link_to item.storage.name, item.storage %><br/>
-                                <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
+                                <b>Gebäude:</b> <%= link_to item.storage.room.building.name, item.storage.room.building %><br/>
+                                <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %><br/>
+                                <b>Ablage:</b> <%= link_to item.storage.name, item.storage %>
                             </small>
                         </div>
                     </div>
@@ -309,7 +338,7 @@
         
                         <br/>
                         <small>
-                            Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+                            <b>Gebäude:</b> <%= link_to item.storage.room.building.name, item.storage.room.building %> <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %> <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> 
                         </small>
                     </li>
                 <% end %>

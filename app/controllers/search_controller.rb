@@ -9,6 +9,7 @@ class SearchController < ApplicationController
 
   def search
     if params[:search_string] != "" && params[:search_string] != nil
+      @buildings = current_user.buildings.where('name LIKE ?', "%#{params[:search_string]}%")
       @rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search_string]}%")
       @storages = current_user.storages.where('name LIKE ?', "%#{params[:search_string]}%")
       @items = current_user.items.where('name LIKE ?', "%#{params[:search_string]}%")
@@ -17,6 +18,7 @@ class SearchController < ApplicationController
       @items_tagged = Item.tagged_with(params[:search_string])
 
     else
+      @buildings = nil
       @rooms = nil
       @storages = nil
       @items = nil
