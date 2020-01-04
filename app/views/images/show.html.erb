@@ -115,11 +115,12 @@
           <!-- Modal buttons for image previews -->
           <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
             <% if item.images.first %>
-                <% if item.images.first.blob != nil %>
-                    <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
-                <% else %>
-                    <% item.images.first.purge_later %>
-                <% end %>     
+                <% begin %>
+                  <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">                
+                <% rescue => e%>
+                  <%= debug item.images.first %>
+                  <%= debug e %>                  
+                <% end %>    
             <% else %>
                 <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
             <% end %>             
