@@ -112,7 +112,12 @@
           <br/>                    
           -->      
 
-          <span class="badge badge-pill badge-light"><%= item.images.count.to_s %> Bilder </span>
+          <span class="badge badge-pill badge-light">
+            <%= item.images.count.to_s %> Bilder 
+            <small>
+              Größe: <%= bytes_to_megabytes(image_sizes(item)).round(2) %> MB
+            </small>
+          </span>
 
           <% ListItem.where(:item_id => item.id).each do |list_item| %>
             <% list = current_user.lists.where(:id => list_item.list_id).first %>

@@ -36,7 +36,7 @@
     <div class="d-inline-flex w-100">
       <%= link_to room do %>
         <% if room.images.first %>
-          <img src="<%= url_for(room.images.first.variant(resize_to_limit: [400, 300], auto_orient: true).processed) %>" class="mr-3 img-thumbnail" alt="...">
+          <img src="<%= url_for(room.images.first.variant(resize_to_limit: [400, 300], auto_orient: true).processed) %>" class="mr-3 img-thumbnail" alt="...">          
         <% else %>
           <img src="https://via.placeholder.com/400x300" class="mr-3 img-thumbnail" alt="...">
         <% end %>
@@ -56,6 +56,9 @@
       </div>
       <div class="flex-fill bd-highlight">
         <span class="badge badge-pill badge-light"><%= room.images.count.to_s %> Bilder </span>
+        <small>
+          Größe: <%= bytes_to_megabytes(image_sizes(room)).round(2) %> MB
+        </small>
       </div>      
     </div>
   </div>

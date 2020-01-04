@@ -52,5 +52,22 @@ module ApplicationHelper
               record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename)
             end
         end
-    end    
+    end  
+    
+    MEGABYTES = 1024.0 * 1024.0
+
+    def bytes_to_megabytes (bytes)
+        bytes / MEGABYTES
+    end
+    
+    def image_sizes(record_with_images_attached)
+        total_size = 0
+
+        record_with_images_attached.images.each do |image|
+            total_size += image.blob.byte_size
+        end
+
+        return total_size
+    end
+
 end
