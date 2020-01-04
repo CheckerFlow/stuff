@@ -29,20 +29,21 @@ module ApplicationHelper
     # Resize images attached to a record
     def process_images(record_with_images_attached)
         record_with_images_attached.images.each do |image|
-            filename = image.filename.to_s
-
-            attachment_path = "#{Dir.tmpdir}/#{image.filename}"
-
-            File.open(attachment_path, 'wb') do |file|
-               file.write(image.blob.download)
-               file.close
-            end
-  
-            new_image = MiniMagick::Image.open(attachment_path)
-            # if image.width ..
+                        
             image_metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(image.blob).metadata
 
             if image_metadata[:width] > 1280
+              filename = image.filename.to_s
+
+              attachment_path = "#{Dir.tmpdir}/#{image.filename}"
+
+              File.open(attachment_path, 'wb') do |file|
+                file.write(image.blob.download)
+                file.close
+              end
+
+              new_image = MiniMagick::Image.open(attachment_path)
+                 
               new_image.resize "1280"
               new_image.quality "85%"
               new_image.interlace "JPEG" # Plane, JPEG
@@ -51,8 +52,6 @@ module ApplicationHelper
               new_image.colorspace "RGB"
               new_image.auto_orient
               #new_image.strip
-
-              puts "*-" * 100
             
               new_image.write attachment_path          
   
