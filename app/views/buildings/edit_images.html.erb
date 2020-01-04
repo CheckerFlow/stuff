@@ -7,41 +7,40 @@
 </div>
 <% end %>
 
-<h1 class="text-info">
-  <%= @room.name %>
-</h1>
+<h1 class="text-info"><%= @building.name %></h1>
 
 <div class="row">
   <div class="col-lg-6 col-sm-12">
-    <%= form_with(model: @room, local: true) do |form| %>
-      <% if @room.errors.any? %>
+    <%= form_with(model: @building, local: true, url: building_path) do |form| %>
+      <% if @building.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
+          <h2><%= pluralize(@building.errors.count, "error") %> prohibited this building from being saved:</h2>
+    
           <ul>
-            <% room.errors.full_messages.each do |message| %>
+            <% @building.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
+    
       <div class="form-group">
         <label>Bilder</label>
         <%= form.file_field :images, multiple: true, direct_upload: true, :class => "form-control" %>
-      </div>
-
+      </div>  
+    
       <div class="actions">
         <%= form.submit "Ändern", :class => "btn btn-primary" %>
       </div>
     <% end %>
+  
   </div>
-</div>
+</div>  
 
 <div class="row">
-<% @room.images.each_with_index do |image, index| %>    
+<% @building.images.each_with_index do |image, index| %>    
   <div class="card col-lg-2 col-md-3 col-sm-4 m-3 p-0">
-    <img src="<%= url_for(image.variant(auto_orient: true, resize: '800x600^').processed) %>" class="card-img-top" alt="...">
+    <img src="<%= url_for(image.variant(auto_orient: true, resize: '300x225^').processed) %>" class="card-img-top" alt="...">
     <div class="card-body p-2">
       <!--
       <h5 class="card-title">Card title</h5>
@@ -52,7 +51,7 @@
         <br/>
         Größe: <%= bytes_to_megabytes(image.blob.byte_size).round(2) %> MB              
       </small>
-      <%= link_to delete_image_attachment_room_path(image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn btn-sm btn-outline-danger float-right" do %>
+      <%= link_to delete_image_attachment_building_path(image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn btn-sm btn-outline-danger float-right" do %>
         <%= fa_icon "trash" %>
       <% end %>
     </div>
@@ -60,4 +59,4 @@
 <% end %>
 </div>
 
-<%= link_to 'Zurück', @room %>
+<%= link_to 'Zurück', @building %>

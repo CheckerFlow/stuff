@@ -24,7 +24,7 @@ class RoomsController < ApplicationController
   def show
     @storages = @room.storages.all
 
-    #process_images(@room)
+    process_images(@room)
   end
 
   def download_image_attachments

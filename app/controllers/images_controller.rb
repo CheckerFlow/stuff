@@ -17,7 +17,8 @@ class ImagesController < ApplicationController
     end
 
     def show
-        if (@storage != nil && params[:id] != nil)
+        if (@storage != nil && params[:id] != nil)            
+
             @image = @storage.images.find(params[:id])
             
             @next_image = @storage.images.attachments.where("id > ?", @image.id).first
@@ -25,6 +26,8 @@ class ImagesController < ApplicationController
 
             @first_image = @storage.images.attachments.first
             @last_image = @storage.images.attachments.last
+
+            process_images(@storage)
 
         else
             @image = nil            

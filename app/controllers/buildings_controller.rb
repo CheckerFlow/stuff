@@ -20,6 +20,8 @@ class BuildingsController < ApplicationController
   # GET /buildings/1.json
   def show
     @rooms = @building.rooms.all
+
+    process_images(@building)
   end
 
   def download_image_attachments

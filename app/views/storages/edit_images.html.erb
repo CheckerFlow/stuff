@@ -48,6 +48,8 @@
       -->
       <small>
         Datum: <%= image.created_at.strftime("%d.%m.%Y, %k:%M") %>
+        <br/>
+        Größe: <%= bytes_to_megabytes(image.blob.byte_size).round(2) %> MB              
       </small>
       <%= link_to delete_image_attachment_storage_path(image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn btn-sm btn-outline-danger float-right" do %>
         <%= fa_icon "trash" %>

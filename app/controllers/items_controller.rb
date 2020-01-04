@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    #process_images(@item)
+    process_images(@item)
 
     @list_item = ListItem.new    
   end

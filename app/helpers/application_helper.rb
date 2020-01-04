@@ -44,6 +44,15 @@ module ApplicationHelper
 
             if image_metadata[:width] > 1280
               new_image.resize "1280"
+              new_image.quality "85%"
+              new_image.interlace "JPEG" # Plane, JPEG
+              #new_image.gaussian_blur "0.05"
+              new_image.sampling_factor "4:2:0"
+              new_image.colorspace "RGB"
+              new_image.auto_orient
+              #new_image.strip
+
+              puts "*-" * 100
             
               new_image.write attachment_path          
   
