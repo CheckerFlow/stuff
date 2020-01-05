@@ -92,7 +92,7 @@
             
             <a class="" data-toggle="modal" data-target="#modal-<%= item.id %>">
               <% if item.images.first %>
-                  <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+                  <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class=" mr-3 float-right" alt="...">
               <% else %>
                   <%= image_tag('item_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>
               <% end %>                 
@@ -126,7 +126,7 @@
       </div>
       <div class="modal-body">
         <% if item.images.first %>
-          <img src="<%= url_for(item.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+          <img src="<%= url_for(item.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class=" mr-3 float-right" alt="...">
         <% else %>
           <%= image_tag('item_placeholder.jpg', :width => "100%") %>
         <% end %>          

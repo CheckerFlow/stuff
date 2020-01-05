@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body">
             <% if model.images.first %>
-                <img src="<%= url_for(model.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mx-3 float-right" alt="...">
+                <img src="<%= url_for(model.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class=" w-100" alt="...">
             <% else %>
                 <% if model.class == Building %>
                     <%= image_tag('house_placeholder.jpg', :width => "100%") %>

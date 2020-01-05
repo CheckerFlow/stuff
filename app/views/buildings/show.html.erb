@@ -134,9 +134,9 @@
       </div>
       <div class="modal-body">
         <% if room.images.first %>
-          <img src="<%= url_for(room.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class="img-thumbnail mr-3 float-right" alt="...">
+          <img src="<%= url_for(room.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class=" mr-3 float-right" alt="...">
         <% else %>
-          <%= image_tag('room_placeholder.jpg', :class => "mr-3 float-right", :width => "1200") %>
+          <%= image_tag('room_placeholder.jpg', :class => "w-100", :width => "1200") %>
         <% end %>          
       </div>              
     </div>
