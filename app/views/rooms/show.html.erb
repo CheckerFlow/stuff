@@ -59,7 +59,9 @@
       </div>  
 
       <% else %>
-        <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+        <%= link_to edit_images_room_path(@room) do %>          
+          <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+        <% end %>    
       <% end %>    
 
     </div>  
