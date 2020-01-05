@@ -66,9 +66,11 @@
     </div>  
 
     <% else %>
-      <%= link_to edit_images_storage_path(@storage) do %>          
-        <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+      <%= link_to edit_images_storage_path(@storage) do %>                
+        <%= image_tag('storage_placeholder.jpg', :class => "img-fluid position-relative", :width => "800") do %>                
+        <% end %>
       <% end %>
+            
     <% end %>
     
   </div>
@@ -103,7 +105,7 @@
           <% if item.images.first %>
               <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
           <% else %>
-              <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+              <%= image_tag('item_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>              
           <% end %>               
 
           <br/>

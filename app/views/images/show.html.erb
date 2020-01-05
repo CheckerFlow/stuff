@@ -78,8 +78,8 @@
     </div>
 
     <% else %>
-      <%= link_to edit_images_storage_path(@storage) do %>          
-        <img src="https://via.placeholder.com/800x600" class="card-img-top img-thumbnail" alt="...">  
+      <%= link_to edit_images_storage_path(@storage), :class => "btn btn-block" do %>
+        <%= image_tag('storage_placeholder.jpg'), :class => "img-fluid position-relative", :width => "800") do %>                        
       <% end %>
     <% end %>
     
@@ -124,7 +124,7 @@
                   <%= debug e %>                  
                 <% end %>    
             <% else %>
-                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                <%= image_tag('item_placeholder.jpg'), :class => "mr-3 float-right", :width => "50", :height => "50") %>
             <% end %>             
           </a>              
                 
@@ -179,7 +179,7 @@
             <%= debug e %>                  
           <% end %>                      
         <% else %>
-            <img src="https://via.placeholder.com/400x300" class="mr-3 float-right" alt="...">
+          <%= image_tag('item_placeholder.jpg'), :class => "mr-3 float-right", :width => "400") %>
         <% end %>          
       </div>              
     </div>

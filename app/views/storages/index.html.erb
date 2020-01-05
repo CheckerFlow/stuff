@@ -30,9 +30,9 @@
     <div class="d-inline-flex">
       <%= link_to storage do %>
         <% if storage.images.first %>
-        <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [300, 200], auto_orient: true).processed) %>" class="mr-3 img-thumbnail" alt="...">
+          <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [300, 200], auto_orient: true).processed) %>" class="mr-3 img-thumbnail" alt="...">
         <% else %>
-        <img src="https://via.placeholder.com/300x200" class="mr-3 img-thumbnail" alt="...">
+          <%= image_tag('storage_placeholder.jpg', :class => "mr-3 float-right", :width => "300", :height => "200") %>
         <% end %>
       <% end %>
     </div>

@@ -106,7 +106,7 @@
                         <% if building.images.first %>
                             <img src="<%= url_for(building.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
-                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                            <%= image_tag('house_placeholder.jpg', :width => "100%") %>
                         <% end %>
                         
 
@@ -134,7 +134,7 @@
                         <% if room.images.first %>
                             <img src="<%= url_for(room.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
-                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                            <%= image_tag('room_placeholder.jpg', :width => "100%") %>
                         <% end %>
                         
 
@@ -162,7 +162,7 @@
                         <% if storage.images.first %>
                             <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
-                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                            <%= image_tag('storage_placeholder.jpg', :width => "100%") %>
                         <% end %>
                         
 
@@ -191,7 +191,7 @@
                         <% if item.images.first %>
                             <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                         <% else %>
-                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                            <%= image_tag('item_placeholder.jpg', :width => "100%") %>
                         <% end %>                 
                         
 
@@ -224,10 +224,10 @@
                             <% if list.list_items.first.item.images.first %>
                                 <img src="<%= url_for(list.list_items.first.item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                             <% else %>
-                                <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                                <%= image_tag('item_placeholder.jpg', :class => "card-img-top", :width => "200", :height => "150") %>                                
                             <% end %>     
                         <% else %>
-                            <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                            <%= image_tag('item_placeholder.jpg', :class => "card-img-top", :width => "200", :height => "150") %>
                         <% end %>                 
                                                        
 
@@ -266,7 +266,7 @@
                             <% if room.images.first %>
                                 <img src="<%= url_for(room.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
                             <% else %>
-                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                                <%= image_tag('room_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>                                                                
                             <% end %>
                         </a>
         
@@ -295,7 +295,7 @@
                             <% if storage.images.first %>
                                 <img src="<%= url_for(storage.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
                             <% else %>
-                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                                <%= image_tag('storage_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>                                
                             <% end %>       
                         </a>                
         
@@ -332,7 +332,7 @@
                             <% if item.images.first %>
                                 <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">
                             <% else %>
-                                <img src="https://via.placeholder.com/50x50" class="mr-3 float-right" alt="...">
+                                <%= image_tag('item_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>                                
                             <% end %>    
                         </a>
         

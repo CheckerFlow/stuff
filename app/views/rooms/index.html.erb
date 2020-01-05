@@ -38,7 +38,7 @@
         <% if room.images.first %>
           <img src="<%= url_for(room.images.first.variant(resize_to_limit: [400, 300], auto_orient: true).processed) %>" class="mr-3 img-thumbnail" alt="...">          
         <% else %>
-          <img src="https://via.placeholder.com/400x300" class="mr-3 img-thumbnail" alt="...">
+          <%= image_tag('room_placeholder.jpg', :class => "mr-3 float-right", :width => "300") %>
         <% end %>
       <% end %>
     </div>
