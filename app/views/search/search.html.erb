@@ -224,10 +224,10 @@
                             <% if list.list_items.first.item.images.first %>
                                 <img src="<%= url_for(list.list_items.first.item.images.first.variant(resize_to_limit: [300,300], auto_orient: true).processed) %>" class="card-img-top" alt="...">
                             <% else %>
-                                <%= image_tag('item_placeholder.jpg', :class => "card-img-top", :width => "200", :height => "150") %>                                
+                                <%= image_tag('item_placeholder.jpg', :class => "card-img-top w-100") %>                                
                             <% end %>     
                         <% else %>
-                            <%= image_tag('item_placeholder.jpg', :class => "card-img-top", :width => "200", :height => "150") %>
+                            <%= image_tag('item_placeholder.jpg', :class => "card-img-top w-100") %>
                         <% end %>                 
                                                        
 
