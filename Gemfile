@@ -43,6 +43,7 @@ gem 'twitter-text', '~> 3.0'
 gem 'active_storage-send_zip', '~> 0.3.2'
 
 gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4', '~> 0.2.2' # Will Paginate link renderer styles for Twitter Bootstrap 4
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
