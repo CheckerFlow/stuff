@@ -15,12 +15,15 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     if @storage
-      @items = @storage.items.limit(10)
+      #@items = @storage.items.limit(10)
+      @items = @storage.items.paginate(page: params[:page])
     else
       if params[:search]
-        @items = current_user.items.where('name LIKE ?', "%#{params[:search]}%")
+        #@items = current_user.items.where('name LIKE ?', "%#{params[:search]}%")
+        @items = current_user.items.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
       else
-        @items = current_user.items.limit(10)
+        #@items = current_user.items.limit(10)
+        @items = current_user.items.paginate(page: params[:page])
       end
     end
   end

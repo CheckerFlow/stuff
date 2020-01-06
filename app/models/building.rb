@@ -4,4 +4,6 @@ class Building < ApplicationRecord
     has_many :rooms, dependent: :destroy
 
     has_many_attached :images, dependent: :destroy    
+
+    self.per_page = 10 
 end

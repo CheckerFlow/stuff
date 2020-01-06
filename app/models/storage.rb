@@ -6,4 +6,6 @@ class Storage < ApplicationRecord
     has_many :items, dependent: :destroy
 
     has_many_attached :images, dependent: :destroy
+
+    self.per_page = 25
 end

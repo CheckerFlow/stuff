@@ -13,9 +13,11 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     if params[:search]
-      @rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%")
+      #@rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%")
+      @rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
     else
-      @rooms = current_user.rooms.all
+      #@rooms = current_user.rooms.all
+      @rooms = current_user.rooms.all.paginate(page: params[:page])
     end    
   end
 

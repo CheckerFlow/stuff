@@ -17,9 +17,11 @@ class StoragesController < ApplicationController
   # GET /storages.json
   def index
     if params[:search]
-      @storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%")
+      #@storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%")
+      @storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
     else
-      @storages = current_user.storages.all
+      #@storages = current_user.storages.all
+      @storages = current_user.storages.all.paginate(page: params[:page])
     end
   end
 
