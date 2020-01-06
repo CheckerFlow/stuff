@@ -5,5 +5,5 @@ class Building < ApplicationRecord
 
     has_many_attached :images, dependent: :destroy    
 
-    self.per_page = 10 
+    self.per_page = 12 
 end
