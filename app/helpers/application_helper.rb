@@ -32,37 +32,38 @@ module ApplicationHelper
             
             begin
                 image_metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(image.blob).metadata
-
                 if image_metadata[:width] > 1280
                     filename = image.filename.to_s
-
-                    attachment_path = "#{Dir.tmpdir}/#{image.filename}"
-
-                    File.open(attachment_path, 'wb') do |file|
-                    file.write(image.blob.download)
-                    file.close
-                end
-
-                new_image = MiniMagick::Image.open(attachment_path)
-                    
-                new_image.resize "1280"
-                new_image.quality "85%"
-                new_image.interlace "JPEG" # Plane, JPEG
-                #new_image.gaussian_blur "0.05"
-                new_image.sampling_factor "4:2:0"
-                new_image.colorspace "RGB"
-                new_image.auto_orient
-                #new_image.strip
-                
-                new_image.write attachment_path          
     
-                image.purge_later
-                #record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename, content_type: "image/jpg")
-                record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename)
-            rescue => e
-                debug image
-                debug e
-            end            
+                    attachment_path = "#{Dir.tmpdir}/#{image.filename}"
+    
+                    File.open(attachment_path, 'wb') do |file|
+                        file.write(image.blob.download)
+                        file.close
+                    end
+    
+                    new_image = MiniMagick::Image.open(attachment_path)
+                        
+                    new_image.resize "1280"
+                    new_image.quality "85%"
+                    new_image.interlace "JPEG" # Plane, JPEG
+                    #new_image.gaussian_blur "0.05"
+                    new_image.sampling_factor "4:2:0"
+                    new_image.colorspace "RGB"
+                    new_image.auto_orient
+                    #new_image.strip
+                    
+                    new_image.write attachment_path          
+        
+                    image.purge_later
+                    #record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename, content_type: "image/jpg")
+                    record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename)
+                end                
+            rescue StandardError => msg
+                puts msg
+            else
+
+            end
         end
     end  
     
