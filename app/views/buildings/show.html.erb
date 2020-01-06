@@ -79,6 +79,7 @@
   
           <div class="input-group mb-3">          
             <%= form.text_field(:name, :class => "form-control")  %>
+            <%= form.hidden_field :building_id, value: @building.id %>
             <div class="input-group-append">
               <button class="btn btn-primary">
                 <%= fa_icon "plus" %> Hinzufügen
