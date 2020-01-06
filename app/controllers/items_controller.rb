@@ -15,12 +15,12 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     if @storage
-      @items = @storage.items
+      @items = @storage.items.limit(10)
     else
       if params[:search]
         @items = current_user.items.where('name LIKE ?', "%#{params[:search]}%")
       else
-        @items = current_user.items.all
+        @items = current_user.items.limit(10)
       end
     end
   end
