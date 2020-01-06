@@ -79,7 +79,7 @@
 
     <% else %>
       <%= link_to edit_images_storage_path(@storage), :class => "btn btn-block" do %>
-        <%= image_tag('storage_placeholder.jpg', :class => "img-fluid position-relative", :width => "800") do %>                        
+        <%= image_tag('storage_placeholder.jpg', :class => "img-fluid position-relative", :width => "800") %>
       <% end %>
     <% end %>
     
@@ -174,7 +174,7 @@
         <% if item.images.first %>
           <% begin %>            
             <img src="<%= url_for(item.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class=" mr-3 float-right" alt="...">
-          <% rescue => e%>
+          <% rescue => e %>
             <%= debug item.images.first %>
             <%= debug e %>                  
           <% end %>                      
@@ -184,6 +184,6 @@
       </div>              
     </div>
   </div>
-</div>
+  </div>
 
 <% end %>
