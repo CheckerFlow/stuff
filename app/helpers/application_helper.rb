@@ -61,9 +61,7 @@ module ApplicationHelper
                 end                
             rescue ActiveStorage::FileNotFoundError => e
                 image.purge_later
-            end
-
-            end
+            end            
         end
     end  
     
