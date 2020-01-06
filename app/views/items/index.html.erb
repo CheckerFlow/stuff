@@ -30,7 +30,12 @@
     <div class="d-inline-flex">
       <%= link_to item do %>
         <% if item.images.first %>
-          <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300, 200], auto_orient: true).processed) %>" class="w-100" alt="...">
+          <% begin %>
+            <img src="<%= url_for(item.images.first.variant(resize_to_limit: [300, 200], auto_orient: true).processed) %>" class="w-100" alt="...">
+          <% rescue => e %>
+            <%= debug item.images.first %>
+            <%= debug e %>                  
+          <% end %>               
         <% else %>
           <%= image_tag('item_placeholder.jpg', :class => "w-100") %>        
         <% end %>
