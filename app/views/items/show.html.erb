@@ -46,7 +46,7 @@
       <% begin %>
         <img src="<%= url_for(image.variant(auto_orient: true, resize: '300x225^').processed) %>" class="card-img-top " alt="...">
       <% rescue => e %>
-        <%= debug item.images.first %>
+        <%= debug image %>
         <%= debug e %>            
       <% end %>
     </div>
