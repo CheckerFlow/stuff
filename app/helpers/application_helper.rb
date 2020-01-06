@@ -59,9 +59,9 @@ module ApplicationHelper
                     #record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename, content_type: "image/jpg")
                     record_with_images_attached.images.attach(io: File.open(attachment_path), filename: filename)
                 end                
-            rescue StandardError => msg
-                puts msg
-            else
+            rescue ActiveStorage::FileNotFoundError => e
+                image.purge_later
+            end
 
             end
         end

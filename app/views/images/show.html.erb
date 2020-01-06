@@ -119,10 +119,9 @@
             <% if item.images.first %>
                 <% begin %>
                   <img src="<%= url_for(item.images.first.variant(resize_to_limit: [50, 50], auto_orient: true).processed) %>" class="mr-3 float-right" alt="...">                
-                <% rescue => e %>
-                  <%= debug item.images.first %>
-                  <%= debug e %>                  
-                <% end %>    
+                <% rescue ActiveStorage::FileNotFoundError => e %>
+                  <% item.images.first.purge_later %>
+                <% end %>
             <% else %>
                 <%= image_tag('item_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>
             <% end %>             
@@ -174,10 +173,9 @@
         <% if item.images.first %>
           <% begin %>            
             <img src="<%= url_for(item.images.first.variant(resize_to_limit: [1200, 1000], auto_orient: true).processed) %>" class=" mr-3 float-right" alt="...">
-          <% rescue => e %>
-            <%= debug item.images.first %>
-            <%= debug e %>                  
-          <% end %>                      
+          <% rescue ActiveStorage::FileNotFoundError => e %>
+            <% item.images.first.purge_later %>
+          <% end %>                
         <% else %>
           <%= image_tag('item_placeholder.jpg', :class => "mr-3 float-right", :width => "400") %>
         <% end %>          
