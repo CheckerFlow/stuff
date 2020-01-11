@@ -1,6 +1,8 @@
 class BuildingsController < ApplicationController
   include ActiveStorage::SendZip
   include ApplicationHelper
+  include BuildingsHelper
+  require 'will_paginate/array'
 
   before_action :authenticate_user!
   before_action :set_building, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
@@ -9,12 +11,17 @@ class BuildingsController < ApplicationController
   # GET /buildings
   # GET /buildings.json
   def index
+    
     if params[:search]
       #@buildings = current_user.buildings.where('name LIKE ?', "%#{params[:search]}%")
-      @buildings = current_user.buildings.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      #@buildings = current_user.buildings.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      @buildings = all_buildings(params[:search]).paginate(page: params[:page])
+      #@buildings = Building.all.paginate(page: params[:page])      
     else
       #@buildings = current_user.buildings.all
-      @buildings = current_user.buildings.all.paginate(page: params[:page])
+      #@buildings = current_user.buildings.all.paginate(page: params[:page])
+      @buildings = all_buildings.paginate(page: params[:page])      
+      #@buildings = Building.all.paginate(page: params[:page])      
     end
   end
 

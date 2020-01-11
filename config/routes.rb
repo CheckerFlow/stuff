@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'pages/landing'
   get 'pages/about'
 
+  resources :family_members
+
   devise_for :users
 
   resources :buildings do 

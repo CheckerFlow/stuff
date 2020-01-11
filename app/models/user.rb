@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :storages, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :lists, dependent: :destroy
+
+  has_many :family_members, dependent: :destroy
 end

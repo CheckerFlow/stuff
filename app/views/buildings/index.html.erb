@@ -48,7 +48,10 @@
           <%= klarschiff_auto_link(building.name) %>                 
           <br/>        
           <small>        
-            mit <%= building.rooms.count %> Räumen
+            mit <%= building.rooms.count %> Räumen </br>            
+            <% if building.user.id != current_user.id %>
+              von <span class="badge badge-pill badge-info"><%= building.user.email %></span>
+            <% end %>
           </small>
         </h5>              
       </div>
