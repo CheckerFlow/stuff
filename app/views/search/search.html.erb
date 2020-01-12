@@ -34,7 +34,7 @@
             <div class="col-lg-12 col-sm-12 mx-auto">
                 <div class="">
                     <span class="h5">Tags</span>
-                    <% current_user.items.tag_counts.each do |tag| %>
+                    <% (own_items.tag_counts + family_member_items.tag_counts).each do |tag| %>
                         <% if tag.taggings_count >= 0 %>          
                             <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
                                 #<%= tag.name %> (<%= tag.taggings_count %>)
@@ -47,7 +47,7 @@
             <div class="col-lg-12 col-sm-12 mx-auto my-1">
                 <div class="">
                     <span class="h5">Erwähnungen</span>
-                    <% current_user.items.owner_counts.each do |tag| %>
+                    <% (own_items.owner_counts + family_member_items.owner_counts).each do |tag| %>
                         <% if tag.taggings_count >= 0 %>          
                             <%= link_to search_search_path(:search_string => tag.name), :class => "badge badge-pill badge-light small" do %>
                                 @<%= tag.name %> (<%= tag.taggings_count %>)
@@ -60,7 +60,7 @@
             <div class="col-lg-12 col-sm-12 mx-auto my-1">
                 <div class="">
                     <span class="h5">Listen</span>
-                    <% current_user.lists.each do |list| %>
+                    <% (own_lists + family_member_lists).each do |list| %>
                         <% if list.list_items.count >= 0 %>          
                             <%= link_to list_path(list), :class => "badge badge-pill badge-light small" do %>
                                 <%= fa_icon "list" %><%= list.name %> (<%= list.list_items.count %>)
