@@ -23,7 +23,7 @@
 
   <div class="form-group">
   <label>Raum</label>
-  <%= form.select :room_id, options_from_collection_for_select(current_user.rooms.all, 'id', proc{|room| room.building.name + " -> " + room.name }, storage.room_id), {}, { :class => "form-control" } %>
+  <%= form.select :room_id, options_from_collection_for_select(all_rooms, 'id', proc{|room| room.building.name + " -> " + room.name }, storage.room_id), {}, { :class => "form-control" } %>
 </div>      
 
   <div class="actions">

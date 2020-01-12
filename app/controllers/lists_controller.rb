@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   include ApplicationHelper
+  include ListsHelper
 
   before_action :authenticate_user!
 
@@ -13,9 +14,9 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if params[:search]
-      @lists = current_user.lists.where('name LIKE ?', "%#{params[:search]}%")
+      @lists = all_lists.where('name LIKE ?', "%#{params[:search]}%")
     else
-      @lists = current_user.lists.all
+      @lists = all_lists
     end
   end
 
@@ -76,7 +77,7 @@ class ListsController < ApplicationController
   end
 
   def addItem
-    item = current_user.items.find(params[:item_id])
+    item = Item.find(params[:item_id])
 
     list_items = ListItem.where({item_id: params[:item_id], list_id: params[:id]})
 
@@ -127,7 +128,7 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
-      @list = current_user.lists.find(params[:id])
+      @list = List.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -7,7 +7,7 @@
 
 <h3>Auswählen für Liste <%= link_to @list.name, list_path(@list) %></h3>
 
-<% current_user.rooms.each do |room|  %>
+<% all_rooms.each do |room|  %>
     <h5><%= room.name %></h5>
 
     <% room.storages.each do |storage|  %>

@@ -46,7 +46,7 @@
           <%= klarschiff_auto_link(item.name) %>
 
           <% ListItem.where(:item_id => item.id).each do |list_item| %>
-            <% list = current_user.lists.where(:id => list_item.list_id).first %>
+            <% list = List.where(:id => list_item.list_id).first %>
             <%= link_to list_path(list) do %>
                 <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
             <% end %>
@@ -54,6 +54,10 @@
           <br/>
           <small>
             <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
+            <br/>
+            <% if item.user.id != current_user.id %>
+              von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
+            <% end %>               
           </small>
           <br/>
         </h5>

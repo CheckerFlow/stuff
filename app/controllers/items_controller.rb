@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   include ActiveStorage::SendZip
   include ApplicationHelper
+  include ItemsHelper
+  require 'will_paginate/array'    
 
   before_action do 
     title("Dinge")
@@ -20,10 +22,12 @@ class ItemsController < ApplicationController
     else
       if params[:search]
         #@items = current_user.items.where('name LIKE ?', "%#{params[:search]}%")
-        @items = current_user.items.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+        #@items = current_user.items.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+        @items = all_items(params[:search]).paginate(page: params[:page])
       else
         #@items = current_user.items.limit(10)
-        @items = current_user.items.paginate(page: params[:page])
+        #@items = current_user.items.paginate(page: params[:page])
+        @items = all_items.paginate(page: params[:page])
       end
     end
   end
@@ -134,12 +138,12 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = current_user.items.find(params[:id])
+      @item = Item.find(params[:id])
     end
 
     def set_storage 
       if params[:storage_id]
-        @storage = current_user.storages.find(params[:storage_id])
+        @storage = Storage.find(params[:storage_id])
       else
         @storage = nil
       end

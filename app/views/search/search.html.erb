@@ -3,7 +3,7 @@
     <div class="row align-items-center mt-5">    
         <div class="col-lg-6 col-sm-12 mx-auto">
             <p class="h1 align-middle text-info">Klar Schiff</p>
-            <p class="text-secondary">Suche in <%= current_user.rooms.size %> Räumen, <%= current_user.storages.size %> Ablagen, <%= current_user.items.size %> Dinge, <%= current_user.lists.size %> Listen</p>
+            <p class="text-secondary">Suche in <%= all_rooms.size %> Räumen, <%= all_storages.size %> Ablagen, <%= all_items.size %> Dinge, <%= all_lists.size %> Listen</p>
         </div>
     </div>
     <div class="row align-items-center mt-3 mb-5">    
@@ -112,12 +112,16 @@
 
                         <%= link_to building do %>
                         <div class="card-img-overlay text-white">
-                            <h5 class="card-title"><%= building.name %></h5>
+                            <h5 class="card-title"><%= building.name %></h5>                            
                         </div>
                         <% end %>
                         <div class="card-body p-2">
                             <small class="card-text">
                                 <b>Räume:</b> <%= link_to building.rooms.size, building %>
+                                <br/>
+                                <% if building.user.id != current_user.id %>
+                                  von <span class="badge badge-pill badge-info"><%= building.user.email %></span>
+                                <% end %>     
                             </small>
                         </div>
                     </div>
@@ -146,6 +150,10 @@
                         <div class="card-body p-2">
                             <small class="card-text">
                                 <b>Ablagen:</b> <%= link_to room.storages.size, room %>
+                                <br/>
+                                <% if room.user.id != current_user.id %>
+                                  von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
+                                <% end %>                                     
                             </small>
                         </div>
                     </div>
@@ -168,12 +176,16 @@
 
                         <%= link_to storage do %>
                         <div class="card-img-overlay text-white">
-                            <h5 class="card-title"><%= storage.name %></h5>
+                            <h5 class="card-title"><%= storage.name %></h5>                              
                         </div>
                         <% end %>
                         <div class="card-body p-2">
                             <small class="card-text">
                                 <b>Dinge:</b> <%= link_to storage.items.size, storage %>
+                                <br/>
+                                <% if storage.user.id != current_user.id %>
+                                  von <span class="badge badge-pill badge-info"><%= storage.user.email %></span>
+                                <% end %>                                   
                             </small>                            
                         </div>
                     </div>
@@ -197,7 +209,7 @@
 
                         <%= link_to item do %>
                         <div class="card-img-overlay text-white">
-                            <h5 class="card-title"><%= item.name %></h5>
+                            <h5 class="card-title"><%= item.name %></h5>                            
                         </div>
                         <% end %>
                         <div class="card-body p-2">
@@ -205,6 +217,10 @@
                                 <b>Gebäude:</b> <%= link_to item.storage.room.building.name, item.storage.room.building %><br/>
                                 <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %><br/>
                                 <b>Ablage:</b> <%= link_to item.storage.name, item.storage %>
+                                <br/>
+                                <% if item.user.id != current_user.id %>
+                                  von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
+                                <% end %>                                
                             </small>
                         </div>
                     </div>
@@ -321,7 +337,7 @@
                         </b>
         
                         <% ListItem.where(:item_id => item.id).each do |list_item| %>
-                            <% list = current_user.lists.where(:id => list_item.list_id).first %>
+                            <% list = List.where(:id => list_item.list_id).first %>
                             <%= link_to list_path(list) do %>
                                 <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list.name %></span>
                             <% end %>

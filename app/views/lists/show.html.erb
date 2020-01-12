@@ -42,7 +42,7 @@
     <% else %>  
       <div class="card-columns">
       <% list_items.each do |list_item| %>
-        <% item = current_user.items.find(list_item.item_id) %>
+        <% item = Item.find(list_item.item_id) %>
         <div class="">
           <div class="card ">
             
@@ -62,6 +62,10 @@
                 <small class="card-text">
                   <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> <br/>
                   <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
+                  <% if item.user.id != current_user.id %>
+                    <br/>
+                    von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
+                  <% end %>                     
                 </small>                
             </div>
           </div>
@@ -79,7 +83,7 @@
         Die Liste ist leer.
       <% else %>
         <% list_items.each do |list_item| %>
-          <% item = current_user.items.find(list_item.item_id) %>
+          <% item = Item.find(list_item.item_id) %>
           <div class="list-group-item">        
             <%= link_to item, :class => "btn btn-lg btn-outline-primary float-left mr-2" do %><%= fa_icon "angle-right" %><% end %>
             
@@ -102,6 +106,9 @@
     
             <small>
               Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+              <% if item.user.id != current_user.id %>
+                von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
+              <% end %>                 
             </small>
           </div>
         <% end %>
@@ -113,7 +120,7 @@
 
 <!-- Modal contents for image previews -->
 <% list_items.each do |list_item| %>
-  <% item = current_user.items.find(list_item.item_id) %>
+  <% item = Item.find(list_item.item_id) %>
 
   <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="modal-<%= item.id %>" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">

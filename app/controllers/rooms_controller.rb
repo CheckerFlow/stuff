@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
   include ActiveStorage::SendZip
   include ApplicationHelper
+  include RoomsHelper
+  require 'will_paginate/array'  
 
   before_action :authenticate_user!
   before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
@@ -14,10 +16,12 @@ class RoomsController < ApplicationController
   def index
     if params[:search]
       #@rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%")
-      @rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      #@rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      @rooms = all_rooms(params[:search]).paginate(page: params[:page])
     else
       #@rooms = current_user.rooms.all
-      @rooms = current_user.rooms.all.paginate(page: params[:page])
+      #@rooms = current_user.rooms.all.paginate(page: params[:page])
+      @rooms = all_rooms.paginate(page: params[:page])
     end    
   end
 
@@ -120,7 +124,7 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = current_user.rooms.find(params[:id])
+      @room = Room.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

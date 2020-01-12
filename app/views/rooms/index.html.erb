@@ -51,6 +51,10 @@
             in <%= room.building.name %>
             <br/>
             hat <%= room.storages.count %> Ablagen
+            <br/>
+            <% if room.user.id != current_user.id %>
+              von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
+            <% end %>            
           </small>
         </h5>              
       </div>

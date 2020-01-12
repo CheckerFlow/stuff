@@ -37,7 +37,7 @@ class ImagesController < ApplicationController
     private
       def set_storage
         if (params[:storage_id] != nil)
-            @storage = current_user.storages.find(params[:storage_id])
+            @storage = Storage.find(params[:storage_id])
         else
             @storage = nil
         end

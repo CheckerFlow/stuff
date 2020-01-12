@@ -32,13 +32,19 @@
           <%= link_to search_search_path, :class => "list-group-item list-group-item-action bg-light" do %><%= fa_icon "search" %> Suchen<% end %>
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "boxes" %> Orte & Dinge</b>
           <%= link_to buildings_url, :class=>"list-group-item list-group-item-action bg-light" do %>Gebäude <span class="badge badge-pill badge-secondary float-right"><%= all_buildings.count %></span><% end %>
-          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= current_user.rooms.all.count %></span><% end %>
-          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= current_user.storages.all.count %></span><% end %>
-          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary float-right"><%= current_user.items.all.count %></span><% end %>
+          <%= link_to rooms_url, :class=>"list-group-item list-group-item-action bg-light" do %>Räume <span class="badge badge-pill badge-secondary float-right"><%= all_rooms.count %></span><% end %>
+          <%= link_to storages_url, :class=>"list-group-item list-group-item-action bg-light" do %>Ablagen <span class="badge badge-pill badge-secondary float-right"><%= all_storages.count %></span><% end %>
+          <%= link_to items_url, :class=>"list-group-item list-group-item-action bg-light" do %>Dinge <span class="badge badge-pill badge-secondary float-right"><%= all_items.count %></span><% end %>
           
           <b class="list-group-item list-group-item-action bg-light" disabled><%= fa_icon "list" %> Listen</b>
-          <% current_user.lists.each do |list| %>
-            <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %><%= list.name %>  <span class="badge badge-pill badge-secondary float-right"><%= list.list_items.count %></span><% end %>
+          <% all_lists.each do |list| %>
+            <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %>
+              <%= list.name %>  <span class="badge badge-pill badge-secondary float-right"><%= list.list_items.count %></span>              
+              <% if list.user.id != current_user.id %>
+                <br/>
+                von <span class="badge badge-pill badge-info"><%= list.user.email %></span>
+              <% end %>     
+            <% end %>
           <% end %>
 
           <div class="list-group-item bg-light" href="#">
@@ -123,9 +129,6 @@
                 <%= link_to "Einloggen", new_user_session_path, :class => "nav-link" %>              
               </li>
             <% else %>
-              <li class="nav-item">                
-                <%= current_user.email %>    
-              </li>
               <li class="nav-item">                
                 <%= link_to search_search_path, :class => "nav-link" do %><%= fa_icon "search" %> Suchen<% end %>
               </li>

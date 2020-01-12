@@ -3,6 +3,8 @@ class StoragesController < ApplicationController
 
   include ActiveStorage::SendZip
   include ApplicationHelper
+  include StoragesHelper
+  require 'will_paginate/array'    
 
   before_action do 
     title("Ablagen")
@@ -18,10 +20,12 @@ class StoragesController < ApplicationController
   def index
     if params[:search]
       #@storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%")
-      @storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      #@storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
+      @storages = all_storages(params[:search]).paginate(page: params[:page])
     else
       #@storages = current_user.storages.all
-      @storages = current_user.storages.all.paginate(page: params[:page])
+      #@storages = current_user.storages.all.paginate(page: params[:page])
+      @storages = all_storages.paginate(page: params[:page])
     end
   end
 
@@ -125,11 +129,11 @@ class StoragesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_storage
-      @storage = current_user.storages.find(params[:id])
+      @storage = Storage.find(params[:id])
     end
 
     def set_room
-      @room = current_user.rooms.find(params[:room_id])
+      @room = Room.find(params[:room_id])
     end    
 
     # Never trust parameters from the scary internet, only allow the white list through.

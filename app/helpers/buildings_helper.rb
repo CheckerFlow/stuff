@@ -9,13 +9,13 @@ module BuildingsHelper
     end
 
     def family_member_buildings(search = nil)
-        family_members = current_user.family_members        
+        family_members = FamilyMember.where(:email => current_user.email)
 
         family_members_user_ids = []
 
         family_members.each do 
-            |family_member|
-            family_members_user_ids << User.find_by(:email => family_member.email).id
+            |family_member|            
+            family_members_user_ids << family_member.user_id
         end    
         
         if search != nil
