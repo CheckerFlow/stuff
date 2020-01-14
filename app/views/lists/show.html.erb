@@ -17,7 +17,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to selectitems_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "list" %> Auswählen <% end %>
       <%= link_to edit_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
-      <%= link_to sharing_group_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "share-alt" %> Teilen <% end %>
+      <%= link_to sharing_group_members_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "share-alt" %> Teilen <% end %>
       <%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
     </div>
   </div>    

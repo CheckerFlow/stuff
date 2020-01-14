@@ -8,7 +8,7 @@ class ListsController < ApplicationController
 
   before_action :set_list, only: [:show, :edit, :update, :destroy, :selectitems, :addItem, :removeItem]
 
-  before_action :set_list_as_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group]
+  before_action :set_list_as_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group_members]
 
   before_action do 
     title("Listen")

@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       post 'addItem'
       delete 'removeItem'      
 
-      get 'sharing_group'
+      get 'sharing_group_members'
       post 'add_sharing_group_member'
       delete 'remove_sharing_group_member'
     end    

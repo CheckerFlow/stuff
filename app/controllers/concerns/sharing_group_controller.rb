@@ -1,8 +1,10 @@
 module SharingGroupController
     extend ActiveSupport::Concern
 
-    def sharing_group
+    def sharing_group_members
         @sharing_group_members = @resource.sharing_group_members
+
+        render "sharing_group_members/sharing_group_members"
     end
 
     def add_sharing_group_member    
@@ -15,7 +17,7 @@ module SharingGroupController
         sharing_group_member.save
 
         respond_to do |format|
-        format.html { redirect_to sharing_group_list_path(@resource), notice: email + ' wurde der Teilen-Gruppe hinzugefügt.' }
+        format.html { redirect_to sharing_group_members_list_path(@resource), notice: email + ' wurde der Teilen-Gruppe hinzugefügt.' }
         format.json { head :no_content }
         end 
     end
@@ -25,7 +27,7 @@ module SharingGroupController
         sharing_group_member.destroy
 
         respond_to do |format|
-        format.html { redirect_back(fallback_location: sharing_group_list_path(@resource), notice: sharing_group_member.email + ' wurde der Teilen-Gruppe entfernt.') }
+        format.html { redirect_back(fallback_location: sharing_group_members_list_path(@resource), notice: sharing_group_member.email + ' wurde der Teilen-Gruppe entfernt.') }
         format.json { head :no_content }
         end    
     end
