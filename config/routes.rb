@@ -56,7 +56,11 @@ Rails.application.routes.draw do
     member do
       get 'selectitems'
       post 'addItem'
-      delete 'removeItem'
+      delete 'removeItem'      
+
+      get 'sharing_group'
+      post 'add_sharing_group_member'
+      delete 'remove_sharing_group_member'
     end    
   end
 

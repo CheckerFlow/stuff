@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
 
   has_many :family_members, dependent: :destroy
+  has_many :sharing_group_members, dependent: :destroy
 end

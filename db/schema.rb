@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_122852) do
+ActiveRecord::Schema.define(version: 2020_01_12_094906) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 2020_01_11_122852) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "building_id"
+  end
+
+  create_table "sharing_group_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "email"
+    t.bigint "shareable_id"
+    t.string "shareable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shareable_type", "shareable_id"], name: "index_sharing_group_members_on_shareable_type_and_shareable_id"
   end
 
   create_table "storages", force: :cascade do |t|

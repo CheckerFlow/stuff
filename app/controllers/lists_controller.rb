@@ -2,9 +2,13 @@ class ListsController < ApplicationController
   include ApplicationHelper
   include ListsHelper
 
+  include SharingGroupController
+
   before_action :authenticate_user!
 
   before_action :set_list, only: [:show, :edit, :update, :destroy, :selectitems, :addItem, :removeItem]
+
+  before_action :set_list_as_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group]
 
   before_action do 
     title("Listen")
@@ -76,6 +80,8 @@ class ListsController < ApplicationController
     end
   end
 
+
+
   def addItem
     item = Item.find(params[:item_id])
 
@@ -129,6 +135,11 @@ class ListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_list
       @list = List.find(params[:id])
+    end
+
+    # Set the resource to be shared for the SharingGroupController. Note: Sharables are polymorphic
+    def set_list_as_resource
+      @resource = List.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
