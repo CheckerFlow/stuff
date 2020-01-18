@@ -47,7 +47,16 @@ module ItemsHelper
             |shared_storage_item|
             shared_item_ids << shared_storage_item.id
           end
-        end               
+        end            
+        
+        # Items through shared lists
+        shared_lists.each do 
+            |shared_list|
+            shared_list.list_items.each do 
+              |shared_list_item|
+              shared_item_ids << shared_list_item.id
+            end
+          end             
 
         if search != nil
             _shared_items = Item.where(id: shared_item_ids).where('name LIKE ?', "%#{search}%") 
