@@ -26,16 +26,34 @@ module StoragesHelper
         return _family_member_storages
     end
 
-    def all_storages(search = nil)
+    def shared_storages(search = nil)
+        shared_group_members = SharingGroupMember.where(:email => current_user.email)
+    
+        shared_list_ids = []
+    
+        shared_group_members.each do 
+            |shared_group_member|
+            if shared_group_member.shareable_type == "Storage"
+                shared_list_ids << shared_group_member.shareable.id
+            end
+        end  
+        
+        if search != nil
+            _shared_storages = Storage.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+        else
+            _shared_storages = Storage.where(id: shared_list_ids) 
+        end
+        
+        return _shared_storages        
+      end    
+    
+      def all_storages(search = nil)
         _family_member_storages = family_member_storages(search)
         _own_storages = own_storages(search)
-
-        if _family_member_storages != nil
-            all_storages = _family_member_storages + _own_storages
-        else 
-            all_storages = _own_storages
-        end
-
+        _shared_storages = shared_storages(search)
+    
+        all_storages = _own_storages + _family_member_storages + _shared_storages
+    
         return all_storages
-    end      
+      end     
 end

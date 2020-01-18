@@ -4,8 +4,13 @@ class BuildingsController < ApplicationController
   include BuildingsHelper
   require 'will_paginate/array'
 
+  include SharingGroupController
+
   before_action :authenticate_user!
+  
   before_action :set_building, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
+
+  before_action :set_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group_members]
 
 
   # GET /buildings
@@ -115,6 +120,11 @@ class BuildingsController < ApplicationController
     def set_building
       @building = Building.find(params[:id])
     end
+
+    # Set the resource to be shared for the SharingGroupController. Note: Sharables are polymorphic
+    def set_resource
+      @resource = Building.find(params[:building_id])
+    end    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def building_params

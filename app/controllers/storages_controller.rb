@@ -4,7 +4,9 @@ class StoragesController < ApplicationController
   include ActiveStorage::SendZip
   include ApplicationHelper
   include StoragesHelper
-  require 'will_paginate/array'    
+  require 'will_paginate/array'
+  include SharingGroupController
+      
 
   before_action do 
     title("Ablagen")
@@ -14,6 +16,8 @@ class StoragesController < ApplicationController
 
   before_action :set_storage, only: [:show, :edit, :update, :destroy, :edit_images, :delete_items, :download_image_attachments]
   before_action :set_room, only: [:new, :create]
+
+  before_action :set_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group_members]    
 
   # GET /storages
   # GET /storages.json
@@ -135,6 +139,11 @@ class StoragesController < ApplicationController
     def set_room
       @room = Room.find(params[:room_id])
     end    
+
+    # Set the resource to be shared for the SharingGroupController. Note: Sharables are polymorphic
+    def set_resource
+      @resource = Storage.find(params[:storage_id])
+    end        
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def storage_params

@@ -119,9 +119,11 @@
                             <small class="card-text">
                                 <b>Räume:</b> <%= link_to building.rooms.size, building %>
                                 <br/>
-                                <% if building.user.id != current_user.id %>
+                                <% if is_shared(building) %>
                                   von <span class="badge badge-pill badge-info"><%= building.user.email %></span>
-                                <% end %>     
+                                <% else %>
+                                  von mir
+                                <% end %>
                             </small>
                         </div>
                     </div>
@@ -151,9 +153,11 @@
                             <small class="card-text">
                                 <b>Ablagen:</b> <%= link_to room.storages.size, room %>
                                 <br/>
-                                <% if room.user.id != current_user.id %>
+                                <% if is_shared(room) %>
                                   von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
-                                <% end %>                                     
+                                <% else %>
+                                  von mir
+                                <% end %>                                
                             </small>
                         </div>
                     </div>
@@ -183,9 +187,11 @@
                             <small class="card-text">
                                 <b>Dinge:</b> <%= link_to storage.items.size, storage %>
                                 <br/>
-                                <% if storage.user.id != current_user.id %>
+                                <% if is_shared(storage) %>
                                   von <span class="badge badge-pill badge-info"><%= storage.user.email %></span>
-                                <% end %>                                   
+                                <% else %>
+                                  von mir
+                                <% end %>                               
                             </small>                            
                         </div>
                     </div>
@@ -218,9 +224,11 @@
                                 <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %><br/>
                                 <b>Ablage:</b> <%= link_to item.storage.name, item.storage %>
                                 <br/>
-                                <% if item.user.id != current_user.id %>
+                                <% if is_shared(item) %>
                                   von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
-                                <% end %>                                
+                                <% else %>
+                                  von mir
+                                <% end %>                             
                             </small>
                         </div>
                     </div>

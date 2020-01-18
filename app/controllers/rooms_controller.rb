@@ -3,9 +3,13 @@ class RoomsController < ApplicationController
   include ApplicationHelper
   include RoomsHelper
   require 'will_paginate/array'  
+  include SharingGroupController  
 
   before_action :authenticate_user!
+
   before_action :set_room, only: [:show, :edit, :update, :destroy, :edit_images, :download_image_attachments]
+
+  before_action :set_resource, only: [:add_sharing_group_member, :remove_sharing_group_member, :sharing_group_members]  
   
   before_action do 
     title("Räume")
@@ -126,6 +130,11 @@ class RoomsController < ApplicationController
     def set_room
       @room = Room.find(params[:id])
     end
+
+    # Set the resource to be shared for the SharingGroupController. Note: Sharables are polymorphic
+    def set_resource
+      @resource = Room.find(params[:room_id])
+    end    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params

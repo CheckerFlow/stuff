@@ -53,11 +53,15 @@
           <% end %>                
           <br/>
           <small>
+            <% if !is_shared(item) %>
             <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
+            <% end %>
             <br/>
-            <% if item.user.id != current_user.id %>
+            <% if is_shared(item) %>
               von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
-            <% end %>               
+            <% else %>
+              von mir
+            <% end %>
           </small>
           <br/>
         </h5>

@@ -22,8 +22,11 @@
         <td><%= sharing_group_member.shareable.name %></td>
         <td><%= sharing_group_member.shareable_type %></td>
         <td>
-          <%= link_to remove_sharing_group_member_list_path({:sharing_group_member_id => sharing_group_member.id}), method: :delete, format: :html, data: { confirm: 'Are you sure?' }, :class => "btn btn-outline-danger" do %>
-            <%= fa_icon "trash" %> Löschen
+          <%= form_with(model: @resource, url: url_for(action: :remove_sharing_group_member, controller: @resource.class.to_s.tableize), local: true, method: :delete) do |form| %>
+            <%= hidden_field_tag "sharing_group_member_id", sharing_group_member.id %>
+            <button class="btn btn-primary">
+              <%= fa_icon "trash" %> Löschen
+            </button>               
           <% end %>
         </td>
       </tr>
@@ -33,17 +36,17 @@
 
 <br>
 
-<%= form_with(model: [SharingGroupMember.new], url: add_sharing_group_member_list_path, local: true, method: :post) do |form| %>
+<%= form_with(model: [SharingGroupMember.new], url: url_for(action: :add_sharing_group_member, controller: @resource.class.to_s.tableize), local: true, method: :post) do |form| %>
 
-    <div class="input-group mb-3">          
-      <%= form.text_field(:email, :class => "form-control")  %>
-      <div class="input-group-append">            
-        <button class="btn btn-primary">
-          <%= fa_icon "plus" %> Hinzufügen
-        </button>            
-      </div>
-    </div>        
+  <div class="input-group mb-3">          
+    <%= form.text_field(:email, :class => "form-control")  %>
+    <div class="input-group-append">            
+      <button class="btn btn-primary">
+        <%= fa_icon "plus" %> Hinzufügen
+      </button>            
+    </div>
+  </div>        
 
-  <% end %>     
+<% end %>     
 
 

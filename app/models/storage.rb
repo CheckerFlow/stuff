@@ -8,4 +8,6 @@ class Storage < ApplicationRecord
     has_many_attached :images, dependent: :destroy
 
     self.per_page = 20
+
+    has_many :sharing_group_members, as: :shareable    
 end

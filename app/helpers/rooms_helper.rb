@@ -34,16 +34,34 @@ module RoomsHelper
       return _family_member_rooms
   end
 
+  def shared_rooms(search = nil)
+    shared_group_members = SharingGroupMember.where(:email => current_user.email)
+
+    shared_list_ids = []
+
+    shared_group_members.each do 
+        |shared_group_member|
+        if shared_group_member.shareable_type == "Room"
+            shared_list_ids << shared_group_member.shareable.id
+        end
+    end  
+    
+    if search != nil
+        _shared_rooms = Room.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+    else
+        _shared_rooms = Room.where(id: shared_list_ids) 
+    end
+    
+    return _shared_rooms        
+  end    
+
   def all_rooms(search = nil)
-      _family_member_rooms = family_member_rooms(search)
-      _own_rooms = own_rooms(search)
+    _family_member_rooms = family_member_rooms(search)
+    _own_rooms = own_rooms(search)
+    _shared_rooms = shared_rooms(search)
 
-      if _family_member_rooms != nil
-          all_rooms = _family_member_rooms + _own_rooms
-      else 
-          all_rooms = _own_rooms
-      end
+    all_rooms = _own_rooms + _family_member_rooms + _shared_rooms
 
-      return all_rooms
-  end  
+    return all_rooms
+  end
 end

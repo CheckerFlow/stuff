@@ -40,10 +40,12 @@
           <% all_lists.each do |list| %>
             <%= link_to list_path(list), :class => "list-group-item list-group-item-action bg-light" do %>
               <%= list.name %>  <span class="badge badge-pill badge-secondary float-right"><%= list.list_items.count %></span>              
-              <% if list.user.id != current_user.id %>
-                <br/>
+              <br/>
+              <% if is_shared(list) %>                
                 von <span class="badge badge-pill badge-info"><%= list.user.email %></span>
-              <% end %>     
+              <% else %>
+                von mir
+              <% end %>
             <% end %>
           <% end %>
 

@@ -37,15 +37,15 @@ module ListsHelper
                 shared_list_ids << shared_group_member.shareable.id
             end
         end  
-        
+
         if search != nil
             _shared_lists = List.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
         else
             _shared_lists = List.where(id: shared_list_ids) 
         end
-        
+
         return _shared_lists        
-    end
+    end    
 
     def all_lists(search = nil)
         _family_member_lists = family_member_lists(search)
@@ -55,5 +55,5 @@ module ListsHelper
         all_lists = _own_lists + _family_member_lists + _shared_lists
 
         return all_lists
-    end      
+    end
 end

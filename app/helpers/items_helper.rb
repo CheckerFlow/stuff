@@ -26,16 +26,35 @@ module ItemsHelper
         return _family_member_items
     end
 
+    def shared_items(search = nil)
+        shared_group_members = SharingGroupMember.where(:email => current_user.email)
+
+        shared_list_ids = []
+
+        shared_group_members.each do 
+            |shared_group_member|
+            if shared_group_member.shareable_type == "Item"
+                shared_list_ids << shared_group_member.shareable.id
+            end
+        end  
+
+        if search != nil
+            _shared_items = Item.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+        else
+            _shared_items = Item.where(id: shared_list_ids) 
+        end
+
+        return _shared_items        
+    end    
+
     def all_items(search = nil)
         _family_member_items = family_member_items(search)
         _own_items = own_items(search)
+        _shared_items = shared_items(search)
 
-        if _family_member_items != nil
-            all_items = _family_member_items + _own_items
-        else 
-            all_items = _own_items
-        end
+        all_items = _own_items + _family_member_items + _shared_items
 
         return all_items
-    end      
+    end 
+  
 end

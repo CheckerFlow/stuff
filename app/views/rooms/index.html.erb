@@ -52,9 +52,11 @@
             <br/>
             hat <%= room.storages.count %> Ablagen
             <br/>
-            <% if room.user.id != current_user.id %>
+            <% if is_shared(room) %>
               von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
-            <% end %>            
+            <% else %>
+              von mir
+            <% end %>           
           </small>
         </h5>              
       </div>

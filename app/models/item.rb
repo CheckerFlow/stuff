@@ -13,4 +13,7 @@ class Item < ApplicationRecord
   acts_as_taggable_on :owner
 
   self.per_page = 20
+
+  has_many :sharing_group_members, as: :shareable
+
 end

@@ -17,7 +17,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to selectitems_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "list" %> Auswählen <% end %>
       <%= link_to edit_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
-      <%= link_to sharing_group_members_list_path(@list), :class=>"dropdown-item" do %><%= fa_icon "share-alt" %> Teilen <% end %>
+      <%= link_to list_sharing_group_members_path(@list), :class=>"dropdown-item" do %><%= fa_icon "share-alt" %> Teilen <% end %>
       <%= link_to @list, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
     </div>
   </div>    
@@ -59,15 +59,19 @@
             </div>
             <% end %>
             <div class="card-body p-2">              
-            <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
-                <small class="card-text">
-                  <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> <br/>
-                  <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
-                  <% if item.user.id != current_user.id %>
-                    <br/>
-                    von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
-                  <% end %>                     
-                </small>                
+              <% if !is_shared(item) %>
+              <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+              <small class="card-text">
+                <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> <br/>
+                <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
+                <br/>
+                <% if is_shared(item) %>                  
+                  von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
+                <% else %>
+                  von mir
+                <% end %>                 
+              </small>                
+              <% end %>                     
             </div>
           </div>
         </div>
@@ -107,9 +111,11 @@
     
             <small>
               Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
-              <% if item.user.id != current_user.id %>
+              <% if is_shared(item) %>
                 von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
-              <% end %>                 
+              <% else %>
+                von mir
+              <% end %>              
             </small>
           </div>
         <% end %>

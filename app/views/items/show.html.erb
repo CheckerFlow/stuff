@@ -10,20 +10,26 @@
 <h1 class="text-info">
   <%= klarschiff_auto_link(@item.name) %>
 
+  <% if !is_shared(@item) %>
   <div class="dropleft float-right" style="z-index: 1021">
     <a href="#" class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= fa_icon "edit" %>
-    </a>
+    </a>    
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to edit_item_path(@item), :class=>"dropdown-item" do %><%= fa_icon "edit" %> Ändern <% end %>
+      <%= link_to item_sharing_group_members_path(@item), :class=>"dropdown-item" do %><%= fa_icon "share-alt" %> Teilen <% end %>
       <%= link_to edit_images_item_path(@item), :class=>"dropdown-item" do %><%= fa_icon "image" %> Bilder <% end %>
       <%= link_to download_image_attachments_item_path(@item, :format => "zip"), :class => "dropdown-item" do %><%= fa_icon "download" %></i> Bilder herunterladen<% end %>
       <%= link_to @item, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"dropdown-item text-danger" do %><%= fa_icon "trash" %> Löschen<% end %>        
     </div>
+    
   </div>    
+  <% end %>
 </h1>  
 <h6>
+  <% if !is_shared(@item) %>
   <%= link_to @item.storage.room.name, @item.storage.room %> <%= fa_icon "arrow-right" %> <%= link_to @item.storage.name, @item.storage %>
+  <% end %>
 </h6>  
 
 <!--
@@ -84,6 +90,7 @@
 <br/>
 <hr/>
 
+<% if !is_shared(@item) %>
 <h5><%= fa_icon "list"%> Listen</h5>
 
 <% if @item.lists.size > 0 %>
@@ -115,3 +122,4 @@
     <% end %>     
   </div>
 </div>
+<% end %>

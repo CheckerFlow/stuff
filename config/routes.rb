@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :buildings do 
+  concern :sharing_group_members do
+    get 'sharing_group_members'
+    post 'add_sharing_group_member'
+    delete 'remove_sharing_group_member'
+  end
+
+  resources :buildings, concerns: :sharing_group_members  do 
     resources :rooms, shallow: true
 
     member do 
@@ -21,7 +27,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :rooms do
+  resources :rooms, concerns: :sharing_group_members  do
     resources :storages, shallow: true
 
     member do 
@@ -31,7 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :storages do
+  resources :storages, concerns: :sharing_group_members  do
     resources :items, shallow: true
 
     resources :images
@@ -44,7 +50,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items do 
+  resources :items, concerns: :sharing_group_members  do 
     member do 
       get 'edit_images'
       get :download_image_attachments
@@ -52,15 +58,12 @@ Rails.application.routes.draw do
     end    
   end    
 
-  resources :lists do 
+  resources :lists, concerns: :sharing_group_members do 
     member do
       get 'selectitems'
       post 'addItem'
       delete 'removeItem'      
-
-      get 'sharing_group_members'
-      post 'add_sharing_group_member'
-      delete 'remove_sharing_group_member'
+      
     end    
   end
 
