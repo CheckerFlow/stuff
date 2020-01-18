@@ -1,5 +1,6 @@
 module ItemsHelper
     include StoragesHelper
+    include ListsHelper
     
     def own_items(search = nil)
         if search != nil
