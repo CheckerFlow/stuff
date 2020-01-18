@@ -54,7 +54,7 @@ module ItemsHelper
             |shared_list|
             shared_list.list_items.each do 
               |shared_list_item|
-              shared_item_ids << shared_list_item.id
+              shared_item_ids << shared_list_item.item.id
             end
           end             
 
