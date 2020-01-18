@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :family_members
 
+  resources :sharing_group_members
+
   devise_for :users
 
   concern :sharing_group_members do

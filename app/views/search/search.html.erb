@@ -220,15 +220,17 @@
                         <% end %>
                         <div class="card-body p-2">
                             <small class="card-text">
+                                <% if !is_shared(item) %>
                                 <b>Gebäude:</b> <%= link_to item.storage.room.building.name, item.storage.room.building %><br/>
                                 <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %><br/>
                                 <b>Ablage:</b> <%= link_to item.storage.name, item.storage %>
                                 <br/>
+                                <% end %>
                                 <% if is_shared(item) %>
                                   von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
                                 <% else %>
                                   von mir
-                                <% end %>                             
+                                <% end %>
                             </small>
                         </div>
                     </div>
@@ -296,7 +298,9 @@
         
                         <br/>
                         <small>
-                            </b>Ablagen: <%= link_to room.storages.size, room %>
+                            <% if !is_shared(room) %>
+                            <b>Ablagen:</b> <%= link_to room.storages.size, room %>
+                            <% end %>
                         </small>
                     </li>
                 <% end %>
@@ -325,7 +329,9 @@
         
                         <br/>
                         <small>
-                            </b> Raum: <%= link_to storage.room.name, storage.room %>
+                            <% if !is_shared(storage) %>
+                            <b>Raum:</b> <%= link_to storage.room.name, storage.room %>
+                            <% end %>
                         </small>
                     </li>
                 <% end %>
@@ -362,7 +368,9 @@
         
                         <br/>
                         <small>
+                            <% if !is_shared(item) %>
                             <b>Gebäude:</b> <%= link_to item.storage.room.building.name, item.storage.room.building %> <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %> <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> 
+                            <% end %>
                         </small>
                     </li>
                 <% end %>

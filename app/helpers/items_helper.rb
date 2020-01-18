@@ -1,4 +1,6 @@
 module ItemsHelper
+    include StoragesHelper
+    
     def own_items(search = nil)
         if search != nil
             return current_user.items.where('name LIKE ?', "%#{search}%")
@@ -29,19 +31,28 @@ module ItemsHelper
     def shared_items(search = nil)
         shared_group_members = SharingGroupMember.where(:email => current_user.email)
 
-        shared_list_ids = []
+        shared_item_ids = []
 
         shared_group_members.each do 
             |shared_group_member|
             if shared_group_member.shareable_type == "Item"
-                shared_list_ids << shared_group_member.shareable.id
+                shared_item_ids << shared_group_member.shareable.id
             end
         end  
 
+        # Items through shared storages
+        shared_storages.each do 
+          |shared_storage|
+          shared_storage.items.each do 
+            |shared_storage_item|
+            shared_item_ids << shared_storage_item.id
+          end
+        end               
+
         if search != nil
-            _shared_items = Item.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+            _shared_items = Item.where(id: shared_item_ids).where('name LIKE ?', "%#{search}%") 
         else
-            _shared_items = Item.where(id: shared_list_ids) 
+            _shared_items = Item.where(id: shared_item_ids) 
         end
 
         return _shared_items        

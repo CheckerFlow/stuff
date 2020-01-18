@@ -1,4 +1,6 @@
 module RoomsHelper
+  include BuildingsHelper
+
   def items_count(room)
     if room.storages.size > 0
       return room.storages.sum(&:items).count
@@ -37,19 +39,28 @@ module RoomsHelper
   def shared_rooms(search = nil)
     shared_group_members = SharingGroupMember.where(:email => current_user.email)
 
-    shared_list_ids = []
+    shared_room_ids = []
 
     shared_group_members.each do 
         |shared_group_member|
         if shared_group_member.shareable_type == "Room"
-            shared_list_ids << shared_group_member.shareable.id
+            shared_room_ids << shared_group_member.shareable.id
         end
-    end  
+    end
+
+    # Rooms through shared buildings
+    shared_buildings.each do 
+      |shared_building|
+      shared_building.rooms.each do 
+        |shared_building_room|
+        shared_room_ids << shared_building_room.id
+      end
+    end
     
     if search != nil
-        _shared_rooms = Room.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+        _shared_rooms = Room.where(id: shared_room_ids).where('name LIKE ?', "%#{search}%") 
     else
-        _shared_rooms = Room.where(id: shared_list_ids) 
+        _shared_rooms = Room.where(id: shared_room_ids) 
     end
     
     return _shared_rooms        

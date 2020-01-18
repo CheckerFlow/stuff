@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-info">Geteiltes</h1>
+
+<p>
+  Hier siehst du, was du mit wem geteilt hast
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Geteilt mit (email)</th>
+      <th>Geteiltes</th>
+      <!--
+      <th>Typ</th>
+      -->
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sharing_group_members.each do |sharing_group_member| %>
+      <tr>        
+        <td><%= sharing_group_member.email %></td>
+        <td><%= link_to sharing_group_member.shareable.name, sharing_group_member.shareable %></td>
+        <!--
+        <td><%= sharing_group_member.shareable_type %></td>
+        -->
+        <td>
+          <%= link_to sharing_group_member_path(sharing_group_member), method: :delete, data: { confirm: 'Are you sure?' }, :class =>"btn btn-sm btn-outline-danger float-right" do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+

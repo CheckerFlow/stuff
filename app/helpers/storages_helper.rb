@@ -29,19 +29,28 @@ module StoragesHelper
     def shared_storages(search = nil)
         shared_group_members = SharingGroupMember.where(:email => current_user.email)
     
-        shared_list_ids = []
+        shared_storage_ids = []
     
         shared_group_members.each do 
             |shared_group_member|
             if shared_group_member.shareable_type == "Storage"
-                shared_list_ids << shared_group_member.shareable.id
+                shared_storage_ids << shared_group_member.shareable.id
             end
-        end  
+        end
+        
+        # Storages through shared rooms
+        shared_rooms.each do 
+          |shared_room|
+          shared_room.storages.each do 
+            |shared_room_storage|
+            shared_storage_ids << shared_room_storage.id
+          end
+        end        
         
         if search != nil
-            _shared_storages = Storage.where(id: shared_list_ids).where('name LIKE ?', "%#{search}%") 
+            _shared_storages = Storage.where(id: shared_storage_ids).where('name LIKE ?', "%#{search}%") 
         else
-            _shared_storages = Storage.where(id: shared_list_ids) 
+            _shared_storages = Storage.where(id: shared_storage_ids) 
         end
         
         return _shared_storages        

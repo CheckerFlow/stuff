@@ -61,17 +61,19 @@
             <div class="card-body p-2">              
               <% if !is_shared(item) %>
               <%= link_to removeItem_list_path({ :item_id => item.id }), :method => :delete, :class => "btn btn-sm btn-outline-danger float-right" do %><%= fa_icon "trash" %><% end %>
+              <% end %>
               <small class="card-text">
+                <% if !is_shared(item) %>
                 <b>Ablage:</b> <%= link_to item.storage.name, item.storage %> <br/>
                 <b>Raum:</b> <%= link_to item.storage.room.name, item.storage.room %>
                 <br/>
+                <% end %>                
                 <% if is_shared(item) %>                  
                   von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
                 <% else %>
                   von mir
-                <% end %>                 
-              </small>                
-              <% end %>                     
+                <% end %>    
+              </small>                                 
             </div>
           </div>
         </div>
@@ -110,7 +112,9 @@
             <br/>
     
             <small>
+              <% if !is_shared(item) %>
               Ablage: <%= link_to item.storage.name, item.storage %> Raum: <%= link_to item.storage.room.name, item.storage.room %>
+              <% end %>              
               <% if is_shared(item) %>
                 von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
               <% else %>
