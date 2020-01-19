@@ -51,8 +51,8 @@
             in <%= room.building.name %>
             <br/>
             hat <%= room.storages.count %> Ablagen
-            <br/>
-            <% if is_shared(room) %>
+            <br/>            
+            <% if is_shared(room) %>              
               von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
             <% else %>
               von mir
