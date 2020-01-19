@@ -149,7 +149,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <% if current_user.email != "demo@klarschiff.app" %>
                     <%= link_to "Ändern", edit_user_registration_path, :class => "dropdown-item" %>
-                    <%= link_to "Familienmitglieder", family_members_path, :class => "dropdown-item" %>
+                    <%= link_to "Mitglieder", family_members_path, :class => "dropdown-item" %>
                     <%= link_to "Geteiltes", sharing_group_members_path, :class => "dropdown-item" %>
                   <% else %>
                     <a href="#" class="dropdown-item disabled">Ändern in Demo nicht möglich</a>
