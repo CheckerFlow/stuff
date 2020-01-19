@@ -46,7 +46,8 @@
           <%= klarschiff_auto_link(item.name) %>
 
           <% ListItem.where(:item_id => item.id).each do |list_item| %>
-            <% if is_shared(list_item.list) %>            
+            <% if is_shared(list_item.list) %>
+              <%= is_shared(list_item.list) %>
               <%= link_to list_path(list_item.list) do %>
                   <span class="badge badge-pill badge-light"><%= fa_icon "list" %> <%= list_item.list.name %></span>
               <% end %>

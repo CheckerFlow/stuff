@@ -1,10 +1,10 @@
 module ListsHelper
     def own_lists(search = nil)
-    if search != nil
-        return current_user.lists.where('name LIKE ?', "%#{search}%")
-    else
-        return current_user.lists
-    end
+        if search != nil
+            return current_user.lists.where('name LIKE ?', "%#{search}%")
+        else
+            return current_user.lists
+        end
     end
 
     def family_member_lists(search = nil)
