@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'pages/landing'
   get 'pages/landing2'
   get 'pages/about'
-  
+  get 'pages/use_case_1'
+  get 'pages/use_case_2'
+  get 'pages/use_case_3'
 
   resources :family_members
 
