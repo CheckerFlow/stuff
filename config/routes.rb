@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/help'
   get 'pages/landing'
+  get 'pages/landing2'
   get 'pages/about'
+  
 
   resources :family_members
 
@@ -75,5 +77,5 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root :to => "pages#landing"
+  root :to => "pages#landing2"
 end

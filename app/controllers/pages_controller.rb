@@ -24,4 +24,9 @@ class PagesController < ApplicationController
     title("Gewinne den Überblick über deine Dinge")
     @early_access_request = EarlyAccessRequest.new
   end
+
+  def landing2
+    title("Gegenstände organisieren")
+    @early_access_request = EarlyAccessRequest.new
+  end
 end
