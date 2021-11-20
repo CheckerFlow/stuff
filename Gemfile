@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 #ruby '2.5.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2.1'
+gem 'rails', '~> 6.1.4.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
@@ -36,9 +36,10 @@ gem 'image_processing', '~> 1.9', '>= 1.9.3'
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
-gem 'acts-as-taggable-on', '~> 6.5'
+#gem 'acts-as-taggable-on', '~> 6.5'
+gem 'acts-as-taggable-on', '~> 8.1'
 
-gem 'twitter-text', '~> 3.0'
+###gem 'twitter-text', '~> 3.1'
 
 gem 'active_storage-send_zip', '~> 0.3.2'
 

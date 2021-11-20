@@ -2,6 +2,7 @@ module ApplicationHelper
     require "mini_magick"
 
     def klarschiff_auto_link(string)
+        result = ""
         options = {
             :hashtag_url_base => request.base_url + "/search/search?search_string=", 
             :hashtag_class => "badge badge-pill badge-light small",
@@ -10,7 +11,8 @@ module ApplicationHelper
             :symbol_tag => true,
             :username_include_symbol => true
         }
-        return Twitter::TwitterText::Autolink.auto_link(string, options).html_safe
+        ### result = Twitter::TwitterText::Autolink.auto_link(string, options).html_safe
+        return result 
     end
 
     def klarschiff_link_text_block(entity, text) 
