@@ -84,11 +84,11 @@ class ItemsController < ApplicationController
       @item.images.attach(image.blob)
     end
 
-    @item.tag_list = ""
-    ### @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
+    ###@item.tag_list = ""
+    @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
 
-    @item.owner_list = ""
-    ### @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
+    ###@item.owner_list = ""
+    @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
     
     respond_to do |format|
       if @item.save
@@ -108,11 +108,11 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
 
-    @item.tag_list = ""
-    ### @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
+    ###@item.tag_list = ""
+    @item.tag_list = Twitter::TwitterText::Extractor.extract_hashtags(item_params[:name])
 
-    @item.owner_list = ""
-    ### @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
+    ###@item.owner_list = ""
+    @item.owner_list = Twitter::TwitterText::Extractor.extract_mentioned_screen_names(item_params[:name])
 
     respond_to do |format|
       if @item.update(item_params)

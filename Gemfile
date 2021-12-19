@@ -39,7 +39,7 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 #gem 'acts-as-taggable-on', '~> 6.5'
 gem 'acts-as-taggable-on', '~> 8.1'
 
-###gem 'twitter-text', '~> 3.1'
+gem 'twitter-text', '~> 3.1'
 
 gem 'active_storage-send_zip', '~> 0.3.2'
 

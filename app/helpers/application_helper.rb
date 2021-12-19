@@ -11,7 +11,7 @@ module ApplicationHelper
             :symbol_tag => true,
             :username_include_symbol => true
         }
-        ### result = Twitter::TwitterText::Autolink.auto_link(string, options).html_safe
+        result = Twitter::TwitterText::Autolink.auto_link(string, options).html_safe
         return result 
     end
 
