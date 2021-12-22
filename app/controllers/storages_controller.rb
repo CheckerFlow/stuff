@@ -26,10 +26,14 @@ class StoragesController < ApplicationController
       #@storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%")
       #@storages = current_user.storages.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
       @storages = all_storages(params[:search]).paginate(page: params[:page])
+
+      @buildings = all_buildings
     else
       #@storages = current_user.storages.all
       #@storages = current_user.storages.all.paginate(page: params[:page])
       @storages = all_storages.paginate(page: params[:page])
+
+      @buildings = all_buildings
     end
   end
 

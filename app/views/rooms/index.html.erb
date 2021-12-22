@@ -33,7 +33,14 @@
 <% @buildings.each do |building| %>
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-    <h2 class="text-info"><%= building.name %></h2>
+    <h3 class="text-info">
+      <%= building.name %>
+      <br/>
+      <small>
+        <span class="badge badge-pill badge-light"><%= building.rooms.count.to_s %> Räume </span>    
+      </small>
+    </h3>      
+    <hr/>
   </div>
 
     <% @rooms.each do |room| %>      

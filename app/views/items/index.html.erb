@@ -26,7 +26,7 @@
 
 <div class="row">
 <% @items.each do |item| %>
-  <div class="col-lg-3 col-md-4 col-sm-12 col-12">
+  <div class="col-lg-2 col-md-4 col-sm-12 col-12">
     <div class="d-inline-flex">
       <%= link_to item do %>
         <% if item.images.first %>
@@ -54,10 +54,12 @@
           <% end %>                
           <br/>
           <small>
+            <% if klarschiff_show_details %>
             <% if !is_shared(item) %>
             <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %> in <%= link_to item.storage.room.building.name, item.storage.room.building %>
-            <% end %>
+            <% end %>            
             <br/>
+            <% end %>
             <% if is_shared(item) %>
               von <span class="badge badge-pill badge-info"><%= item.user.email %></span>
             <% else %>
@@ -66,7 +68,8 @@
           </small>
           <br/>
         </h5>
-      </div> 
+      </div>
+      <% if klarschiff_show_details %>
       <div class="flex-fill bd-highlight">
         <span class="badge badge-pill badge-light">
           <%= item.images.count.to_s %> Bilder 
@@ -75,6 +78,7 @@
           </small>
         </span>
       </div>   
+      <% end %>
     </div>         
   </div>
 <% end %>
