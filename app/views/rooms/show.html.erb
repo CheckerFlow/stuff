@@ -105,9 +105,10 @@
               <% else %>
                   <%= image_tag('storage_placeholder.jpg', :class => "mr-3 float-right", :width => "50", :height => "50") %>
               <% end %>                 
-            </a>            
-
+            </a>
+            
             <br/>
+            <% if klarschiff_show_image_details %>            
             <span class="badge badge-pill badge-light">
               <%= storage.images.count.to_s %> Bilder 
               <small>
@@ -115,6 +116,9 @@
               </small>
             </span>
             <span class="badge badge-pill badge-light"><%= storage.items.count.to_s %> Dinge </span>            
+            <% end %>
+
+            <span class="badge badge-pill badge-light"><%= storage.items.count.to_s %> Dinge </span>
           </div>
         <% end %>
       </div>  

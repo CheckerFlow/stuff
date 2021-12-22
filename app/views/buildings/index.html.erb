@@ -44,8 +44,9 @@
     </div>
     <div class="d-flex d-flex-row mb-4">
       <div class="flex-fill bd-highlight">
-        <h5 class="mt-0">
-          <%= klarschiff_auto_link(building.name) %>                 
+        <h5 class="mt-2">
+          <%= klarschiff_auto_link(building.name) %>
+          <% if klarschiff_show_details %>              
           <br/>        
           <small>        
             mit <%= building.rooms.count %> Räumen </br>            
@@ -55,14 +56,17 @@
               von mir
             <% end %>
           </small>
+          <% end %>
         </h5>              
       </div>
+      <% if klarschiff_show_details %>
       <div class="flex-fill bd-highlight">
         <span class="badge badge-pill badge-light"><%= building.images.count.to_s %> Bilder </span>
         <small>
           Größe: <%= bytes_to_megabytes(image_sizes(building)).round(2) %> MB
         </small>        
       </div>      
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -55,7 +55,7 @@
           <br/>
           <small>
             <% if !is_shared(item) %>
-            <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %>
+            <%= link_to item.storage.name, item.storage %> im <%= link_to item.storage.room.name, item.storage.room %> in <%= link_to item.storage.room.building.name, item.storage.room.building %>
             <% end %>
             <br/>
             <% if is_shared(item) %>

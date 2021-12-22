@@ -19,6 +19,14 @@ module ApplicationHelper
         return text.reverse
     end
 
+    def klarschiff_show_details
+        return false
+    end
+
+    def klarschiff_show_image_details
+        return false
+    end    
+
     # Return page-specific title text for <title>-tag in HTML <head> section
     def title(text)
         @title = text

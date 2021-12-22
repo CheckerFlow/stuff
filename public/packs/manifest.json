@@ -1,15 +1,15 @@
 {
-  "application.js": "/packs/js/application-9d1653d0beb0907b905f.js",
-  "application.js.map": "/packs/js/application-9d1653d0beb0907b905f.js.map",
+  "application.js": "/packs/js/application-a0fca1acfed6678d58c9.js",
+  "application.js.map": "/packs/js/application-a0fca1acfed6678d58c9.js.map",
   "bootstrap-custom.js": "/packs/js/bootstrap-custom-6844f19600540285bbad.js",
   "bootstrap-custom.js.map": "/packs/js/bootstrap-custom-6844f19600540285bbad.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-9d1653d0beb0907b905f.js"
+        "/packs/js/application-a0fca1acfed6678d58c9.js"
       ],
       "js.map": [
-        "/packs/js/application-9d1653d0beb0907b905f.js.map"
+        "/packs/js/application-a0fca1acfed6678d58c9.js.map"
       ]
     },
     "bootstrap-custom": {
@@ -28,27 +28,27 @@
         "/packs/js/google_analytics-915c0777e8a81e7b6e0b.js.map"
       ]
     },
-    "src\\application": {
+    "src/application": {
       "js": [
-        "/packs/js/src/application-8a596fc79e38eeb14952.js"
+        "/packs/js/src/application-dec366136432bb6c863f.js"
       ],
       "js.map": [
-        "/packs/js/src/application-8a596fc79e38eeb14952.js.map"
+        "/packs/js/src/application-dec366136432bb6c863f.js.map"
       ]
     },
-    "src\\simple-sidebar": {
+    "src/simple-sidebar": {
       "js": [
-        "/packs/js/src/simple-sidebar-da100a83b3301732cae2.js"
+        "/packs/js/src/simple-sidebar-c88732cfc61d8aed7463.js"
       ],
       "js.map": [
-        "/packs/js/src/simple-sidebar-da100a83b3301732cae2.js.map"
+        "/packs/js/src/simple-sidebar-c88732cfc61d8aed7463.js.map"
       ]
     }
   },
   "google_analytics.js": "/packs/js/google_analytics-915c0777e8a81e7b6e0b.js",
   "google_analytics.js.map": "/packs/js/google_analytics-915c0777e8a81e7b6e0b.js.map",
-  "src/application.js": "/packs/js/src/application-8a596fc79e38eeb14952.js",
-  "src/application.js.map": "/packs/js/src/application-8a596fc79e38eeb14952.js.map",
-  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-da100a83b3301732cae2.js",
-  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-da100a83b3301732cae2.js.map"
+  "src/application.js": "/packs/js/src/application-dec366136432bb6c863f.js",
+  "src/application.js.map": "/packs/js/src/application-dec366136432bb6c863f.js.map",
+  "src/simple-sidebar.js": "/packs/js/src/simple-sidebar-c88732cfc61d8aed7463.js",
+  "src/simple-sidebar.js.map": "/packs/js/src/simple-sidebar-c88732cfc61d8aed7463.js.map"
 }
