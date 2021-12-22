@@ -1,5 +1,9 @@
 module BuildingsHelper
 
+    def storages_count(building)
+        return building.storages.count
+    end
+
     def own_buildings(search = nil)
         if search != nil
             return current_user.buildings.where('name LIKE ?', "%#{search}%")

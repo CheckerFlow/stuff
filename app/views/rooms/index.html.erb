@@ -30,11 +30,72 @@
 <% end %>
 -->
 
-<br/><br/>
+<% @buildings.each do |building| %>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <h2 class="text-info"><%= building.name %></h2>
+  </div>
 
+    <% @rooms.each do |room| %>      
+      <% if room.building == building %>        
+
+      <div class="col-lg-2 col-md-4 col-sm-12 col-12">
+        <div class="d-inline-flex w-100">
+          <%= link_to room do %>
+            <% if room.images.first %>
+              <img src="<%= url_for(room.images.first.variant(resize_to_limit: [400, 300], auto_orient: true).processed) %>" class="w-100" alt="...">          
+            <% else %>
+              <%= image_tag('room_placeholder.jpg', :class => "w-100") %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="d-flex d-flex-row mb-4">
+          <div class="flex-fill bd-highlight">
+            <h5 class="mt-2">
+              <%= klarschiff_auto_link(room.name) %>                 
+              <% if klarschiff_show_details %>
+              <br/>        
+              <small>        
+                in <%= room.building.name %>
+                <br/>
+                hat <%= room.storages.count %> Ablagen
+                <br/>            
+                <% if is_shared(room) %>              
+                  von <span class="badge badge-pill badge-info"><%= room.user.email %></span>
+                <% else %>
+                  von mir
+                <% end %>           
+              </small>
+              <% end %>
+            </h5>              
+          </div>          
+          <div class="bd-highlight">
+            <span class="badge badge-pill badge-light"><%= building.rooms.count.to_s %> Räume </span>
+          </div>
+
+          <% if klarschiff_show_details %>
+          <div class="flex-fill bd-highlight">
+            <span class="badge badge-pill badge-light"><%= room.images.count.to_s %> Bilder </span>
+            <small>
+              Größe: <%= bytes_to_megabytes(image_sizes(room)).round(2) %> MB
+            </small>
+          </div>
+          <% end %>
+        </div>      
+      </div>
+      <% end %>
+    <% end %>
+ 
+    <hr/>
+  
+</div>
+<% end %>
+
+<!--
+<br/><br/>
 <div class="row">
 <% @rooms.each do |room| %>
-  <div class="col-lg-3 col-md-4 col-sm-12 col-12">
+  <div class="col-lg-2 col-md-4 col-sm-12 col-12">
     <div class="d-inline-flex w-100">
       <%= link_to room do %>
         <% if room.images.first %>
@@ -74,7 +135,8 @@
       <% end %>
     </div>
   </div>
-<% end %>
+<% end %>   
 </div>
+-->
 
 <%= will_paginate @rooms, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

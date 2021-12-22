@@ -22,10 +22,14 @@ class RoomsController < ApplicationController
       #@rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%")
       #@rooms = current_user.rooms.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page])
       @rooms = all_rooms(params[:search]).paginate(page: params[:page])
+
+      @buildings = all_buildings
     else
       #@rooms = current_user.rooms.all
       #@rooms = current_user.rooms.all.paginate(page: params[:page])
       @rooms = all_rooms.paginate(page: params[:page])
+
+      @buildings = all_buildings
     end    
   end
 
@@ -83,7 +87,7 @@ class RoomsController < ApplicationController
 
         process_images(@room)
 
-        format.html { redirect_to @room, notice: 'Raum wurde erstellt.' }
+        format.html { redirect_to @room.building, notice: 'Raum wurde erstellt.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }

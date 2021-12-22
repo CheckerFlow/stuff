@@ -25,6 +25,24 @@ module ApplicationHelper
 
     def klarschiff_show_image_details
         return false
+    end   
+    
+    def klarschiff_number_of_items_in_room(room)
+        result = 0
+        room.storages.each do            
+            |storage|
+            result += storage.items.count
+        end
+        return result
+    end
+
+    def klarschiff_number_of_rooms_in_building(building)
+        result = 0
+        building.rooms.each do            
+            |room|
+            result += room.items.count
+        end
+        return result
     end    
 
     # Return page-specific title text for <title>-tag in HTML <head> section

@@ -118,8 +118,10 @@
               </small>
             </span>
             <% end %>
-            
+
             <span class="badge badge-pill badge-light"><%= room.storages.count.to_s %> Ablagen </span>
+
+            <span class="badge badge-pill badge-light"><%= klarschiff_number_of_items_in_room(room).to_s %> Dinge </span>
           </div>
         <% end %>
       </div>  
