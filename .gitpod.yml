@@ -4,7 +4,7 @@ ports:
 tasks:
   # libldap2-dev and libidn11-dev are required for gem twitter-text due to its dependency on gem idn-ruby
   - init: >
-      rvm install "ruby-2.7.5 &&
+      rvm install "ruby-2.7.5" &&
       sudo apt-get install libldap2-dev && 
       sudo apt-get install libidn11-dev && 
       gem install bundler &&
