@@ -70,7 +70,8 @@
             </h5>              
           </div>          
           <div class="bd-highlight">
-            <span class="badge badge-pill badge-light"><%= building.rooms.count.to_s %> Räume </span>
+            <span class="badge badge-pill badge-light"><%= room.storages.count.to_s %> Ablagen </span>
+            <span class="badge badge-pill badge-light"><%= items_count(room).to_s %> Dinge </span>
           </div>
 
           <% if klarschiff_show_details %>
