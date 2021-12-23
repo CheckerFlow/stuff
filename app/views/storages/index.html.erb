@@ -40,6 +40,7 @@
       <div class="flex-fill bd-highlight">
         <h5 class="mt-2">
           <%= klarschiff_auto_link(storage.name) %>
+          
           <% if klarschiff_show_details %>
           <br/>        
           <small>        
@@ -50,10 +51,14 @@
             <% else %>
               von mir
             <% end %>
-          </small>
+          </small>          
           <% end %>
         </h5>              
       </div>
+      <div class="bd-highlight">        
+        <span class="badge badge-pill badge-light"><%= storage.items.count.to_s %> Dinge </span>
+      </div>
+
       <% if klarschiff_show_details %>
       <div class="flex-fill bd-highlight">
         <span class="badge badge-pill badge-light">
