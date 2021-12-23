@@ -1,8 +1,31 @@
 module BuildingsHelper
 
-    def storages_count(building)
-        return building.storages.count
+    def items_count_in_building(building)
+        items_counter = 0
+
+        building.rooms.each do 
+            |room|
+            if room.storages.size > 0
+                items_counter += room.storages.sum(&:items).count
+            end
+        end
+
+        return items_counter
     end
+
+    def storages_count_in_building(building)
+        storages_counter = 0
+
+        building.rooms.each do 
+            |room|
+            if room.storages.size > 0
+                storages_counter += room.storages.count
+            end
+        end
+
+        return storages_counter
+    end    
+
 
     def own_buildings(search = nil)
         if search != nil

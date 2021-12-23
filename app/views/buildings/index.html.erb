@@ -59,6 +59,14 @@
           <% end %>
         </h5>              
       </div>
+
+      <div class="bd-highlight">        
+        <span class="badge badge-pill badge-light"><%= building.rooms.count.to_s %> Räume </span>
+        <span class="badge badge-pill badge-light"><%= storages_count_in_building(building).to_s %> Ablagen </span>
+        <span class="badge badge-pill badge-light"><%= items_count_in_building(building).to_s %> Dinge </span>
+      </div>
+
+
       <% if klarschiff_show_details %>
       <div class="flex-fill bd-highlight">
         <span class="badge badge-pill badge-light"><%= building.images.count.to_s %> Bilder </span>
