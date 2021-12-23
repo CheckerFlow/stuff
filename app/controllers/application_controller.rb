@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     if Rails.env.development?
-      {:host => "3000-white-marlin-9q5m9ljb.ws-eu23.gitpod.io"}
+      {:host => "3000-white-marlin-9q5m9ljb.ws-eu25.gitpod.io"}
     else  
       {}
     end

@@ -132,7 +132,7 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = Room.find(params[:id])      
     end
 
     # Set the resource to be shared for the SharingGroupController. Note: Sharables are polymorphic
