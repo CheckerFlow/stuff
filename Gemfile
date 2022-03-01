@@ -32,7 +32,7 @@ gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 # Use Amazon S3 with Active Storage
 gem "aws-sdk-s3", require: false
 
-gem 'image_processing', '~> 1.9', '>= 1.9.3'
+gem 'image_processing', '~> 1.12'
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
