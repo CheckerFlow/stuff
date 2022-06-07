@@ -127,7 +127,7 @@ GEM
     jaro_winkler (1.5.4)
     jbuilder (2.11.4)
       activesupport (>= 5.0.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
